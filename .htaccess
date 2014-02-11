@@ -1,0 +1,31 @@
+Options All -Indexes
+
+<files .htaccess>
+order allow,deny
+deny from all
+</files>
+
+<files *.log>
+order allow,deny
+deny from all
+</files>
+
+#-----------------------MOD_REWRITE-------------------------
+
+Options +FollowSymLinks
+
+RewriteEngine On
+
+# Ignore paths to css, js, and images
+RewriteCond %{REQUEST_URI} !^.*\.(|js|css|images|).*$ [NC]
+
+
+# Rewrite urls with get variables.
+RewriteRule ^([a-zA-Z]+)$ /index.php?page=$1 [NC,L]
+RewriteRule ^web/([a-zA-Z]+)$ $1.php [NC,L]
+
+
+#-----------------------END_REWRITE-------------------------
+
+# 404 Page
+ErrorDocument 404 /404.php

@@ -1,0 +1,162 @@
+/* Include icon css */
+@import url('icons.css');
+
+input:focus {
+  outline: none;
+}
+
+@font-face {
+  font-family: 'app-font';
+  src: url('/fonts/Raleway-Regular.otf');
+}
+
+html {
+  background: #333;
+}
+
+body {
+ font-family: 'app-font';
+}
+
+.title {
+  padding: 5px;
+  
+  font-size: 40pt;
+  color: #555;
+}
+
+.background {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+
+  width: 100%;
+  height: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  background: url('/images/field.jpg') no-repeat;
+  background-size: cover;
+
+  opacity: 0.2;
+
+  -webkit-filter: blur(2px);
+     -moz-filter: blur(2px);
+      -ms-filter: blur(2px);
+       -o-filter: blur(2px);
+          filter: blur(2px);
+}
+
+.login_box {
+  position: relative;
+  display: block;
+
+  text-align: center;
+
+  width: 18em;
+  height: 25em;
+
+  margin: 12em auto 0 auto;
+
+  border: 1px solid #7f8c8d;
+  background: #FFF;
+}
+
+.register_box {
+  position: relative;
+  display: block;
+
+  text-align: center;
+
+  width: 18em;
+  height: 30em;
+
+  margin: 12em auto 0 auto;
+
+  border: 1px solid #7f8c8d;
+  background: #FFF;
+}
+
+.regular_box {
+  position: relative;
+  display: block;
+
+  text-align: center;
+
+  width: 20em;
+  height: 15em;
+
+  margin: 12em auto 0 auto;
+
+  border: 1px solid #7f8c8d;
+  background: #FFF;
+}
+
+.form_box {
+  display: block;
+
+  width: 85%;
+  height: 2em;
+
+  margin: 3em auto;
+}
+
+.form_box > span {
+  background: #FFF;
+  color: #555;
+  font-size: 20px;
+
+  padding: 5px;
+}
+
+.form_box input {
+  position: relative;
+  top: -4.6px;
+  left: -5px;
+  width: 85%;
+  height: 30.5px;
+
+  margin: 0;
+  padding: 5px;
+
+  background: #FFF;
+  border: none;
+
+  color: #666;
+}
+
+.login_submit {
+  width: auto;
+  height: 2.5em;
+
+  background: #DDD;
+  border: none;
+
+  cursor: pointer;
+}
+
+.login_submit > span {
+  padding: 5px;
+
+  font-size: 15pt;
+  color: #555;
+}
+
+.errors {
+  display: block;
+  position: relative;
+  bottom: -25px;
+}
+
+.login_options {
+  display: block;
+  position: relative;
+  bottom: -50px;
+
+  font-size: 10pt;
+}
+
+.login_options span, a, u {
+  color: #666;
+}
