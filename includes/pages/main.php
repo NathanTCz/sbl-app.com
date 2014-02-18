@@ -1,10 +1,44 @@
+<?php
+  if ($session->logged_in()) {
+    $session->redirect("/home");
+    exit;
+  }
+
+  if (isset($_POST['submit']) && $_POST['submit'] === "login") {
+    var_dump($_POST);
+    $email = trim($_POST['email']);
+    $pass = trim($_POST['password']);
+
+    // Create Login Object
+    $login = new Login($email, $pass); 
+
+    if ($user_id = $login->auth_user()) {
+      $session->login($user_id);
+    }
+    else {
+      $LOG_ERRORS[] = "Invalid username and password";
+    }
+  }
+
+  else if (isset($_POST['submit']) && $_POST['submit'] === "register") {
+    $email = trim($_POST['email']);
+    $pass = trim($_POST['password2']);
+
+    // Create Login Object
+    $login = new Login($email, $pass); 
+
+    if ($login->register_user())
+      $session->redirect("/web/regcomp");
+  }
+?>
+
 <html>
   <head>
     <title>SBL</title>
     <link rel="stylesheet" type="text/css" href="/css/login.css"/>
   </head>
 
-  <body onscroll="shift_back()">
+  <body onload="check_hash()" onhashchange="shift_back()">
     <div id="back1" class="background"></div>
     <div id="back2" class="background"></div>
 

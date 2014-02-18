@@ -162,7 +162,7 @@ section {
 
 .main section#login {
   position: relative;
-  right: -44%;
+  right: 0em;
 
   z-index: 1;
 
@@ -177,14 +177,13 @@ section {
   position: relative;
 
   top: 14em;
-  left: -5em;
 
   text-align: center;
 
   width: 18em;
-  height: 25em;
+  min-height: 27em;
 
-  margin: 0;
+  margin: 0 auto;
 
   border: 1px solid #7f8c8d;
   background: #FFF;
@@ -200,9 +199,10 @@ section {
   text-align: center;
 
   width: 18em;
-  height: 30em;
+  min-height: 30em;
+  height: auto;
 
-  margin: 0;
+  margin: 0 auto;
 
   border: 1px solid #7f8c8d;
   background: #FFF;
@@ -210,11 +210,14 @@ section {
 
 .regular_box {
   display: block;
+  position: relative;
 
   text-align: center;
 
   width: 20em;
   height: 15em;
+  
+  z-index: 999;
 
   margin: 12em auto 0 auto;
 
@@ -262,7 +265,7 @@ section {
   background: #555;
   border: none;
 
-  z-index: 999;
+  z-index: 9999;
 
   cursor: pointer;
 }
@@ -278,6 +281,9 @@ section {
   display: block;
   position: relative;
   bottom: -25px;
+
+  margin: 0 auto 2em auto;
+  color: #555;
 }
 
 .login_options {

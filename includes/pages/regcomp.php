@@ -3,8 +3,7 @@
     <link rel="stylesheet" type="text/css" href="/css/login.css"/>
   </head>
 <body>
-<div id="back1" class="background">
-</div>
+<div id="back1" class="background"></div>
 <div class="regular_box">
   <div class="title">SBL</div>
   <br>

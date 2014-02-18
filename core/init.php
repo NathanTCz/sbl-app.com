@@ -15,6 +15,8 @@
 
   // GLOBAL VARIABLES
   $ERRORS = array();
+  $LOG_ERRORS = array();
+  $REG_ERRORS = array();
 
   $session = new Session;
 ?>

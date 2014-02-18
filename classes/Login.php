@@ -58,7 +58,7 @@ class Login extends Database {
   }
 
   public function register_user () {
-    global $ERRORS;
+    global $REG_ERRORS;
 
     if($this->new_user() && $this->validate_email() && $this->validate_password()) {
       $query = $this->DB->prepare ("
@@ -79,7 +79,7 @@ class Login extends Database {
   }
 
   public function new_user () {
-    global $ERRORS;
+    global $REG_ERRORS;
 
     $query = $this->DB->prepare ("
       SELECT user_id
@@ -95,51 +95,51 @@ class Login extends Database {
     if ($count == NULL)
       return true;
     else
-      $ERRORS[] = "A user with this email already exists";
+      $REG_ERRORS[] = "A user with this email already exists";
       return false;
   }
  
   public function validate_email()
   { 
-    global $ERRORS; 
+    global $REG_ERRORS; 
     
     $result = filter_var($this->email, FILTER_VALIDATE_EMAIL);
     if ($result == false)
     {
-      $ERRORS[] = "An invalid email address has been entered";
+      $REG_ERRORS[] = "An invalid email address has been entered";
     }
     return $result; 
   }
  
  public function validate_password()
  {
-  global $ERRORS;
+  global $REG_ERRORS;
 
   if(strlen($this->prepass) < 6 )
     {
-      $ERRORS[] = "Password must have at least 6 characters";
+      $REG_ERRORS[] = "Password must have at least 6 characters";
     }
 
   if(strlen($this->prepass) > 20)
   {
-    $ERRORS[] = "Password must be less than 20 characters";
+    $REG_ERRORS[] = "Password must be less than 20 characters";
   }
 
   if(!preg_match("#[0-9]+#", $this->prepass))
   {
-    $ERRORS[] = "Password must contain at least one number";
+    $REG_ERRORS[] = "Password must contain at least one number";
   }
 
  if(!preg_match("#[a-z]+#", $this->prepass))
   {
-    $ERRORS[] = "Password must contain at least one letter";
+    $REG_ERRORS[] = "Password must contain at least one letter";
   }
  
  if(!preg_match("#[A-Z]+#", $this->prepass))
   {
-    $ERRORS[] = "Password must contain at least one uppercase letter";
+    $REG_ERRORS[] = "Password must contain at least one uppercase letter";
   }
-  if(empty($ERRORS))
+  if(empty($REG_ERRORS))
   {
     return true;
   }
