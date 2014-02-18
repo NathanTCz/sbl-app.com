@@ -20,6 +20,4 @@
       $ERRORS[] = "Invalid username and password";
     }
   }
-
-  include 'includes/pages/login.php';
 ?>

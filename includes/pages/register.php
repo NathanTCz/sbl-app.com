@@ -13,15 +13,16 @@ function check_pass() {
     document.getElementById("l_submit").removeAttribute("disabled");
   }
 }
+
+function shift() {
+  document.getElementById('login').style.right = "44%";
+}
+
+function shift_back() {
+  document.getElementById('login').removeAttribute('style');
+}
 </script>
 
-<html>
-  <head>
-    <link rel="stylesheet" type="text/css" href="/css/login.css"/>
-  </head>
-<body>
-<div class="background">
-</div>
 <div class="register_box">
   <div class="title">SBL</div>
   <form name="login" method="POST" action="/web/register">
@@ -46,11 +47,10 @@ function check_pass() {
     <?php
     if (!empty($ERRORS)) {
       foreach ($ERRORS as $error) {
-        echo $error;
+        echo $error. '<br>';
       }
     }
     ?>
     </span>
   </form>
 </div>
-</body>

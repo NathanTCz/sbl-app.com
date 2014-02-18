@@ -1,11 +1,3 @@
-<html>
-  <head>
-    <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="/css/login.css"/>
-  </head>
-<body>
-<div class="background">
-</div>
 <div class="login_box">
   <div class="title">SBL</div>
   <form name="login" method="POST" action="/web/login">
@@ -33,9 +25,8 @@
     </span>
     <div class="login_options">
       <span>Are you new here?</span>
-      <a href="/web/register"><u>Register</u></a>
+      <a onclick="shift();"><u>Register</u></a>
       <span class="icon-arrow-right2"></span>
     </div>
   </form>
 </div>
-</body>
