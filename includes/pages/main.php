@@ -32,13 +32,71 @@
   }
 ?>
 
+<script>
+function check_pass() {
+  var pass1 = document.getElementById("pass1").value;
+  var pass2 = document.getElementById("pass2").value;
+  var bg = document.getElementById("pass2").background;
+
+  if (pass1 != pass2) {
+    document.getElementById("pass2").style.background="ff0000";
+    document.getElementById("l_submit").setAttribute("disabled", "true");
+  }
+  else if (pass1 == pass2) {
+    document.getElementById("pass2").style.background="fff";
+    document.getElementById("l_submit").removeAttribute("disabled");
+  }
+}
+
+function check_hash() {
+  if (window.location.hash) {
+    if (window.location.hash == "#register") {
+      shift();
+      window.scrollTo(0,document.body.scrollHeight);
+    }
+  }
+}
+
+function shift() {
+  document.getElementById('login').style.right = "65em";
+}
+
+function shift_back() {
+  document.getElementById('login').removeAttribute('style');
+}
+</script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+/*
+THIS IS A WORKAROUND USING jQuery TO ACCOMPLISH SMOOTH SCROLLING
+WE SHOULD FIND A WAY TO DO IT IN CSS
+*/
+</script>
+
+<script>
+$(function() {
+  $('a[href*=#]:not([href=#])').click(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+      if (target.length) {
+        $('html,body').animate({
+          scrollTop: target.offset().top
+        }, 600);
+        return false;
+      }
+    }
+  });
+});
+</script>
+
 <html>
   <head>
     <title>SBL</title>
     <link rel="stylesheet" type="text/css" href="/css/login.css"/>
   </head>
 
-  <body onload="check_hash()" onhashchange="shift_back()">
+  <body onload="check_hash()" onclick="shift_back()">
     <div id="back1" class="background"></div>
     <div id="back2" class="background"></div>
 
