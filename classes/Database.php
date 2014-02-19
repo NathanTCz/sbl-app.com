@@ -33,10 +33,10 @@ class Database {
 
 //PUBLIC FUNCTIONS
   public function __construct () {
-    global$DB_HOST;
-    global$DB_USER;
-    global$DB_PASS;
-    global$DB_NAME;
+    global $DB_HOST;
+    global $DB_USER;
+    global $DB_PASS;
+    global $DB_NAME;
 
     $this->DB = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
   }
