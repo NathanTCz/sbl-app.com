@@ -2,7 +2,7 @@
   require_once 'core/init.php';
 
   if (!$session->logged_in()) {
-    $session->redirect("/web/login");
+    $session->redirect("/web/main");
     exit;
   }
   else if ($session->logged_in()) {

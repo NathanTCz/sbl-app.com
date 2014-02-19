@@ -5,30 +5,46 @@ input:focus {
   outline: none;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 @font-face {
-  font-family: 'app-font';
-  src: url('/fonts/Raleway-Regular.otf');
+    font-family: 'app-font';
+    src: url('../fonts/Raleway-Regular.otf') format('truetype');
+}
+
+input:focus {
+  outline: none;
 }
 
 html {
-  background: #333;
+  font-family: 'app-font';
+  background: #222;
 }
 
-body {
- font-family: 'app-font';
+h2 {
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+section {
+  height: 100%;
 }
 
 .title {
   padding: 5px;
   
+  font-family: 'app-font';
   font-size: 40pt;
   color: #555;
 }
 
 .background {
   position: absolute;
-  top: 0px;
-  left: 0px;
 
   width: 100%;
   height: 100%;
@@ -36,56 +52,172 @@ body {
   margin: 0;
   padding: 0;
 
-  background: url('/images/field.jpg') no-repeat;
-  background-size: cover;
-
   opacity: 0.2;
 
-  -webkit-filter: blur(2px);
-     -moz-filter: blur(2px);
-      -ms-filter: blur(2px);
-       -o-filter: blur(2px);
-          filter: blur(2px);
+  -webkit-filter: blur(10px);
+     -moz-filter: blur(10px);
+      -ms-filter: blur(10px);
+       -o-filter: blur(10px);
+          filter: blur(10px);
+}
+
+.background#back1 {
+  top: 0px;
+  left: 0px;
+
+  background: url('/images/field.jpg') no-repeat;
+  background-size: cover;
+}
+
+.background#back2 {
+  top: 100%;
+  left: 0px;
+
+  background: url('/images/doak.jpg') no-repeat;
+  background-size: cover;
+}
+
+.scrollbar {
+  position: fixed;
+  top: 45%;
+  right: 0;
+
+  z-index: 2;
+}
+
+.scrollbar > a > span {
+  display: block;
+
+  padding: 10px;
+
+  text-align: center;
+  font-size: 15pt;
+
+  background: #888;
+  color: #FFF;
+
+  cursor: pointer;
+}
+
+.scrollbar > a > span:hover {
+  background: #999;
+}
+
+.main {
+  position: relative;
+
+  width: 75%;
+  height: auto;
+  
+  margin: 0 auto;
+
+  color: #FFF;
+}
+
+.main .logo {
+  font-size: 100pt;
+}
+
+.main .desc {
+  margin: 18% auto 2em auto;
+}
+
+.main .info {
+  width: 100%;
+
+  margin: 0 auto;
+
+  text-align: justify;
+
+  -ms-text-justify: distribute-all-lines;
+      text-justify: distribute-all-lines;
+}
+
+.main .info:after {
+  content: '';
+  width: 100%;
+  display: inline-block;
+  font-size: 0;
+  line-height: 0
+}
+
+.main .info div.attr:last-child {
+  margin: 0;
+}
+
+.main .attr {
+  display: inline-block;
+  *display: inline;
+
+  width: 11em;
+
+  margin: 0 0 2em 0;
+
+  text-align: center;
+}
+
+.main .attr .icon {
+  font-size: 85pt;
+}
+
+.main section#login {
+  position: relative;
+  right: 0em;
+
+  z-index: 1;
+
+  -webkit-transition: all 1s ease-in-out;
+     -moz-transition: all 1s ease-in-out;
+      -ms-transition: all 1s ease-in-out;
+          transition: all 1s ease-in-out;
 }
 
 .login_box {
-  position: relative;
   display: block;
+  position: relative;
+
+  top: 14em;
 
   text-align: center;
 
   width: 18em;
-  height: 25em;
+  min-height: 27em;
 
-  margin: 12em auto 0 auto;
+  margin: 0 auto;
 
   border: 1px solid #7f8c8d;
   background: #FFF;
 }
 
 .register_box {
-  position: relative;
   display: block;
+  position: relative;
+
+  top: -13em;
+  left: 65em;
 
   text-align: center;
 
   width: 18em;
-  height: 30em;
+  min-height: 30em;
+  height: auto;
 
-  margin: 12em auto 0 auto;
+  margin: 0 auto;
 
   border: 1px solid #7f8c8d;
   background: #FFF;
 }
 
 .regular_box {
-  position: relative;
   display: block;
+  position: relative;
 
   text-align: center;
 
   width: 20em;
   height: 15em;
+  
+  z-index: 999;
 
   margin: 12em auto 0 auto;
 
@@ -130,8 +262,10 @@ body {
   width: auto;
   height: 2.5em;
 
-  background: #DDD;
+  background: #555;
   border: none;
+
+  z-index: 9999;
 
   cursor: pointer;
 }
@@ -140,13 +274,16 @@ body {
   padding: 5px;
 
   font-size: 15pt;
-  color: #555;
+  color: #DDD;
 }
 
 .errors {
   display: block;
   position: relative;
   bottom: -25px;
+
+  margin: 0 auto 2em auto;
+  color: #555;
 }
 
 .login_options {
@@ -158,5 +295,5 @@ body {
 }
 
 .login_options span, a, u {
-  color: #666;
+  color: #555;
 }

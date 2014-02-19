@@ -54,7 +54,7 @@ Description: Destroys session data and logs user out.
   public function logout () {
     unset($_SESSION['user_id']);
     unset($this->user_id);
-    $this->redirect("/web/login");
+    $this->redirect("/web/main");
   }
 
   public function resolve_data ($user_id) {

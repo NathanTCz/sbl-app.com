@@ -147,6 +147,26 @@ hr {
   color: #FFF;
 }
 
+.user_tools {
+  position: fixed;
+  top: 2em;
+  right: -0.2em;
+
+  z-index: 999;
+
+  width: auto;
+  height: 1em;
+
+  color: #555;
+}
+
+.user_tools button {
+  background: #FFF;
+  border: none;
+
+  color: #555;
+}
+
 .nav {
   position: relative;
 

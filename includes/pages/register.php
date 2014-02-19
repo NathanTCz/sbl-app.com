@@ -13,18 +13,28 @@ function check_pass() {
     document.getElementById("l_submit").removeAttribute("disabled");
   }
 }
+
+function check_hash() {
+  if (window.location.hash) {
+    if (window.location.hash == "#register") {
+      shift();
+      window.scrollTo(0,document.body.scrollHeight);
+    }
+  }
+}
+
+function shift() {
+  document.getElementById('login').style.right = "65em";
+}
+
+function shift_back() {
+  document.getElementById('login').removeAttribute('style');
+}
 </script>
 
-<html>
-  <head>
-    <link rel="stylesheet" type="text/css" href="/css/login.css"/>
-  </head>
-<body>
-<div class="background">
-</div>
 <div class="register_box">
   <div class="title">SBL</div>
-  <form name="login" method="POST" action="/web/register">
+  <form name="login" method="POST" action="/web/main#register">
     <span class="form_box">
       <span class="icon-user3"></span>
       <input type="text" name="email" placeholder="Email">
@@ -37,20 +47,19 @@ function check_pass() {
       <span class="icon-lock"></span>
       <input onkeyup="check_pass()" id="pass2" type="password" name="password2" placeholder="Password again please">
     </span>
-    <button id="l_submit" class="login_submit" type="submit" name="submit" disabled>
+    <button id="l_submit" class="login_submit" type="submit" name="submit" value="register" disabled>
       <span>REGISTER</span>
       <span class="icon-arrow-up-right2"></span>
     </button>
 
     <span class="errors">
     <?php
-    if (!empty($ERRORS)) {
-      foreach ($ERRORS as $error) {
-        echo $error;
+    if (!empty($REG_ERRORS)) {
+      foreach ($REG_ERRORS as $error) {
+        echo '*' . $error. '<br>';
       }
     }
     ?>
     </span>
   </form>
 </div>
-</body>
