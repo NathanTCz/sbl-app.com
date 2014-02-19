@@ -5,7 +5,6 @@
   }
 
   if (isset($_POST['submit']) && $_POST['submit'] === "login") {
-    var_dump($_POST);
     $email = trim($_POST['email']);
     $pass = trim($_POST['password']);
 
@@ -42,8 +41,6 @@
   </head>
 
   <body onload="check_hash()" onhashchange="check_hash()" onclick="shift_back()">
-    <div id="back1" class="background"></div>
-    <div id="back2" class="background"></div>
 
     <div class="scrollbar">
       <a id="about1" href="#about">
@@ -55,6 +52,8 @@
     </div>
 
     <div class="main">
+    <div id="back1" class="background"></div>
+    <div id="back2" class="background"></div>
 
       <section id="about">
         <div class="logo">

@@ -16,7 +16,7 @@
 
     <span class="errors">
     <?php
-    if (!empty($REG_ERRORS)) {
+    if (!empty($LOG_ERRORS)) {
       foreach ($LOG_ERRORS as $error) {
         echo '*' . $error . '<br>';
       }

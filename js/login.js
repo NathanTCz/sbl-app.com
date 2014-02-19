@@ -23,7 +23,7 @@ function check_hash() {
 }
 
 function shift() {
-  document.getElementById('login').style.right = "65em";
+  document.getElementById('login').style.right = "100em";
 }
 
 function shift_back() {
@@ -50,3 +50,21 @@ $(function() {
     }
   });
 });
+
+var zoomRatio = $(window).width() / 1600; 
+//if your site is fixed at 1024 px for example
+
+$(document).ready(function(){
+
+$('html').css("zoom",zoomRatio);
+
+});
+
+$(window).resize(function(){
+  var zoom = $(window).width() / 1600; 
+  //if your site is fixed at 1024 px for example
+
+  $('html').css("zoom",zoom);
+
+  console.log(zoom);
+})
