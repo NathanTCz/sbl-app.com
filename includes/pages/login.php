@@ -25,7 +25,7 @@
     </span>
     <div class="login_options">
       <span>Are you new here?</span>
-      <a onclick="shift();"><u>Register</u></a>
+      <a href="#register"><u>Register</u></a>
       <span class="icon-arrow-right2"></span>
     </div>
   </form>
