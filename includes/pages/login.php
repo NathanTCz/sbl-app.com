@@ -16,7 +16,7 @@
 
     <span class="errors">
     <?php
-    if (!empty($REG_ERRORS)) {
+    if (!empty($LOG_ERRORS)) {
       foreach ($LOG_ERRORS as $error) {
         echo '*' . $error . '<br>';
       }
@@ -25,7 +25,7 @@
     </span>
     <div class="login_options">
       <span>Are you new here?</span>
-      <a onclick="shift();"><u>Register</u></a>
+      <a href="#register"><u>Register</u></a>
       <span class="icon-arrow-right2"></span>
     </div>
   </form>
