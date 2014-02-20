@@ -13,7 +13,7 @@
       <span class="icon-lock"></span>
       <input onkeyup="check_pass()" id="pass2" type="password" name="password2" placeholder="Password again please">
     </span>
-    <button id="l_submit" class="login_submit" type="submit" name="submit" value="register" disabled>
+    <button id="l_submit" class="login_submit" type="submit" name="register" value="register" disabled>
       <span>REGISTER</span>
       <span class="icon-arrow-up-right2"></span>
     </button>

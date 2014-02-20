@@ -14,8 +14,7 @@ function check_pass() {
 }
 
 function submit_form() {
-  var f = document.getElementById('top_form');
-  f.submit();
+  document.getElementById('top_form').submit();
 }
 
 function check_hash() {

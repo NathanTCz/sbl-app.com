@@ -4,7 +4,7 @@
     exit;
   }
 
-  if (isset($_POST['submit']) && $_POST['submit'] === "login") {
+  if (isset($_POST['login'])) {
     $email = trim($_POST['email']);
     $pass = trim($_POST['password']);
 
@@ -19,7 +19,7 @@
     }
   }
 
-  else if (isset($_POST['submit']) && $_POST['submit'] === "register") {
+  else if (isset($_POST['register'])) {
     $email = trim($_POST['email']);
     $pass = trim($_POST['password2']);
 
