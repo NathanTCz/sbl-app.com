@@ -46,7 +46,7 @@ section {
 .background {
   position: absolute;
 
-  width: 150%;
+  width: 225%;
   height: 50%;
 
   margin: 0;
@@ -103,10 +103,21 @@ section {
   background: #999;
 }
 
+.arrow {
+  display: none;
+  position: fixed;
+  top: 48%;
+  left: 2em;
+
+  font-size: 25px;
+
+  cursor: pointer;
+}
+
 .main {
   position: relative;
 
-  width: 1400px;
+  width: 85%;
   height: auto;
   
   margin: 0 auto;
@@ -115,6 +126,9 @@ section {
 }
 
 .main .logo {
+  position: relative;
+  top: 0.3em;
+
   font-size: 100pt;
 }
 
@@ -296,4 +310,62 @@ section {
 
 .login_options span, a, u {
   color: #555;
+}
+
+.top_bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 3em;
+
+  background: #444;
+  opacity: 0.3;
+
+  border:#888;
+}
+
+.top_form {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  color: #FFF;
+
+  z-index: 999;
+}
+
+.top_form input {
+  width: 10em;
+  height: 2em;
+
+  margin: 0.7em;
+  padding: 1em;
+
+  background: transparent;
+  border: 1px solid #FFF;
+
+  -webkit-border-radius: 2px;
+     -moz-border-radius: 2px;
+      -ms-border-radius: 2px;
+          border-radius: 2px;
+
+  color: #FFF;
+}
+
+.top_form > span {
+  display: inline-block;
+
+  width: 1em;
+  height: 2em;
+
+  margin: 0;
+  padding: 8px;
+
+  text-align: center;
+  font-size: 12pt;
+  color: #FFF;
+
+  cursor: pointer;
 }

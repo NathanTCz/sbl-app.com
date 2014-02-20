@@ -40,7 +40,7 @@
     <script src="/js/login.js"></script>
   </head>
 
-  <body onload="check_hash()" onhashchange="check_hash()" onclick="shift_back()">
+  <body onload="check_hash()" onhashchange="check_hash()">
 
     <div class="scrollbar">
       <a id="about1" href="#about">
@@ -50,6 +50,10 @@
         <span class="icon-arrow-down2"></span>
       </a>
     </div>
+
+    <?php
+    include 'includes/pages/topbar.php';
+    ?>
 
     <div class="main">
     <div id="back1" class="background"></div>
@@ -121,6 +125,9 @@
       </section>
 
       <section id="login">
+        <div id="arrow" class="arrow">
+          <span onclick="shift_back()" class="icon-arrow-left2"></span>
+        </div>
         <?php
         include 'includes/pages/login.php';
         include 'includes/pages/register.php';

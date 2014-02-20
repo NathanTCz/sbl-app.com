@@ -13,6 +13,11 @@ function check_pass() {
   }
 }
 
+function submit_form() {
+  var f = document.getElementById('top_form');
+  f.submit();
+}
+
 function check_hash() {
   if (window.location.hash) {
     if (window.location.hash == "#register") {
@@ -24,11 +29,13 @@ function check_hash() {
 
 function shift() {
   document.getElementById('login').style.right = "100em";
+  document.getElementById('arrow').style.display = "block";
 }
 
 function shift_back() {
   document.getElementById('login').removeAttribute('style');
   window.location.hash = null;
+  document.getElementById('arrow').removeAttribute('style');
 }
 
 
@@ -51,8 +58,7 @@ $(function() {
   });
 });
 
-var zoomRatio = $(window).width() / 1600; 
-//if your site is fixed at 1024 px for example
+/*var zoomRatio = $(window).width() / 1600; 
 
 $(document).ready(function(){
 
@@ -61,10 +67,9 @@ $('html').css("zoom",zoomRatio);
 });
 
 $(window).resize(function(){
-  var zoom = $(window).width() / 1600; 
-  //if your site is fixed at 1024 px for example
+  var zoom = $(window).width() / 1600;
 
   $('html').css("zoom",zoom);
 
   console.log(zoom);
-})
+})*/
