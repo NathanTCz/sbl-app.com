@@ -5,3 +5,4 @@ class Event extends Database {
   private $shits;
 
 }
+?>
