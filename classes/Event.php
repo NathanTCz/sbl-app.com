@@ -2,7 +2,7 @@
 require_once 'classes/Database.php';
 
 class Event extends Database {
-  private $shits;
+  private $shit;
 
 }
 ?>
