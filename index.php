@@ -3,7 +3,7 @@
 
   if (!$session->logged_in()) {
     $session->redirect("/web/main");
-    exit;
+        exit;
   }
   else if ($session->logged_in()) {
     $current_user = new User($_SESSION['user']['email'], $_SESSION['user_id']);

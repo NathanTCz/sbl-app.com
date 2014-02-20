@@ -81,8 +81,8 @@
             <h2>-Up to date events</h2>
             &nbsp;
             SBL stays up to date with the latest events in professional
-            and collegiate sports, giving you the opportunity to bet on a
-            multitude of sports events.
+            and collegiate sports, giving you the opportunity to put your
+            money on the line.
             </span>
           </div>
 
@@ -92,9 +92,8 @@
             <span>
             <h2>-Rack up Stacks</h2>
             &nbsp;
-            SBL stays up to date with the latest events in professional
-            and collegiate sports, giving you the opportunity to bet on a
-            multitude of sports events.
+            We give you 100 tokens to start testing your skill
+            and luck, right when you login.
             </span>
           </div>
 
