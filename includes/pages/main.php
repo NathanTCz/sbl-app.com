@@ -31,24 +31,28 @@
   }
 ?>
 
-<html>
+<html id="top">
   <head>
     <title>SBL</title>
     <link rel="stylesheet" type="text/css" href="/css/login.css"/>
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/js/jquery-1.11.0.min.js"></script>
     <script src="/js/login.js"></script>
   </head>
 
   <body onload="check_hash()" onhashchange="check_hash()">
 
     <div class="scrollbar">
-      <a id="about1" href="#about">
+      <a id="top" href="#top">
         <span class="icon-arrow-up2"></span>
       </a>
       <a id="login1" href="#login">
         <span class="icon-arrow-down2"></span>
       </a>
+    </div>
+
+    <div id="arrow" class="arrow">
+      <span onclick="shift_back()" class="icon-arrow-left2"></span>
     </div>
 
     <?php
@@ -124,9 +128,7 @@
       </section>
 
       <section id="login">
-        <div id="arrow" class="arrow">
-          <span onclick="shift_back()" class="icon-arrow-left2"></span>
-        </div>
+
         <?php
         include 'includes/pages/login.php';
         include 'includes/pages/register.php';
