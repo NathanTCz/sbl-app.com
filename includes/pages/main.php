@@ -103,9 +103,8 @@
             <span>
             <h2>-Another great thing</h2>
             &nbsp;
-            SBL stays up to date with the latest events in professional
-            and collegiate sports, giving you the opportunity to bet on a
-            multitude of sports events.
+            SBL is awesome you can bet on anything you can imagine,
+	    from high stakes games, to your friends beer pong league
             </span>
           </div>
 
