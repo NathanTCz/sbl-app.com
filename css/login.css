@@ -168,6 +168,7 @@ section {
   margin: 0 0 2em 0;
 
   text-align: center;
+  vertical-align: top;
 }
 
 .main .attr .icon {
