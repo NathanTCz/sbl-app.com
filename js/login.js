@@ -13,6 +13,13 @@ function check_pass() {
   }
 }
 
+function check_enter(e) {
+  var key = e.keyCode;
+
+  if (key == 13)
+    submit_form();
+}
+
 function submit_form() {
   document.getElementById('top_form').submit();
 }
@@ -62,7 +69,7 @@ function shift() {
    t_event, 
    function( event ) {
       if (box.className == "animated")
-        document.getElementById('arrow').style.display = "block";
+        document.getElementById('arrow').style.opacity = "1";
    }, false );
 }
 
