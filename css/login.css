@@ -309,8 +309,14 @@ section {
   position: relative;
   bottom: -25px;
 
-  margin: 0 auto 2em auto;
-  color: #555;
+  width: 100%;
+
+  margin: 0 auto;
+  padding: 5px 0;
+
+  background: #ED4337;
+
+  color: #FFF;
 }
 
 .login_options {

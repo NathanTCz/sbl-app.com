@@ -15,7 +15,7 @@
       $session->login($user_id);
     }
     else {
-      $LOG_ERRORS[] = "Invalid username and password";
+      $LOG_ERRORS[] = "Invalid Credentials";
     }
   }
 

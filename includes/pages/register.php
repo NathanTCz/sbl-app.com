@@ -18,14 +18,14 @@
       <span class="icon-arrow-up-right2"></span>
     </button>
 
-    <span class="errors">
     <?php
     if (!empty($REG_ERRORS)) {
+      echo '<span class="errors">';
       foreach ($REG_ERRORS as $error) {
-        echo '*' . $error. '<br>';
+        echo '*' . $error . '<br>';
       }
+      echo '</span>';
     }
     ?>
-    </span>
   </form>
 </div>

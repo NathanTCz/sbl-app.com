@@ -1,10 +1,9 @@
 function check_pass() {
   var pass1 = document.getElementById("pass1").value;
   var pass2 = document.getElementById("pass2").value;
-  var bg = document.getElementById("pass2").background;
 
   if (pass1 != pass2) {
-    document.getElementById("pass2").style.background="ff0000";
+    document.getElementById("pass2").style.background="ED4337";
     document.getElementById("l_submit").setAttribute("disabled", "true");
   }
   else if (pass1 == pass2) {
@@ -76,7 +75,7 @@ function shift() {
 function shift_back() {
   document.getElementById('login').removeAttribute('class');
   document.getElementById('arrow').removeAttribute('style');
-  window.location.hash = null;
+  window.location.hash = 'login';
 }
 
 

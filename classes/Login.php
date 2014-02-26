@@ -8,16 +8,16 @@ class Login extends Database {
   private $prepass;
 
   // Private Helper Functions.
-  private function set_pass ($p, $e) {
+  private function set_pass ($p) {
     $this->prepass = $p;
-    $this->pass = $this->salt($p, $e);
+    $this->pass = $this->salt($p);
   }
 
-  private function salt ($pass, $salt) {
-    $pass = $pass . sha1($salt);
+  private function salt ($pass) {
+    $pass = $pass . sha1($pass);
 
-    for ($i = 0; $i < 5; $i++) {
-      $pass = sha1($pass);
+    for ($i = 0; $i < 100; $i++) {
+      $pass = sha1($pass) . sha1($pass);
     }
 
     return $pass;
@@ -26,25 +26,39 @@ class Login extends Database {
 
 
 //PUBLIC MEMBER FUNCTIONS
-  public function __construct ($e, $p, $z = 0) {
+  public function __construct ($e, $p) {
     // Instantiate parent object
     parent::__construct();
 
     $this->email = $e;
-    $this->set_pass($p, $e);
+    $this->set_pass($p);
     }
 
   public function auth_user () {
     global $ERRORS;
 
+echo $_POST;
+
     $query = $this->DB->prepare ("
       SELECT user_id
       FROM user
-      WHERE email = ?
+      WHERE
+        (
+          email = ?
+          OR u_name = ?
+        )
       AND password = ?
     ");
 
-    $query->bind_param('ss', $this->email, $this->pass);
+
+    /*
+     * Here, $this->email could either refer to the users email
+     * or their username depending upon what they type in.
+     * The query is already case insensitive so we need not worry
+     * about what the user types in as far as Upper Case and
+     * Lower Case.
+     */
+    $query->bind_param('sss', $this->email, $this->email, $this->pass);
     $query->execute();
     $query->bind_result($id);
     $query->fetch();
