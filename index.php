@@ -6,7 +6,10 @@
         exit;
   }
   else if ($session->logged_in()) {
-    $current_user = new User($_SESSION['user']['email'], $_SESSION['user_id']);
+    $current_user = new User($_SESSION['user']['email'],
+                             $_SESSION['user']['u_name'],
+                             $_SESSION['user_id']
+                            );
   }
   
   include 'includes/main/header.php';

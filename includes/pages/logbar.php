@@ -1,6 +1,6 @@
 <div class="user_bar">
   <form name ="logout" method ="POST" action ="/logout.php">
-    <span><?php echo $current_user->get_email();?></span>
+    <span><?php echo $current_user->get_uname();?></span>
     <button type="submit" name="logout">
       <span class="icon-switch">
         &nbsp;&nbsp;&nbsp;
