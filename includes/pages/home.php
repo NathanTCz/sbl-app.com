@@ -1,19 +1,20 @@
-<div class="widget" id="home">
-  <span>58.35 BTC</span>
-  <span>Current Balance</span>
+<?php
+// YOUR FUCKING LOGIC GOES HERE.
+?>
+
+<div id="categ" class="bar">
+  <span>Football</span>
+  <span>Baseball</span>
+  <span>Basketball</span>
+  <span>Soccer</span>
+  <span>Other</span>
 </div>
 
-<div class="widget" id="home">
-  <span>10.53 BTC</span>
-  <span>On the line</span>
-</div>
-
-<div class="widget" id="home2">
-  <span>Popular Events</span>
-  <ul>
-    <li>FSU @ UF</li>
-    <li>NO @ SEA</li>
-    <li>Federer v. Nadal</li>
-    <li>Pacquio v. Mayweather</li>
-  </ul>
+<div id="list" class="bar">
+<?php
+foreach ($EVENTS as $event) {
+  echo '<span class="list_item">';
+  echo $event->get_home_team()->name . '<br>';
+}
+?>
 </div>
