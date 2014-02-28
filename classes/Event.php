@@ -4,15 +4,15 @@ require_once 'classes/Team.php';
 
 class Event extends Database {
   //PRIVATE DATA & FUNCTIONS
-  private $id;
-  private $time;
-  private $outcome;
-  private $home_team;
-  private $home_score;
-  private $away_team; 
-  private $away_score;
-  private $location;
-  private $description;
+  public $id;
+  public $time;
+  public $outcome;
+  public $home_team;
+  public $home_score;
+  public $away_team; 
+  public $away_score;
+  public $location;
+  public $description;
   
   //PUBLIC DATA & FUNCTIONS
 

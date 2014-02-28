@@ -41,7 +41,7 @@ Class User extends Database {
   public function set_pending_wagers () {
     /*
      * $this->wagers is inherited from the Database class.
-     */
+    */
     foreach ($this->wagers as $wager) {
       if (
             (
@@ -66,5 +66,10 @@ Class User extends Database {
       }
     }
   }
+
+  //public function 
+
+
+
 };
 ?>
