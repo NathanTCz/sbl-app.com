@@ -27,19 +27,15 @@ class Login extends Database {
 
 //PUBLIC MEMBER FUNCTIONS
   public function __construct ($e, $p) {
-    // Instantiate parent object
-    parent::__construct();
-
     $this->email = $e;
     $this->set_pass($p);
     }
 
   public function auth_user () {
     global $ERRORS;
+    global $DB;
 
-echo $_POST;
-
-    $query = $this->DB->prepare ("
+    $query = $DB->prepare ("
       SELECT user_id
       FROM user
       WHERE
@@ -73,9 +69,10 @@ echo $_POST;
 
   public function register_user () {
     global $REG_ERRORS;
+    global $DB;
 
     if($this->new_user() && $this->validate_email() && $this->validate_password()) {
-      $query = $this->DB->prepare ("
+      $query = $DB->prepare ("
         INSERT INTO user (
           email,
           password
@@ -94,8 +91,9 @@ echo $_POST;
 
   public function new_user () {
     global $REG_ERRORS;
+    global $DB;
 
-    $query = $this->DB->prepare ("
+    $query = $DB->prepare ("
       SELECT user_id
       FROM user
       WHERE email = ?

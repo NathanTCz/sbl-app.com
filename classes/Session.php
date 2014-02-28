@@ -8,9 +8,7 @@ class Session extends Database {
 
   // Here defines the public funtions used to determine the session information.
 
-  public function __construct () {
-    parent::__construct();
-  }
+  public function __construct () {}
 /*
 Function: redirect
 Description: used as normal php header redirect
@@ -34,11 +32,10 @@ Function: login
 Description: Handles login status manipulation
 */
   public function login ($u_id) {
-    session_start();
     $_SESSION['user_id'] = $u_id;
     $this->user_id = $u_id;
     
-    $user_data = $this->resolve_data($u_id);
+    $user_data = $this->session_resolve_data($u_id);
 
     foreach ($user_data as $key => $value) {
       $_SESSION['user'][$key] = $value;
@@ -57,8 +54,10 @@ Description: Destroys session data and logs user out.
     $this->redirect("/web/main");
   }
 
-  public function resolve_data ($user_id) {
-    $stmt = $this->DB->prepare("
+  public function session_resolve_data ($user_id) {
+    global $DB;
+
+    $stmt = $DB->prepare("
       SELECT *
       FROM user
       WHERE user_id = ?                           

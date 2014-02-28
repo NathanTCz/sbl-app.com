@@ -6,6 +6,9 @@ Class User extends Database {
   private $email;
   private $u_name;
 
+  private $pending_wagers;
+  private $accepted_wagers;
+
   
 
   public function __construct ($email, $un,  $uid) {
@@ -15,6 +18,9 @@ Class User extends Database {
     $this->user_id = $uid;
     $this->u_name = $un;
     $this->email = $email;
+
+    $this->set_pending_wagers();
+    $this->set_accepted_wagers();
   }
 
   public function get_email () {
@@ -31,5 +37,34 @@ Class User extends Database {
   public function get_uid () {
     return $this->user_id;
   }
-}
+
+  public function set_pending_wagers () {
+    /*
+     * $this->wagers is inherited from the Database class.
+     */
+    foreach ($this->wagers as $wager) {
+      if (
+            (
+            $this->user_id == $wager->user_id
+            || $this->user_id == $wager->opponent_id
+            ) 
+          && $wager->status === NULL
+          )
+      {
+        $this->pending_wagers[] = $wager;
+      }
+    }
+  }
+
+  public function set_accepted_wagers () {
+    foreach ($this->wagers as $wager) {
+      if ($this->user_id == $wager->user_id
+          && $wager->status == 1
+          )
+      {
+        $this->accepted_wagers[] = $wager;
+      }
+    }
+  }
+};
 ?>

@@ -1,6 +1,6 @@
 <div class="register_box">
   <div class="title">SBL</div>
-  <form name="login" method="POST" action="/web/main#register">
+  <form name="register" method="POST" action="/web/main#register">
     <span class="form_box">
       <span class="icon-user3"></span>
       <input type="text" name="email" placeholder="Email">
