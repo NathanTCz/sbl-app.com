@@ -11,28 +11,26 @@
 </div>
 
 <div id="list" class="bar">
- <?php  
-  
-    //Nate dog how can I access the current user's id here
-    //I tried almost everything. Like $DB, $DB->get_uid(), etc. 
-    //All i want is to access the current uer's id so i can propperly print things
-    //Cuz it helps me figure out logic. Also, I added more wagers in the database 
+ <?php     
 
-   foreach ($WAGERS as $wager) {
-     echo '<span class="list_item">';
-     foreach ($EVENTS as $event) {     
-         if ($event->id == $wager->event) {
-     	    if($wager->outcome == 1){ // && $DB->get_uid() == $wager->user_id) {// && ($event->$DB->get_uid() != $event->opponenet_id)){
-     	   	    echo "You won $" . $wager->amount . "! <br>";
-     	    }
-     	    elseif ($wager->outcome == 0) {// && ($event->$DB->get_uid() != $event->opponenet_id)) {
-     	    	echo "Sorry you lost $" . $wager->amount . ". Please try again fucker :) <br>";
-     	    }
-        	else {
-      	    	echo "This event, " . $wager->away_team . " vs. " . $event->home_team . " has not concluded. <br>";     	}
-         }
-     }
-   }
+    $current_user->event_outcome();
+    
+
+    $pw = $current_user->get_pending_wagers();
+    $dw = $current_user->get_denied_wagers();
+    $aw = $current_user->get_accepted_wagers();
+   
+    foreach ($pw as $cur) {
+      echo "Your pending wagers are " . $cur->id . ".<br>";
+    }
+
+    foreach ($dw as $cur) {
+      echo "Your denied wagers are " . $cur->id . ".<br>";
+    }
+
+    foreach ($aw as $cur) {
+      echo "Your accepted wagers are " . $cur->id . ".<br>";
+    }
  ?>
 </div>
 

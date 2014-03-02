@@ -8,6 +8,7 @@ Class User extends Database {
 
   private $pending_wagers;
   private $accepted_wagers;
+  private $denied_wagers;
 
   
 
@@ -21,6 +22,7 @@ Class User extends Database {
 
     $this->set_pending_wagers();
     $this->set_accepted_wagers();
+    $this->set_denied_wagers();
   }
 
   public function get_email () {
@@ -36,6 +38,29 @@ Class User extends Database {
 
   public function get_uid () {
     return $this->user_id;
+  }
+
+  public function event_outcome (){
+    echo "BELOW IS A LIST OF YOUR PERSONAL RELEVANT WAGER INFO (NOT INCLUDING DENIED WAGERS). <br>";
+    
+    foreach($this->wagers as $wager) {
+    if (($wager->outcome == 1 && $this->user_id == $wager->user_id && $wager->status == 1)
+         || $wager->outcome == 0 && $this->user_id == $wager->opponent_id && $wager->status == 1){ 
+          echo "You won $" . $wager->amount . "! <br>";
+      }
+      elseif (($wager->outcome == 0 && $this->user_id == $wager->user_id && $wager->status == 1)
+              || $wager->outcome == 1 && $this->user_id == $wager->opponent_id && $wager->status == 1){
+          echo "Sorry you lost $" . $wager->amount . ". Please try again fucker :) <br>";
+      }
+      elseif ($wager->status == 3 && $this->user_id == $wager->user_id) { 
+          echo "The wager on event, " . $wager->event . ", for $" . $wager->amount . " is pending OPPONENT'S authorization. <br>";
+        }
+      elseif ($wager->status == 3 && $this->user_id == $wager->opponent_id) {
+          echo "The wager on event, " . $wager->event . ", for $" . $wager->amount . " is pending YOUR authorization. <br>";       
+      }
+      else 
+        ;
+    }
   }
 
   public function set_pending_wagers () {
@@ -59,6 +84,7 @@ Class User extends Database {
   public function set_accepted_wagers () {
     foreach ($this->wagers as $wager) {
       if ($this->user_id == $wager->user_id
+          || $this->user_id == $wager->opponent_id
           && $wager->status == 1
           )
       {
@@ -67,9 +93,68 @@ Class User extends Database {
     }
   }
 
-  //public function 
+  public function set_denied_wagers () {
+    foreach ($this->wagers as $wager) {
+      if ($this->user_id == $wager->user_id
+          || $this->user_id == $wager->opponent_id
+          && $wager->status == 0)
+      {
+        $this->denied_wagers[] = $wager;
+      }
+    }
+  }
+
+  public function get_denied_wagers () {
+    return $this->denied_wagers;
+  }
+  public function get_accepted_wagers () {
+    return $this->accepted_wagers;
+  }
+
+  public function get_pending_wagers () {
+    return $this->pending_wagers;
+  }
 
 
+  public function make_wager($opponent_id, $amount, $proposal, $event_id){
+       $query = $DB->prepare ("
+        INSERT INTO wager (
+          user_id,
+          amount,
+          proposal,
+          opponent_id,
+          event_id
+        )
+        VALUES (?,?,?,?,?)
+      ");
+
+      $query->bind_param('ddddd', $this->user_id, $amount, 
+                         $proposal, $opponent_id,$event_id);
+      $query->execute();
+
+
+  }
+
+  public function check_yacs($amount){
+    //Check to make sure user has enough funds to support the bet
+  }
+
+  public function accept_request(){
+      //update at risk and balance of both users
+  }
+
+  public function deny_request(){
+    
+  }
+
+  public function counter_offer(){
+    //they can counter propose an amount for now
+  }
+
+  public function update_balance(){
+    //update user's funds based on bet outcomes. use event_outcome 
+    //logic and then update tables 
+  }
 
 };
 ?>

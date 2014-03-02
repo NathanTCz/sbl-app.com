@@ -4,11 +4,12 @@ class Wager {
   public $user_id;
   public $amount;
   public $opponent_id;
-  public $event;
+  public $event_id;
   public $outcome;
   public $status;
+  public $proposal;
 
-  public function __construct($id, $uid, $a, $op, $e, $o, $s) {
+  public function __construct($id, $uid, $a, $op, $e, $o, $s, $p) {
     $this->id = $id;
     $this->user_id = $uid;
     $this->amount = $a;
@@ -16,5 +17,6 @@ class Wager {
     $this->event = $e;
     $this->outcome = $o;
     $this->status = $s;
+    $this->proposal = $p; 
   }
 };
