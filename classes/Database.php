@@ -10,6 +10,7 @@ class Database {
   public $wagers;
   public $events;
   public $yacs;
+  public $categories;
 
 
 
@@ -45,6 +46,7 @@ class Database {
     global $EVENTS;
     global $YACS;
     global $WAGERS;
+    global $CATEGORIES;
 
     /*
      * Because of control flow, THESE MUST BE SET IN THIS
@@ -54,6 +56,7 @@ class Database {
     $this->events = $EVENTS;
     $this->yacs = $YACS;
     $this->wagers = $WAGERS;
+    $this->categories = $CATEGORIES;
   }
 
   public static function set_teams () {
@@ -97,7 +100,8 @@ class Database {
         $wager->opponent_id,
         $wager->event_id,
         $wager->wager_outcome,
-        $wager->status
+        $wager->status,
+        $wager->proposal
       );
     }
     return $wagers;
@@ -109,6 +113,7 @@ class Database {
     $query = $DB->prepare ("
       SELECT *
       FROM event
+      ORDER BY event_time DESC
     ");
     $query->execute();
     
@@ -142,6 +147,20 @@ class Database {
     $yacs = Database::resolve_data($query);
 
     return $yacs;
+  }
+
+  public static function set_categories () {
+    global $DB;
+
+    $query = $DB->prepare ("
+      SELECT *
+      FROM category
+    ");
+    $query->execute();
+    
+    $cats = Database::resolve_data($query);
+
+    return $cats;
   }
 }
 ?>

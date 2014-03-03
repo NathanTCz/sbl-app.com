@@ -35,6 +35,7 @@
   $EVENTS = Database::set_events();
   $YACS = Database::set_yacs();
   $WAGERS = Database::set_wagers();
+  $CATEGORIES = Database::set_categories();
 
   //$DATABASE = new Database;
   $session = new Session;

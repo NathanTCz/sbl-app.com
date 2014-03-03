@@ -3,18 +3,38 @@
 ?>
 
 <div id="categ" class="bar">
-  <span>Football</span>
-  <span>Baseball</span>
-  <span>Basketball</span>
-  <span>Soccer</span>
-  <span>Other</span>
+  <?php
+  foreach ($CATEGORIES as $cat) {
+  ?>
+  <span>
+  <?php
+    echo $cat->name;
+  ?>
+  </span>
+  <?php
+  }
+  ?>
 </div>
 
 <div id="list" class="bar">
-<?php
-foreach ($EVENTS as $event) {
-  echo '<span class="list_item">';
-  echo $event->get_home_team()->name . '<br>';
-}
-?>
+  <div class="head_bar">
+  <?php
+  $properties = get_object_vars( $EVENTS[0] );
+  foreach ($properties as $key => $value) {
+    echo '<span>' . $key . '</span>';
+  }
+  ?>
+  </div>
+  <?php
+  foreach ($EVENTS as $event) {
+  ?>
+  <span>
+  <?php
+    echo $event->description;
+  ?>
+  <br>
+  </span>
+  <?php
+  }
+  ?>
 </div>

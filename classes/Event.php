@@ -4,15 +4,15 @@ require_once 'classes/Team.php';
 
 class Event extends Database {
   //PRIVATE DATA & FUNCTIONS
-  private $id;
-  private $time;
-  private $outcome;
-  private $home_team;
-  private $home_score;
-  private $away_team; 
-  private $away_score;
-  private $location;
-  private $description;
+  public $id;
+  public $time;
+  public $outcome;
+  public $home_team;
+  public $home_score;
+  public $away_team; 
+  public $away_score;
+  public $location;
+  public $description;
   
   //PUBLIC DATA & FUNCTIONS
 
@@ -30,18 +30,10 @@ class Event extends Database {
     $this->away_score = $as;
     $this->location = $l;
     $this->description = $d;
-  } 
+  }
 
   public function set_time ($time) {
     return $time;
-  }
-
-  public function get_time () {
-    return $this->time;
-  }
-
-  public function get_outcome () {
-    return $this->outcome;
   }
 
   public function set_team($team_id) {
@@ -56,22 +48,5 @@ class Event extends Database {
       }
     }
   }
-
-  public function get_home_team () {
-    return $this->home_team;
-  }
-
-  public function get_home_score () {
-    return $this->home_score;
-  }
-
-  public function get_away_team () {
-    return $this->away_team;
-  }
-
-  public function get_away_score (){
-  	return $this->away_score;
-  }
-
 }
 ?>
