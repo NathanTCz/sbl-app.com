@@ -10,7 +10,8 @@ Class User extends Database {
   private $accepted_wagers;
   private $denied_wagers;
 
-  
+  private $yac;
+
 
   public function __construct ($email, $un,  $uid) {
     // instantiate parent class
@@ -23,6 +24,8 @@ Class User extends Database {
     $this->set_pending_wagers();
     $this->set_accepted_wagers();
     $this->set_denied_wagers();
+
+    $this->set_yac();
   }
 
   public function get_email () {
@@ -38,6 +41,19 @@ Class User extends Database {
 
   public function get_uid () {
     return $this->user_id;
+  }
+
+  public function set_yac () {
+    /*
+     * $this->yacs is inherited from the Database class.
+     * cycle through data store to find the team with associated
+     * id number
+     */
+    foreach ($this->yacs as $yac) {
+      if ($yac->user_id == $this->user_id) {
+        $this->yac = $yac;
+      }
+    }
   }
 
   public function event_outcome () {

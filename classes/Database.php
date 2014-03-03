@@ -3,6 +3,7 @@
 require_once 'classes/Event.php';
 require_once 'classes/Team.php';
 require_once 'classes/Wager.php';
+require_once 'classes/Yac.php';
 
 class Database {
   public $DB;
@@ -170,7 +171,7 @@ class Database {
     $results = Database::resolve_data($query);
 
     foreach ($results as $yac) {
-      $yacs[] = new Team (
+      $yacs[] = new Yac (
         $yac->id,
         $yac->user_id,
         $yac->at_risk,
