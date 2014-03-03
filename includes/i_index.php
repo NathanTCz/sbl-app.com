@@ -1,5 +1,5 @@
 <?php
-$pages = array("home", "bets", "live","profile");
+$pages = array("events", "bets", "live","profile");
 
   if (isset($_GET['page'])) {
     if (in_array($_GET['page'], $pages)) {

@@ -1,11 +1,11 @@
 <?php
-  $homeClassName = '';
+  $eventsClassName = '';
   $betsClassName = '';
   $liveClassName = '';
 
   if (isset($_GET['page'])) {
-    if ($_GET['page'] === "home") {
-      $homeClassName = "active";
+    if ($_GET['page'] === "events") {
+      $eventsClassName = "active";
     }
 
     else if ($_GET['page'] === "bets") {
@@ -17,8 +17,8 @@
     }
   }
   else {
-    $_GET['page'] = "home";
-    $homeClassName = "active";
+    $_GET['page'] = "events";
+    $eventsClassName = "active";
   }
 ?>
 
@@ -26,10 +26,10 @@
   <span class="title">SBL</span>
   <div class="nav_menu">
     <ul>
-      <a href="/home">
-        <li class="<?php echo $homeClassName;?>">
+      <a href="/events">
+        <li class="<?php echo $eventsClassName;?>">
           <br>
-          <span>Home</span>
+          <span>Events</span>
           <div class="triangle"></div>
         </li>
       </a>
