@@ -167,8 +167,16 @@ class Database {
     ");
     $query->execute();
     
-    $yacs = Database::resolve_data($query);
+    $results = Database::resolve_data($query);
 
+    foreach ($results as $yac) {
+      $yacs[] = new Team (
+        $yac->id,
+        $yac->user_id,
+        $yac->at_risk,
+        $yac->balance
+      );
+    }
     return $yacs;
   }
 

@@ -111,42 +111,42 @@ Class User extends Database {
     return $this->pending_wagers;
   }
 
-  public function make_wager($opponent_id, $amount, $proposal, $event_id){
-       $query = $DB->prepare ("
-        INSERT INTO wager (
-          user_id,
-          amount,
-          proposal,
-          opponent_id,
-          event_id
-        )
-        VALUES (?,?,?,?,?)
-      ");
+  public function make_wager ($opponent_id, $amount, $proposal, $event_id) {
+    $query = $DB->prepare ("
+      INSERT INTO wager (
+        user_id,
+        amount,
+        proposal,
+        opponent_id,
+        event_id
+      )
+      VALUES (?,?,?,?,?)
+    ");
 
-      $query->bind_param('ddddd', $this->user_id, $amount, 
-                         $proposal, $opponent_id,$event_id);
-      $query->execute();
+    $query->bind_param('ddddd', $this->user_id, $amount, 
+                     $proposal, $opponent_id,$event_id);
+    $query->execute();
 
 
   }
 
-  public function check_yacs($amount){
+  public function check_yacs ($amount) {
     //Check to make sure user has enough funds to support the bet
   }
 
-  public function accept_request(){
+  public function accept_request () {
       //update at risk and balance of both users
   }
 
-  public function deny_request(){
+  public function deny_request () {
     
   }
 
-  public function counter_offer(){
+  public function counter_offer () {
     //they can counter propose an amount for now
   }
 
-  public function update_balance(){
+  public function update_balance () {
     //update user's funds based on bet outcomes. use event_outcome 
     //logic and then update tables 
   }

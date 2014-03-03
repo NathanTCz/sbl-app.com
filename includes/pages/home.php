@@ -17,14 +17,6 @@
 </div>
 
 <div id="list" class="bar">
-  <div class="head_bar">
-  <?php
-  $properties = get_object_vars( $EVENTS[0] );
-  foreach ($properties as $key => $value) {
-    echo '<span>' . $key . '</span>';
-  }
-  ?>
-  </div>
   <?php
   foreach ($EVENTS as $event) {
   ?>
