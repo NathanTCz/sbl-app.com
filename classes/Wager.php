@@ -36,4 +36,6 @@ class Wager extends Database {
         return $event;
       }
     }
+  }
+
 };

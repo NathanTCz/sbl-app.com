@@ -56,7 +56,7 @@ class System extends Database {
   public function set_wager_outcome(){
 
     foreach ($this->wagers as $wager) {
-      if($wager->proposal == $wager->event->home_id && $wager->event->outcome == 1)
+      if ($wager->proposal == $wager->event->home_id && $wager->event->outcome == 1) {
 
       $query = $DB->prepare ("
       UPDATE wager
@@ -67,7 +67,8 @@ class System extends Database {
     $query->bind_param('d',$wager->id);
     $query->execute();
     }
-    elseif($wager->proposal == $wager->event->away_id && $wager->event->outcome == 0)
+
+    elseif ($wager->proposal == $wager->event->away_id && $wager->event->outcome == 0) {
 
       $query = $DB->prepare ("
       UPDATE wager
@@ -99,6 +100,7 @@ class System extends Database {
    
     $query->bind_param('d',$wager->id);
     $query->execute();
+  }
   }
 }
 

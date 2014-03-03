@@ -47,6 +47,7 @@ class Database {
     global $YACS;
     global $WAGERS;
     global $CATEGORIES;
+    global $USERS;
 
     /*
      * Because of control flow, THESE MUST BE SET IN THIS
