@@ -36,6 +36,7 @@
   $YACS = Database::set_yacs();
   $WAGERS = Database::set_wagers();
   $CATEGORIES = Database::set_categories();
+  $USERS = Database::set_users();
 
   //$DATABASE = new Database;
   $session = new Session;

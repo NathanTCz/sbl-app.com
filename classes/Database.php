@@ -11,7 +11,7 @@ class Database {
   public $events;
   public $yacs;
   public $categories;
-
+  public $users;
 
 
 //PRIVATE FUNCTIONS
@@ -57,6 +57,28 @@ class Database {
     $this->yacs = $YACS;
     $this->wagers = $WAGERS;
     $this->categories = $CATEGORIES;
+    $this->users = $USERS;
+  }
+
+  public static function set_users(){
+    global $DB;
+    
+     $query = $DB->prepare ("
+      SELECT *
+      FROM user
+    ");
+    $query->execute();
+    
+    $results = Database::resolve_data($query);
+
+     foreach ($results as $user) {
+      $users[] = new User (
+        $user->email,
+        $user->u_name,
+        $user->user_id
+      );
+    }
+    return $users;
   }
 
   public static function set_teams () {
