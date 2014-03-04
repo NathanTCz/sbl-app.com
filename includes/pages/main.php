@@ -1,9 +1,4 @@
 <?php
-  if ($session->logged_in()) {
-    $session->redirect("/home");
-    exit;
-  }
-
   if (isset($_POST['login'])) {
     $email = trim($_POST['email']);
     $pass = trim($_POST['password']);
