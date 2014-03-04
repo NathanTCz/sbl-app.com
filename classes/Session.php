@@ -41,7 +41,7 @@ Description: Handles login status manipulation
       $_SESSION['user'][$key] = $value;
     }
 
-    $this->redirect("/home");
+    $this->redirect("/events");
   }
 
 /*

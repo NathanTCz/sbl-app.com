@@ -2,7 +2,7 @@
   require 'core/init.php';
 
   if ($session->logged_in()) {
-    $session->redirect("/home");
+    $session->redirect("/events");
     exit;
   }
 
