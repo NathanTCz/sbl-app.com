@@ -52,13 +52,13 @@ class Database {
 
     /*
      * Because of control flow, THESE MUST BE SET IN THIS
-     * ORDER BITCH.
+     * ORDER, BITCH.
      */
     $this->teams = $TEAMS;
+    $this->categories = $CATEGORIES;
     $this->events = $EVENTS;
     $this->yacs = $YACS;
     $this->wagers = $WAGERS;
-    $this->categories = $CATEGORIES;
     $this->users = $USERS;
   }
 
@@ -146,6 +146,7 @@ class Database {
     foreach ($results as $event) {
       $events[] = new Event (
         $event->id,
+        $event->cat_id, 
         $event->event_time,
         $event->outcome,
         $event->home_id,
