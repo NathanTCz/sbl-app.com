@@ -46,7 +46,7 @@ Class User extends Database {
   public function set_yac () {
     /*
      * $this->yacs is inherited from the Database class.
-     * cycle through data store to find the team with associated
+     * cycle through data store to find the yac with associated
      * id number
      */
     foreach ($this->yacs as $yac) {

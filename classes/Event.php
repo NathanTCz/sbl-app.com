@@ -5,6 +5,8 @@ require_once 'classes/Team.php';
 class Event extends Database {
   //PRIVATE DATA & FUNCTIONS
   public $id;
+  public $category;
+  public $date;
   public $time;
   public $outcome;
   public $home_team;
@@ -17,26 +19,32 @@ class Event extends Database {
   //PUBLIC DATA & FUNCTIONS
 
   //Constructor
-  public function __construct ($id, $t, $o, $ht, $hs, $at, $as, $l, $d) {
+  public function __construct ($id, $cat, $t, $o, $ht, $hs, $at, $as, $l, $d) {
     // Explicitly call parent constructor
     parent::__construct();
 
     $this->id = $id;
-    $this->time = $this->set_time($t);
+    $this->category = $this->set_cat($cat);
+    $this->set_time($t);
     $this->outcome = $o;
     $this->home_team = $this->set_team($ht);
-    $this->home_score = $hs;
+    $this->home_score = $this->set_score($hs);
     $this->away_team = $this->set_team($at);
-    $this->away_score = $as;
+    $this->away_score = $this->set_score($as);
     $this->location = $l;
     $this->description = $d;
   }
 
-  public function set_time ($time) {
-    return $time;
+  public function set_time ($t) {
+    $timestamp = explode(' ', $t);
+
+    $time = explode(':', $timestamp[1]);
+    $this->time = "$time[0]:$time[1] EST";
+
+    $this->date = $timestamp[0];
   }
 
-  public function set_team($team_id) {
+  public function set_team ($team_id) {
     /*
      * $this->teams is inherited from the Database class.
      * cycle through data store to find the team with associated
@@ -47,6 +55,26 @@ class Event extends Database {
         return $team;
       }
     }
+  }
+
+  public function set_cat ($cat_id) {
+    /*
+     * $this->categories is inherited from the Database class.
+     * cycle through data store to find the category with associated
+     * id number
+     */
+    foreach ($this->categories as $category) {
+      if ($category->id == $cat_id) {
+        return $category;
+      }
+    }
+  }
+
+  public function set_score ($s) {
+    if ($s === NULL)
+      return '--';
+    else
+      return $s;
   }
 }
 ?>
