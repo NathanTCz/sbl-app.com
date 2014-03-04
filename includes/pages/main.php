@@ -83,10 +83,9 @@
             <br>
             <span>
             <h2>-Up to date events</h2>
-            &nbsp;
             SBL stays up to date with the latest events in professional
             and collegiate sports, giving you the opportunity to put your
-            money on the line.
+            credits on the line.
             </span>
           </div>
 
@@ -94,8 +93,7 @@
             <span class="icon icon-stack"></span>
             <br>
             <span>
-            <h2>-Rack up Stacks</h2>
-            &nbsp;
+            <h2>-Immediate benefits when you join</h2>            
             We give you 100 tokens to start testing your skill
             and luck, right when you login.
             </span>
@@ -105,10 +103,10 @@
             <span class="icon icon-ticket"></span>
             <br>
             <span>
-            <h2>-Another great thing</h2>
-            &nbsp;
-            SBL is awesome you can bet on anything you can imagine,
-	    from high stakes games, to your friends beer pong league
+            <h2>-Customized events</h2>
+            SBL allows you to submit your own events so you can bet 
+            on your son's little league game, or your friend's beer
+            pong tournament. 
             </span>
           </div>
 
@@ -116,11 +114,9 @@
             <span class="icon icon-coin"></span>
             <br>
             <span>
-            <h2>-Score that cheese</h2>
-            &nbsp;
-            SBL stays up to date with the latest events in professional
-            and collegiate sports, giving you the opportunity to bet on a
-            multitude of sports events.
+            <h2>-Show everyone your worth</h2>
+            Let everyone know you're in it to win it by putting it 
+            all on the line.
             </span>
           </div>
         </div>
