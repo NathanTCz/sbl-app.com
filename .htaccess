@@ -22,7 +22,7 @@ RewriteCond %{REQUEST_URI} !^.*\.(|js|css|images|).*$ [NC]
 
 # Rewrite urls with get variables.
 RewriteRule ^([a-zA-Z]+)$ /index.php?page=$1 [NC,L]
-RewriteRule ^([a-zA-Z]+)/([a-zA-Z]+)$ /index.php?page=$1&id=$2 [NC,L]
+RewriteRule ^([a-zA-Z]+)/(\d+)$ /index.php?page=$1&id=$2 [NC,L]
 
 RewriteRule ^web/([a-zA-Z]+)$ $1.php [NC,L]
 
