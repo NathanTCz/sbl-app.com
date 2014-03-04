@@ -18,7 +18,7 @@
 
   // Set default landing page
   if (!isset($_GET['page'])) {
-    $_GET['page'] = "home";
+    $_GET['page'] = "events";
   }
 
   // GLOBAL VARIABLES
@@ -32,10 +32,10 @@
    * ORDER BITCH.
    */
   $TEAMS = Database::set_teams();
+  $CATEGORIES = Database::set_categories();
   $EVENTS = Database::set_events();
   $YACS = Database::set_yacs();
   $WAGERS = Database::set_wagers();
-  $CATEGORIES = Database::set_categories();
   $USERS = Database::set_users();
 
   //$DATABASE = new Database;

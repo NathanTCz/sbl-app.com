@@ -13,6 +13,19 @@
   display: none;
 }
 
+@-moz-keyframes spin {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    from { transform:rotate(0deg); }
+    to { transform:rotate(360deg); }
+}
+
 @font-face {
   font-family: 'app-font';
   src: url('/fonts/Raleway-Regular.otf');
@@ -212,9 +225,14 @@ hr {
   color: #555;
   
   text-align: center;
+
+  -webkit-transition: all 1s;
+     -moz-transition: all 1s;
+          transition: all 1s;  
 }
 
 .nav_menu ul li:hover {
+  background: #CCC;
 }
 
 .nav_menu ul li.active {
@@ -270,18 +288,77 @@ hr {
   display: block;
 
   padding: 1em 0 1em 2em;
+
+  cursor: pointer;
+
+  -webkit-transition: all 1s;
+     -moz-transition: all 1s;
+          transition: all 1s; 
+}
+
+.bar#categ span:hover {
+  background: #CCC;
+  color: #555;
+}
+
+.bar#categ span.cat_active {
+  background: #CCC;
+  color: #555;
 }
 
 .bar#list {
-  width: 90%;
+  width: 70%;
+  height: 90%;
+
+  margin: 3em;
+
+  overflow-y: scroll;
 }
 
-.bar#list .head_bar {
+.bar#list div#loader {
+  position: absolute;
+  top: 45%;
+  left: 45%;
+
+  width: 5em;
+}
+
+.bar#list span[class*='icon-'] {
+  display: block;
+  position: relative;
+
+  color: #555;
+}
+
+.bar#list span#spinner {
+  font-size: 5em;
+
+  -webkit-animation: spin 1.75s linear 0s infinite;
+     -moz-animation: spin 1.75s infinite linear;
+          animation: spin 1.75s infinite linear;
+}
+
+.bar#list .list_item {
   width: 100%;
-  height: 3em;
+  padding: 0.5em;
 
-  background: #555;
-  color: #FFF;
+  font-size: 1.2em;
+  color: #000;
 
-  border-top: 1px solid #FFF;
+  border-bottom: 1px solid #555;
+}
+
+.bar#list .list_item:nth-child(even) {
+  background: #FFF;
+}
+
+.bar#list .list_item span:first-child {
+  text-align: left;
+}
+
+.bar#list .list_item span {
+  display: inline-block;
+  width: 8em;
+
+  text-align: right;
 }
