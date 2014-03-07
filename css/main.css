@@ -85,7 +85,7 @@ hr {
   width: 100%;
   height: 100%;
 
-  background: #ECF0F1;
+  /*background: #ECF0F1;*/
   /*opacity: 0.2;*/
 
   -webkit-filter: blur(2px);
@@ -181,10 +181,12 @@ hr {
 }
 
 .nav {
-  position: relative;
+  position: fixed;
 
   width: 100%;
   height: 60px;
+
+  z-index: 1;
 
   background: #FFF;
 
@@ -276,7 +278,9 @@ hr {
 }
 
 .bar#categ {
-  width: 10%;
+  position: fixed;
+  top: 65px;
+  width: 10em;
 
   background: #555;
   color: #fff;
@@ -291,9 +295,9 @@ hr {
 
   cursor: pointer;
 
-  -webkit-transition: all 1s;
-     -moz-transition: all 1s;
-          transition: all 1s; 
+  -webkit-transition: all 0.5s;
+     -moz-transition: all 0.5s;
+          transition: all 0.5s; 
 }
 
 .bar#categ span:hover {
@@ -307,48 +311,79 @@ hr {
 }
 
 .bar#list {
+  position: relative;
+  top: 6em;
+  left: 14em;
+
   width: 70%;
-  height: 90%;
+  height: auto;
 
-  margin: 3em;
+  z-index: 0;
 
-  overflow-y: scroll;
+  background: #1E824C;
 }
 
-.bar#list div#loader {
-  position: absolute;
-  top: 45%;
-  left: 45%;
+.bar div#loader {
+  position: fixed;
+  top: 30%;
+  left: 48%;
 
   width: 5em;
 }
 
-.bar#list span[class*='icon-'] {
+.bar span[class*='icon-'] {
   display: block;
   position: relative;
 
   color: #555;
 }
 
-.bar#list span#spinner {
+.bar span#spinner {
   font-size: 5em;
 
-  -webkit-animation: spin 1.75s linear 0s infinite;
-     -moz-animation: spin 1.75s infinite linear;
-          animation: spin 1.75s infinite linear;
+  -webkit-animation: spin 1s linear 0s infinite;
+     -moz-animation: spin 1s infinite linear;
+          animation: spin 1s infinite linear;
+}
+
+.bar#list .date_title {
+  width: 100%;
+  padding: 0.5em;
+
+  background: #555;
+
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #FFF;
+}
+
+.bar#list .date_title span {
+  display: inline-block;
+  width: 15%;
+
+  text-align: center;
 }
 
 .bar#list .list_item {
+  position: relative;
   width: 100%;
   padding: 0.5em;
 
   font-size: 1.2em;
   color: #000;
 
-  border-bottom: 1px solid #555;
+  cursor: pointer;
+
+  -webkit-transition: all 0.2s;
+     -moz-transition: all 0.2s;
+          transition: all 0.2s;
 }
 
 .bar#list .list_item:nth-child(even) {
+  background: #F2F1EF;
+}
+
+.bar#list .list_item:nth-child(odd) {
   background: #FFF;
 }
 
@@ -356,9 +391,116 @@ hr {
   text-align: left;
 }
 
+.bar#list .list_item span:last-child {
+  float: right;
+  width: 40%;
+
+  margin-right: 1%;
+}
+
 .bar#list .list_item span {
   display: inline-block;
-  width: 8em;
+  width: 18%;
 
   text-align: right;
+}
+
+.bar#event {
+  position: relative;
+  top: 6em;
+  left: 14em;
+
+  width: 82%;
+  height: auto;
+  min-height: 90%;
+
+  z-index: 0;
+
+  background: #F2F1EF;
+}
+
+.bar#event .event_jumbo div#home_team {
+  float: right;
+
+  width: 50%;
+
+  text-align: center;
+
+  border-bottom: 1px solid #AAA;
+}
+
+.bar#event .event_jumbo div#away_team {
+  float: left;
+
+  width: 50%;
+
+  text-align: center;
+
+  border-bottom: 1px solid #AAA;
+}
+
+.bar#event .event_jumbo span {
+  display: block;
+}
+
+.bar#event .event_jumbo span#at {
+  position: relative;
+  top: 10em;
+  left: 49%;
+
+  font-size: 20pt;
+  font-weight: bold;
+}
+
+.bar#event .event_jumbo span#score {
+  font-size: 12em;
+}
+
+.bar#event .event_jumbo span#s_name {
+  padding-top: 1em;
+  font-size: 3em;
+}
+.bar#event .event_jumbo span#name {
+  padding: 1em;
+  font-size: 2em;
+}
+
+.bar#event .event_jumbo div#event_desc {
+  clear: both;
+
+  width: 80%;
+
+  padding: 1em;
+  margin: 0 auto;
+
+  font-size: 2em;
+  text-align: center;
+}
+
+.bar#event .event_jumbo div#bet_button {
+  clear: both;
+
+  width: 20%;
+
+  padding: 1em;
+  margin: 0 auto;
+
+  font-size: 2em;
+  text-align: center;
+
+  background: #AAA;
+  color: #FFF;
+  border: 2px solid #AAA;
+}
+
+.bar#event .bet_box {
+  display: none;
+  position: fixed;
+  top: 30%;
+  left: 40%;
+
+  width: 30em;
+  height: 15em;
+
+  background: #555;
 }

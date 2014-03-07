@@ -20,7 +20,13 @@ else $id = 1;
 
 <div id="list" class="bar">
   <div id="loader" style="display: none;">
-    <span id="spinner" class="icon-spinner4"></span>
+    <span id="spinner" class="icon-spinner6"></span>
+  </div>
+</div>
+
+<div id="event" class="bar">
+  <div id="loader" style="display: none;">
+    <span id="spinner" class="icon-spinner6"></span>
   </div>
 </div>
 
