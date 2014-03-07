@@ -8,49 +8,84 @@ chdir($root_dir);
 require_once 'core/init.php';
 
 $cat_id = $_GET['cat'];
+$dates = array();
 
+// Store dates for categorization
 foreach ($EVENTS as $event) {
-  if ($event->category->id == $cat_id
-      || $cat_id == 1)
-  {
+  if ( !in_array($event->date, $dates)
+      &&
+      (
+        $event->category->id == $cat_id
+        || $cat_id == 1
+      )
+     )
+    $dates[] = $event->date;
+}
+
+foreach ($dates as $date) {
+?>
+<div class="date_title">
+  <span>
+  <?php echo
+    $date
+    ;
   ?>
+  </span>
+</div>
 
-  <div class="list_item">
-    <span>
-      <?php echo
-        $event->away_team->short_name
-        . ' at ' .
-        $event->home_team->short_name
-        ;
+<?php
+  foreach ($EVENTS as $event) {
+    if ($event->category->id == $cat_id
+        || $cat_id == 1)
+    {
+      if ($event->date == $date) {
       ?>
-    </span>
-    <span>
-      <?php echo
-        $event->time
-        ;
-      ?>
-    </span>
-    <span>
-      <?php echo
-        $event->date
-        ;
-      ?>
-    </span>
-    <span>
-      <?php echo
-        $event->away_score
-        . ' - ' .
-        $event->home_score
-        ;
-      ?>
-    </span>
-  </div>
 
-  <?php
+      <div
+        id="<?php echo $event->id;?>"
+        class="list_item"
+        onmouseover="slide(this.id)"
+        onmouseout="slide_back(this.id)"
+        onclick="load_event(this.id)"
+      >
+
+        <span>
+          <?php echo
+            $event->away_team->short_name
+            . ' at ' .
+            $event->home_team->short_name
+            ;
+          ?>
+        </span>
+        <span>
+          <?php echo
+            $event->time
+            ;
+          ?>
+        </span>
+        <span>
+          <?php echo
+            $event->away_score
+            . ' - ' .
+            $event->home_score
+            ;
+          ?>
+        </span>
+        <span>
+          <?php echo
+            $event->description
+            ;
+          ?>
+        </span>
+      </div>
+
+      <?php
+      }
+    }
   }
 }
 ?>
 
 <div id="loader" style="display: none;">
-  <span id="spinner" class="icon-spinner4"></span>
+  <span id="spinner" class="icon-spinner6"></span>
 </div>
