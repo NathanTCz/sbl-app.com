@@ -1,10 +1,8 @@
-spinner = '<div id="loader"><span id="spinner" class="icon-spinner6"></span></div>';
-
 load_list(1);
 
 function load_list (id) {
-  document.getElementById('list').style.display = 'block';
-  document.getElementById('list').innerHTML = spinner;
+  document.getElementById('list').style.display = 'none';
+  document.getElementById('loader').style.display = 'block';
   document.getElementById('event').style.display = 'none';
   document.getElementById('loader').style.display = 'block';
 
@@ -28,13 +26,15 @@ function load_list (id) {
 
 function process_event_list () {
   if (xmlHttp.readyState == 4 && xmlHttp.status==200) {
+    document.getElementById('loader').style.display = 'none';
+    document.getElementById('list').style.display = 'block';
     document.getElementById('list').innerHTML=xmlHttp.responseText;
   }
 }
 
 function load_event (id) {
-  document.getElementById('event').style.display = 'block';
-  document.getElementById('event').innerHTML = spinner;
+  document.getElementById('event').style.display = 'none';
+  document.getElementById('loader').style.display = 'none';
   document.getElementById('list').style.display = 'none';
   document.getElementById('loader').style.display = 'block';
 
@@ -51,16 +51,10 @@ function load_event (id) {
 
 function process_event_page () {
   if (xmlHttp.readyState == 4 && xmlHttp.status==200) {
+    document.getElementById('loader').style.display = 'none';
+    document.getElementById('event').style.display = 'block';
     document.getElementById('event').innerHTML=xmlHttp.responseText;
   }
-}
-
-function slide (id) {
-  document.getElementById(id).style.left = "2em";
-}
-
-function slide_back (id) {
-  document.getElementById(id).style.left = "0em";
 }
 
 /*function show_bet_box () {

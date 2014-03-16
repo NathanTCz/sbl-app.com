@@ -6,6 +6,7 @@ else $id = 1;
 ?>
 
 <div id="categ" class="bar">
+  <div id="color">
   <?php
   foreach ($CATEGORIES as $cat) {
   ?>
@@ -16,19 +17,12 @@ else $id = 1;
   <?php
   }
   ?>
-</div>
-
-<div id="list" class="bar">
-  <div id="loader" style="display: none;">
-    <span id="spinner" class="icon-spinner6"></span>
   </div>
 </div>
 
-<div id="event" class="bar">
-  <div id="loader" style="display: none;">
-    <span id="spinner" class="icon-spinner6"></span>
-  </div>
-</div>
+<div id="list" class="bar"></div>
+
+<div id="event" class="bar"></div>
 
 
 <!--

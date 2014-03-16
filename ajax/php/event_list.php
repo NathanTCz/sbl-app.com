@@ -44,8 +44,6 @@ foreach ($dates as $date) {
       <div
         id="<?php echo $event->id;?>"
         class="list_item"
-        onmouseover="slide(this.id)"
-        onmouseout="slide_back(this.id)"
         onclick="load_event(this.id)"
       >
 
@@ -85,7 +83,3 @@ foreach ($dates as $date) {
   }
 }
 ?>
-
-<div id="loader" style="display: none;">
-  <span id="spinner" class="icon-spinner6"></span>
-</div>

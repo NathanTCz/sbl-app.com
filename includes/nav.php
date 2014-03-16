@@ -21,29 +21,31 @@
     $eventsClassName = "active";
   }
 ?>
+<div class="top_bar">
+  <span class="title">SBL</span>
+</div>
 
 <div class="nav">
-  <span class="title">SBL</span>
   <div class="nav_menu">
     <ul>
       <a href="/events">
         <li class="<?php echo $eventsClassName;?>">
           <br>
-          <span>Events</span>
+          <span class="icon-list2"></span>
           <div class="triangle"></div>
         </li>
       </a>
       <a href="/bets">
         <li class="<?php echo $betsClassName;?>">
           <br>
-          <span>Bets</span>
+          <span class="icon-ticket"></span>
           <div class="triangle"></div>
         </li>
       </a>
       <a href="/live">
         <li class="<?php echo $liveClassName;?>">
           <br>
-          <span>Live</span>
+          <span class="icon-feed"></span>
           <div class="triangle"></div>
         </li>
       </a>
