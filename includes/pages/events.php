@@ -1,8 +1,5 @@
 <?php
 // YOUR FUCKING LOGIC GOES HERE.
-if ( isset($_GET['id']) )
-  $id = $_GET['id'];
-else $id = 1;
 ?>
 
 <div id="categ" class="bar">

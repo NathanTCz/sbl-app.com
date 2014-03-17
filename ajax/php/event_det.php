@@ -8,10 +8,26 @@ chdir($root_dir);
 require_once 'core/init.php';
 
 $event_id = $_GET['event_id'];
+$cat_id = $_GET['cat'];
 
 foreach ($EVENTS as $event) {
   if ($event->id == $event_id) {
   ?>
+
+  <div class="event_toolbar">
+    <span class="icon-arrow-left2"
+          onclick="load_list(<?php echo $cat_id?>)"
+    >
+    </span>
+    </span>
+    <span class="icon-bookmark"
+          title="bookmark this event"
+    ></span>
+    <span class="icon-coin" 
+          onclick="show_bet_box()"
+          title="bet on this event"
+    >
+  </div>
 
   <div class="event_jumbo">
     <span id="at">AT</span>
@@ -69,17 +85,10 @@ foreach ($EVENTS as $event) {
       ?>
       </span>
     </div>
-
-    <div id="bet_button">
-      <span onclick="show_bet_box()">BET ON THIS GAME</span>
-    </div>
-  </div>
-
-  <div id="bet_box" class="bet_box">
-
   </div>
 
   <?php
+  exit;
   }
 }
 ?>

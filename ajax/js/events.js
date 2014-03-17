@@ -32,7 +32,7 @@ function process_event_list () {
   }
 }
 
-function load_event (id) {
+function load_event (id, cat) {
   document.getElementById('event').style.display = 'none';
   document.getElementById('loader').style.display = 'none';
   document.getElementById('list').style.display = 'none';
@@ -44,7 +44,7 @@ function load_event (id) {
 
     xmlHttp.onreadystatechange = process_event_page;
     
-    xmlHttp.open("GET", "ajax/php/event_det.php?event_id=" + id,true);
+    xmlHttp.open("GET", "ajax/php/event_det.php?cat=" + cat + "&event_id=" + id,true);
     xmlHttp.send();
     }
 }
@@ -57,7 +57,20 @@ function process_event_page () {
   }
 }
 
-/*function show_bet_box () {
+function show_bet_box () {
   document.getElementById('bet_box').style.display = "block";
-  document.getElementsByTagName('html')[0].style.opacity = "0.5";
-}*/
+
+  document.getElementsByClassName('wrapper')[0].className = "wrapper blurred";
+
+  document.getElementsByClassName('underlay')[0].style.display = "block";
+  document.getElementsByClassName('underlay')[0].style.opacity = "0.7";
+}
+
+function hide (e) {
+  document.getElementById('bet_box').style.display = "none";
+
+  document.getElementsByClassName('wrapper')[0].className = "wrapper";
+
+  e.style.display = "none";
+
+}

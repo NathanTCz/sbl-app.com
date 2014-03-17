@@ -1,0 +1,1 @@
+<div id="bet_box" class="bet_box"></div>

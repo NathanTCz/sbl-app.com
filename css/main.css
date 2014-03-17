@@ -96,19 +96,37 @@ span#spinner {
   top: 0px;
   left: 0px;
 
-  z-index: -9999;
+  z-index: 0;
+
+  width: 100%;
+  height: 100%;
+}
+
+.underlay {
+  display: none;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+
+  z-index: 99999;
 
   width: 100%;
   height: 100%;
 
-  /*background: #ECF0F1;*/
-  /*opacity: 0.2;*/
+  background: #222;
+  opacity: 0;
 
-  -webkit-filter: blur(2px);
-     -moz-filter: blur(2px);
-      -ms-filter: blur(2px);
-       -o-filter: blur(2px);
-          filter: blur(2px);
+  -webkit-transition: all 0.2s;
+     -moz-transition: all 0.2s;
+          transition: all 0.2s; 
+}
+
+.blurred {
+  -webkit-filter: blur(5px);
+     -moz-filter: blur(5px);
+      -ms-filter: blur(5px);
+       -o-filter: blur(5px);
+          filter: blur(5px);
 }
 
 .main {
@@ -116,7 +134,7 @@ span#spinner {
   top: 3em;
   left: 4em;
 
-  width: 83.9%;
+  width: 86.2%;
   height: 93%;
 }
 
@@ -355,7 +373,7 @@ span#spinner {
 
 .bar#list .date_title {
   width: 100%;
-  padding: 0.5em;
+  padding: 0.2em;
 
   background: #555;
 
@@ -456,6 +474,8 @@ span#spinner {
   top: 15em;
   left: 49%;
 
+  width: 2em;
+
   font-size: 1em;
   font-weight: bold;
 }
@@ -487,30 +507,59 @@ span#spinner {
   border-top: 1px solid #EEE;
 }
 
-.bar#event .event_jumbo div#bet_button {
-  clear: both;
-
-  width: 20%;
-
-  padding: 1em;
+.bar#event div.event_toolbar {
   margin: 0 auto;
+  height: 2em;
 
-  font-size: 2em;
+  font-size: 1.5em;
   text-align: center;
 
   background: #AAA;
   color: #FFF;
-  border: 2px solid #AAA;
+
+  border: 1px solid #AAA;
 }
 
-.bar#event .bet_box {
+.bar#event div.event_toolbar span {
+  display: inline-block;
+  float: right;
+
+  padding: 0.5em;
+
+  cursor: pointer;
+  background: #AAA;
+
+  -webkit-transition: all 0.2s;
+     -moz-transition: all 0.2s;
+          transition: all 0.2s;
+}
+
+.bar#event div.event_toolbar span:hover {
+/*  background: #FFF;*/
+  color: #555;
+}
+
+.bar#event div.event_toolbar span:first-child {
+  float: left;
+/*  margin-right: 1em;*/
+}
+
+.bar#event div.event_toolbar span:first-child:hover {
+  background: #FFF;
+  color: #555;
+}
+
+.bet_box {
   display: none;
-  position: fixed;
+  position: relative;
   top: 30%;
-  left: 40%;
+
+  margin: 0 auto;
+
+  z-index: 999999;
 
   width: 30em;
   height: 15em;
 
-  background: #555;
+  background: #EEE;
 }
