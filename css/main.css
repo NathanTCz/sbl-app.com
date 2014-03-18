@@ -114,7 +114,7 @@ span#spinner {
   height: 100%;
 
   background: #222;
-  opacity: 0;
+  opacity: 0.7;
 
   -webkit-transition: all 0.2s;
      -moz-transition: all 0.2s;
@@ -132,7 +132,7 @@ span#spinner {
 .main {
   position: relative;
   top: 3em;
-  left: 4em;
+  left: 4.5em;
 
   width: 86.2%;
   height: 93%;
@@ -248,6 +248,7 @@ span#spinner {
   z-index: 1;
 
   background: #FFF;
+  border-right: 0.5em solid greenyellow;
 }
 
 .nav_menu {
@@ -328,8 +329,6 @@ span#spinner {
   background: #555;
   color: #fff;
   overflow: hidden;
-
-  border-left: 0.5em solid greenyellow;
 }
 
 .bar#categ span {
@@ -359,7 +358,7 @@ span#spinner {
 .bar#list {
   position: relative;
   top: 0;
-  left: 10.5em;
+  left: 10em;
 
   width: 100%;
   height: auto;
@@ -368,7 +367,6 @@ span#spinner {
   overflow: hidden;
 
   background: greenyellow;
-  /*border-left: 0.5em solid greenyellow;*/
 }
 
 .bar#list .date_title {
@@ -439,7 +437,7 @@ span#spinner {
 .bar#event {
   position: relative;
   top: 0;
-  left: 10.5em;
+  left: 10em;
 
   width: 100%;
   height: auto;
@@ -562,4 +560,74 @@ span#spinner {
   height: 15em;
 
   background: #EEE;
+  border: 1px solid #7f8c8d;
+}
+
+.bet_box div#prop {
+  position: relative;
+  top: 10px;
+  left: 0;
+
+  width: 100%;
+
+  font-size: 30pt;
+  text-align: center;
+}
+
+.bet_box div#prop span {
+  cursor: pointer;
+
+  -webkit-transition: all 0.5s;
+     -moz-transition: all 0.5s;
+          transition: all 0.5s;
+}
+
+.bet_box div#prop span#or {
+  font-size: 20pt;
+  cursor: default;
+}
+
+.bet_box div#prop span.selected {
+  font-size: 50pt;
+  text-decoration: underline;
+}
+
+.bet_box .op_amnt {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  margin: 0;
+}
+
+.bet_box .op_amnt div#amnt {
+  padding: 0.5em;
+  float: right;
+}
+
+.bet_box .op_amnt div#op {
+  padding: 0.5em;
+  float: left;
+}
+
+.bet_box .buttons {
+  position: absolute;
+  bottom: 0;
+
+  width: 100%;
+
+  font-size: 15pt;
+}
+
+.bet_box .buttons span {
+  cursor: pointer;
+}
+
+.bet_box .buttons div#cancel {
+  float: left;
+  padding: 0.5em;
+}
+
+.bet_box .buttons div#request {
+  float: right;
+  padding: 0.5em;
 }

@@ -44,7 +44,7 @@ foreach ($dates as $date) {
       <div
         id="<?php echo $event->id;?>"
         class="list_item"
-        onclick="load_event(this.id, <?php echo $cat_id?>)"
+        onclick="load_event(this.id, <?php echo $cat_id;?>)"
       >
 
         <span>

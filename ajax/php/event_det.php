@@ -12,6 +12,19 @@ $cat_id = $_GET['cat'];
 
 foreach ($EVENTS as $event) {
   if ($event->id == $event_id) {
+
+  /* Convert PHP Object to JSON notation
+   * so we can send the information to
+   * the bet_box that pops up. This needs to
+   * be done because the bet_box is above this
+   * code in the DOM
+   */
+
+  // Home team
+  $h = json_encode( (array)$event->home_team );
+
+  // Away team
+  $a = json_encode( (array)$event->away_team );
   ?>
 
   <div class="event_toolbar">
@@ -24,7 +37,10 @@ foreach ($EVENTS as $event) {
           title="bookmark this event"
     ></span>
     <span class="icon-coin" 
-          onclick="show_bet_box()"
+          onclick="show_bet_box(
+                    <?php echo htmlspecialchars($h);?>,
+                    <?php echo htmlspecialchars($a);?>
+                  )"
           title="bet on this event"
     >
   </div>

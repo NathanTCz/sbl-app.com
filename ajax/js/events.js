@@ -57,20 +57,48 @@ function process_event_page () {
   }
 }
 
-function show_bet_box () {
+function show_bet_box (h, a) {
+  /* beacuse the betbox is above the team info in the actual
+   * HTML document we have to send that info to that element
+   * with AJAX
+   */
+  load_bet_box (h, a);
+
+  // Now we can display the element
   document.getElementById('bet_box').style.display = "block";
 
   document.getElementsByClassName('wrapper')[0].className = "wrapper blurred";
 
   document.getElementsByClassName('underlay')[0].style.display = "block";
-  document.getElementsByClassName('underlay')[0].style.opacity = "0.7";
 }
 
-function hide (e) {
+function load_bet_box (h, a) {
+  h = JSON.stringify(h);
+  a = JSON.stringify(a);
+
+  xmlHttp=new XMLHttpRequest();
+
+  if (xmlHttp.readyState == 0 || xmlHttp.readyState == 4) {
+
+    xmlHttp.onreadystatechange = process_bet_box;
+    
+    xmlHttp.open("POST", "ajax/php/betbox.php", true);
+    xmlHttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xmlHttp.send("home=" + encodeURIComponent(h) + "&away=" + encodeURIComponent(a));
+    }
+}
+
+function process_bet_box () {
+  if (xmlHttp.readyState == 4 && xmlHttp.status==200) {
+    document.getElementById('bet_box').innerHTML=xmlHttp.responseText;
+  }
+}
+
+function hide () {
   document.getElementById('bet_box').style.display = "none";
 
   document.getElementsByClassName('wrapper')[0].className = "wrapper";
 
-  e.style.display = "none";
+  document.getElementsByClassName('underlay')[0].style.display = "none";
 
 }
