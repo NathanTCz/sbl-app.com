@@ -11,7 +11,7 @@ Class User extends Database {
   private $denied_wagers;
 
   private $yac;
-
+  
 
   public function __construct ($email, $un,  $uid) {
     // instantiate parent class
@@ -56,6 +56,7 @@ Class User extends Database {
     }
   }
 
+  /*
   public function event_outcome () {
     echo "BELOW IS A LIST OF YOUR PERSONAL RELEVANT WAGER INFO (NOT INCLUDING DENIED WAGERS). <br>";
     
@@ -77,7 +78,7 @@ Class User extends Database {
       else 
         ;
     }
-  }
+  }*/
 
   public function set_pending_wagers () {
     /*
@@ -127,6 +128,8 @@ Class User extends Database {
     return $this->pending_wagers;
   }
 
+
+
   public function make_wager ($opponent_id, $amount, $proposal, $event_id) {
     $query = $DB->prepare ("
       INSERT INTO wager (
@@ -148,18 +151,61 @@ Class User extends Database {
 
   public function check_yacs ($amount) {
     //Check to make sure user has enough funds to support the bet
+
+    if($this->balance < $amount)
+      return false; 
+    else 
+      return true; 
   }
 
-  public function accept_request () {
+  public function accept_request ($bet_id) {
       //update at risk and balance of both users
+      //$bet_id is the wager_id of the event that should get passed in 
+
+      //How can I set the opponent's balance and at risk amount???
+
+      $query = $DB->prepare ("
+      UPDATE yac, wager
+      SET yac.balance = ?, yac.at_risk = ?, wager.status = ?
+      WHERE wager.id = ? AND yac.user_id = ? 
+    ");
+
+    $query->bind_param('dddd', $yacs->balance - $wagers->amount, $yacs->at_risk + $wagers->amount, 
+                       1, $bet_id, $this->user_id) ;
+    $query->execute();
+   
   }
 
-  public function deny_request () {
-    
+  public function deny_request ($bet_id) {
+    //Maybe when a user denies a request we go ahead & delete that entry from the wager table?  
+    //or do we want to keep it so we can display denied wagers?? Anytime a wager is denied we could
+    //just send them a message saying the wager was denied and then after the message displays
+    //delete the wager from the table. 
+
+     $query = $DB->prepare ("
+      UPDATE wager
+      SET status = ?
+      WHERE id = ?  
+    ");
+
+    $query->bind_param('dddd', 0, $bet_id) ;
+    $query->execute();
+
   }
 
-  public function counter_offer () {
+  public function counter_offer ($bet_id, $counter_amount) {
     //they can counter propose an amount for now
+  
+      $query = $DB->prepare ("
+      UPDATE wager
+      SET  counter_offer = ?, amount = ?
+      WHERE id = ? 
+    ");
+
+    $query->bind_param('dddd', 1, $counter_amount, $bet_id) ;
+    $query->execute();
+   
+
   }
 
   public function update_balance () {

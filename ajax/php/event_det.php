@@ -46,7 +46,7 @@ foreach ($EVENTS as $event) {
   </div>
 
   <div class="event_jumbo">
-    <span id="at">AT</span>
+    <span id="at">VS</span>
 
     <div id="away_team">
       <span id="score">

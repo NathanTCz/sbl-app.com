@@ -50,7 +50,7 @@ foreach ($dates as $date) {
         <span>
           <?php echo
             $event->away_team->short_name
-            . ' at ' .
+            . ' vs ' .
             $event->home_team->short_name
             ;
           ?>

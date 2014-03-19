@@ -9,7 +9,7 @@ $away_team = json_decode( $_POST['away'] );
       $home_team->short_name
       ;
     ?></span>
-  <span id="or">or</span>
+  <span id="vs">vs</span>
   <span id="away" onclick="set_outcome(this, <?php echo $away_team->id;?>)">
     <?php echo
       $away_team->short_name
