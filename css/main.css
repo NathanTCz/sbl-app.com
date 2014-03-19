@@ -74,6 +74,7 @@ div#loader {
   left: 48%;
 
   width: 5em;
+  z-index: 9999999999;
 }
 
 div#loader span[class*='icon-'] {
@@ -91,6 +92,23 @@ span#spinner {
           animation: spin 1s infinite linear;
 }
 
+div#success {
+  position: fixed;
+  top: 30%;
+  left: 48%;
+
+  width: 5em;
+  z-index: 9999999999;
+}
+
+div#success span[class*='icon-'] {
+  display: block;
+  position: relative;
+
+  color: #FFF;
+  font-size: 6em;
+}
+
 .wrapper {
   position: absolute;
   top: 0px;
@@ -100,25 +118,34 @@ span#spinner {
 
   width: 100%;
   height: 100%;
+
+  -webkit-transition: all 0.3s;
+     -moz-transition: all 0.3s;
+          transition: all 0.3s;
+
+  -webkit-filter: blur(0px);
+     -moz-filter: blur(0px);
+      -ms-filter: blur(0px);
+       -o-filter: blur(0px);
+          filter: blur(0px);
 }
 
 .underlay {
-  display: none;
   position: absolute;
   top: 0px;
   left: 0px;
 
-  z-index: 99999;
+  z-index: -999;
 
   width: 100%;
   height: 100%;
 
   background: #222;
-  opacity: 0.7;
+  opacity: 0;
 
-  -webkit-transition: all 0.2s;
-     -moz-transition: all 0.2s;
-          transition: all 0.2s; 
+  -webkit-transition: all 0.3s;
+     -moz-transition: all 0.3s;
+          transition: all 0.3s; 
 }
 
 .blurred {
@@ -561,6 +588,10 @@ span#spinner {
 
   background: #EEE;
   border: 1px solid #7f8c8d;
+
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
 }
 
 .bet_box div#prop {
@@ -582,7 +613,7 @@ span#spinner {
           transition: all 0.5s;
 }
 
-.bet_box div#prop span#or {
+.bet_box div#prop span#vs {
   font-size: 20pt;
   cursor: default;
 }

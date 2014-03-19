@@ -6,7 +6,6 @@ require_once 'classes/Wager.php';
 require_once 'classes/Yac.php';
 
 class Database {
-  public $DB;
   public $teams;
   public $wagers;
   public $events;

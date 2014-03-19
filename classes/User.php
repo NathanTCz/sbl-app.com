@@ -131,6 +131,8 @@ Class User extends Database {
 
 
   public function make_wager ($opponent_id, $amount, $proposal, $event_id) {
+    global $DB;
+
     $query = $DB->prepare ("
       INSERT INTO wager (
         user_id,
@@ -159,6 +161,8 @@ Class User extends Database {
   }
 
   public function accept_request ($bet_id) {
+    global $DB;
+
       //update at risk and balance of both users
       //$bet_id is the wager_id of the event that should get passed in 
 
@@ -177,6 +181,8 @@ Class User extends Database {
   }
 
   public function deny_request ($bet_id) {
+    global $DB;
+
     //Maybe when a user denies a request we go ahead & delete that entry from the wager table?  
     //or do we want to keep it so we can display denied wagers?? Anytime a wager is denied we could
     //just send them a message saying the wager was denied and then after the message displays
@@ -194,6 +200,8 @@ Class User extends Database {
   }
 
   public function counter_offer ($bet_id, $counter_amount) {
+    global $DB;
+
     //they can counter propose an amount for now
   
       $query = $DB->prepare ("

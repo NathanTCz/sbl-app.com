@@ -1,6 +1,7 @@
 <?php
 $home_team = json_decode( $_POST['home'] );
 $away_team = json_decode( $_POST['away'] );
+$event_id = $_POST['e_id'];
 ?>
 
 <div id="prop">
@@ -22,6 +23,7 @@ $away_team = json_decode( $_POST['away'] );
   <div id="amnt">
     <span class="icon-coin"></span>
     <input id="amount" type="number"/>
+    <input id="event_id" type="hidden" value="<?php echo $event_id;?>"/>
   </div>
 
   <div id="op">
@@ -35,6 +37,6 @@ $away_team = json_decode( $_POST['away'] );
   </div>
 
   <div id="request">
-    <span>Send Request</span>
+    <span onclick="submit_request()">Send Request</span>
   </div>
 </div>

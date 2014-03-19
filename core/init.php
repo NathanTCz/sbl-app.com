@@ -38,6 +38,6 @@
   $WAGERS = Database::set_wagers();
   $USERS = Database::set_users();
 
-  //$DATABASE = new Database;
   $session = new Session;
+  $SYSTEM = new System;
 ?>

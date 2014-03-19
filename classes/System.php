@@ -7,6 +7,8 @@ class System extends Database {
   }
 
   public function get_userid($email){
+   global $DB;
+
     $query = $DB->prepare ("
       SELECT user_id
       FROM user
@@ -26,7 +28,8 @@ class System extends Database {
   }
 
   public function set_event_outcome(){
-   
+   global $DB;
+
   	foreach ($this->events as $event) {
   		if($event->home_score > $event_away_score){
   			$query = $DB->prepare ("
@@ -54,6 +57,7 @@ class System extends Database {
  }
 
   public function set_wager_outcome(){
+   global $DB;
 
     foreach ($this->wagers as $wager) {
       if ($wager->proposal == $wager->event->home_id && $wager->event->outcome == 1) {
@@ -120,6 +124,8 @@ public function check_time($current_time){
 }
 
 public function check_and_update_user_balances(){
+   global $DB;
+
   //use global user variable, loop through all users and update 
   //balances based on wagers that have status == 1 and have an outcome
 

@@ -39,7 +39,8 @@ foreach ($EVENTS as $event) {
     <span class="icon-coin" 
           onclick="show_bet_box(
                     <?php echo htmlspecialchars($h);?>,
-                    <?php echo htmlspecialchars($a);?>
+                    <?php echo htmlspecialchars($a);?>,
+                    <?php echo $event->id;?>
                   )"
           title="bet on this event"
     >
