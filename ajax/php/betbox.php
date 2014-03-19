@@ -4,18 +4,18 @@ $away_team = json_decode( $_POST['away'] );
 ?>
 
 <div id="prop">
-  <span id="home" class="selected" onclick="set_outcome(this, <?php echo $home_team->id;?>)">
+  <span id="home" class="selected" onclick="set_proposal(this, <?php echo $home_team->id;?>)">
     <?php echo
       $home_team->short_name
       ;
     ?></span>
   <span id="vs">vs</span>
-  <span id="away" onclick="set_outcome(this, <?php echo $away_team->id;?>)">
+  <span id="away" onclick="set_proposal(this, <?php echo $away_team->id;?>)">
     <?php echo
       $away_team->short_name
       ;
     ?></span>
-  <input id="proposal" type="hidden"/>
+  <input id="proposal" type="hidden" value="<?php echo $home_team->id;?>"/>
 </div>
 
 <div class="op_amnt">
