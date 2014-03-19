@@ -7,6 +7,7 @@
 <?php
   include 'includes/widgets/loader.php';
   include 'includes/widgets/success.php';
+  include 'includes/widgets/error.php';
   include 'includes/widgets/betbox.php';
 ?>
 <div class="underlay" onclick="hide()"></div>

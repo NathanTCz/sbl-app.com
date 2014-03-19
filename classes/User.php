@@ -146,9 +146,9 @@ Class User extends Database {
 
     $query->bind_param('ddddd', $this->user_id, $amount, 
                      $proposal, $opponent_id,$event_id);
-    $query->execute();
-
-
+    if ( $query->execute() )
+      return true;
+    else return false;
   }
 
   public function check_yacs ($amount) {

@@ -109,6 +109,23 @@ div#success span[class*='icon-'] {
   font-size: 6em;
 }
 
+div#error {
+  position: fixed;
+  top: 30%;
+  left: 48%;
+
+  width: 5em;
+  z-index: 9999999999;
+}
+
+div#error span[class*='icon-'] {
+  display: block;
+  position: relative;
+
+  color: #FFF;
+  font-size: 6em;
+}
+
 .wrapper {
   position: absolute;
   top: 0px;
