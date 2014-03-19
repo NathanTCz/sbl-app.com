@@ -27,6 +27,45 @@ class System extends Database {
     return $id;
   }
 
+  public function get_uname($id) {
+   global $DB;
+
+    $query = $DB->prepare ("
+      SELECT u_name
+      FROM user
+      WHERE user_id = ?
+    ");
+   
+    $query->bind_param('d', $id);
+    $query->execute();
+    $query->bind_result($u_name);
+    $query->fetch();
+    $query->free_result();
+
+    if ( $u_name == '' ) {
+      $u_name = $this->get_email($id);
+    }
+
+    return $u_name;
+  }
+
+  public function get_email($id) {
+   global $DB;
+
+    $query = $DB->prepare ("
+      SELECT email
+      FROM user
+      WHERE user_id = ?
+    ");
+   
+    $query->bind_param('s', $id);
+    $query->execute();
+    $query->bind_result($email);
+    $query->fetch();
+
+    return $email;
+  }
+
   public function set_event_outcome(){
    global $DB;
 

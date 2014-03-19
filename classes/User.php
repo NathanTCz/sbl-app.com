@@ -85,10 +85,10 @@ Class User extends Database {
      * $this->wagers is inherited from the Database class.
     */
     foreach ($this->wagers as $wager) {
-      if ($this->user_id == $wager->user_id && $wager->status === NULL){
+      if ($this->user_id == $wager->user_id && $wager->status === NULL) {
         $this->pending_wagers[] = $wager;
       }
-      elseif($this->user_id == $wager->opponent_id && $wager->status === NULL){
+      elseif($this->user_id == $wager->opponent_id && $wager->status === NULL) {
         $this->pending_wagers[] = $wager;
       }
     }
@@ -96,10 +96,10 @@ Class User extends Database {
 
   public function set_accepted_wagers () {
     foreach ($this->wagers as $wager) {
-      if ($this->user_id == $wager->user_id && $wager->status === 1){
+      if ($this->user_id == $wager->user_id && $wager->status === 1) {
         $this->accepted_wagers[] = $wager;
       }
-      elseif($this->user_id == $wager->opponent_id && $wager->status === 1){
+      elseif($this->user_id == $wager->opponent_id && $wager->status === 1) {
         $this->accepted_wagers[] = $wager;
       }
     }
@@ -107,10 +107,10 @@ Class User extends Database {
 
   public function set_denied_wagers () {
     foreach ($this->wagers as $wager) {
-      if ($this->user_id == $wager->user_id && $wager->status === 0){
+      if ($this->user_id == $wager->user_id && $wager->status === 0) {
         $this->denied_wagers[] = $wager;
       }
-      elseif($this->user_id == $wager->opponent_id && $wager->status === 0){
+      elseif($this->user_id == $wager->opponent_id && $wager->status === 0) {
         $this->denied_wagers[] = $wager;
       }
     }

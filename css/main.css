@@ -265,21 +265,49 @@ div#error span[class*='icon-'] {
 .user_tools {
   position: fixed;
   top: 1.5em;
-  right: -0.2em;
+  right: 1em;
 
   z-index: 999;
 
   width: auto;
   height: 1em;
 
-  color: #555;
+  color: #ED4337;
 }
 
-.user_tools button {
-  background: #333;
-  border: none;
+.user_tools span {
+  cursor: pointer;
+}
+
+.user_tools div#notifications {
+  position: fixed;
+  top: 4em;
+  right: 2em;
+
+  width: 17em;
+
+  text-align: center;
+
+  background: #FFF;
+  border: 1px solid #333;
+
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+}
+
+.user_tools div#notifications span {
+  display: block;
 
   color: #555;
+  font-size: 13pt;
+
+  padding: 5px;
+  border-bottom: 1px solid #444;
+}
+
+.user_tools div#notifications span:last-child {
+  border: none;
 }
 
 .nav {

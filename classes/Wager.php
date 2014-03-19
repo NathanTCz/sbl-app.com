@@ -18,7 +18,7 @@ class Wager extends Database {
     $this->id = $id;
     $this->user_id = $uid;
     $this->amount = $a;
-    $this->opponent = $op;
+    $this->opponent_id = $op;
     $this->event = $this->set_event($e);
     $this->outcome = $o;
     $this->status = $s;

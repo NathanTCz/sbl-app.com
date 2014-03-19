@@ -61,7 +61,7 @@ class Database {
     $this->users = $USERS;
   }
 
-  public static function set_users(){
+  public static function set_users () {
     global $DB;
     
      $query = $DB->prepare ("
@@ -95,10 +95,10 @@ class Database {
 
     foreach ($results as $team) {
       $teams[] = new Team (
-        $team->id,
-        $team->name,
-        $team->short_name,
-        $team->conference
+      $team->id,
+      $team->name,
+      $team->short_name,
+      $team->conference
       );
     }
     return $teams;
