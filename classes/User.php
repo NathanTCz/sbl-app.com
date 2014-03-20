@@ -10,6 +10,8 @@ Class User extends Database {
   private $accepted_wagers;
   private $denied_wagers;
 
+  private $notifications;
+
   private $yac;
   
 
@@ -90,6 +92,7 @@ Class User extends Database {
       }
       elseif($this->user_id == $wager->opponent_id && $wager->status === NULL) {
         $this->pending_wagers[] = $wager;
+        $this->notifications['requests'][] = $wager;
       }
     }
   }
@@ -101,6 +104,7 @@ Class User extends Database {
       }
       elseif($this->user_id == $wager->opponent_id && $wager->status === 1) {
         $this->accepted_wagers[] = $wager;
+        $this->notifications['accepted'][] = $wager;
       }
     }
   }
@@ -109,11 +113,16 @@ Class User extends Database {
     foreach ($this->wagers as $wager) {
       if ($this->user_id == $wager->user_id && $wager->status === 0) {
         $this->denied_wagers[] = $wager;
+        $this->notifications['denied'][] = $wager;
       }
       elseif($this->user_id == $wager->opponent_id && $wager->status === 0) {
         $this->denied_wagers[] = $wager;
       }
     }
+  }
+
+  public function get_notifications () {
+    return $this->notifications;
   }
 
   public function get_denied_wagers () {

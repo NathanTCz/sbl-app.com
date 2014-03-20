@@ -14,18 +14,39 @@
 <div class="user_tools">
   <span onclick="toggle_box()" class="icon-flag"> 
     <?php echo 
-      count( $current_user->get_pending_wagers() )
+      count( $current_user->get_notifications() )
       ;
     ?>
   </span>
   <div id="notifications" style="display:none">
     <?php
-    foreach ($current_user->get_pending_wagers() as $note)
-      echo '<span>' .
-      $SYSTEM->get_uname($note->opponent_id) .
-      ' sent you a request' .
-      '</span>'
-      ;
+    $n = $current_user->get_notifications();
+    if ( !empty( $n['requests'] ) ) {
+      foreach ( $n['requests'] as $r )
+        echo '<span>' .
+        $SYSTEM->get_uname($r->user_id) .
+        ' sent you a request' .
+        '</span>'
+        ;
+    }
+
+    if ( !empty( $n['accepted'] ) ) {
+      foreach ( $n['accepted'] as $a )
+        echo '<span>' .
+        $SYSTEM->get_uname($a->user_id) .
+        ' accepted your request' .
+        '</span>'
+        ;
+    }
+
+    if ( !empty( $n['denied'] ) ) {
+      foreach ( $n['denied'] as $d )
+        echo '<span>' .
+        $SYSTEM->get_uname($d->opponent_id) .
+        ' denied your request' .
+        '</span>'
+        ;
+    }
     ?>
   </div>
 </div>
