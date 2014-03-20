@@ -7,7 +7,12 @@
 <div class="regular_box">
   <div class="title">SBL</div>
   <br>
-  <span>You have successfully registered. You can now</span>
+  <span>You have successfully registered. You can now log in once you've completed the Betting Agreement.</span>
+  <span> <?php
+
+  include 'EULA.txt';
+
+  ?> </span>
   <br>
   <br>
   <br>
