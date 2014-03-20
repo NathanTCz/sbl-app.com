@@ -1,11 +1,3 @@
-/*     COLOR SCHEME    */
-/*                     */
-/* black #4D4C48       */
-/* green #739541       */
-/* blue  #659681       */
-/* grey  #ADA99F       */
-/* white #EEE9E3       */
-
 /* Include icon css */
 @import url('icons.css');
 
@@ -182,6 +174,11 @@ div#error span[class*='icon-'] {
   height: 93%;
 }
 
+.spacer {
+  width: 4.5em;
+  height: 100%;
+}
+
 .triangle {
   display: none;
 
@@ -265,7 +262,7 @@ div#error span[class*='icon-'] {
 .user_tools {
   position: fixed;
   top: 1.5em;
-  right: 1em;
+  right: 2em;
 
   z-index: 999;
 
@@ -282,18 +279,18 @@ div#error span[class*='icon-'] {
 .user_tools div#notifications {
   position: fixed;
   top: 4em;
-  right: 2em;
+  right: 1em;
 
-  width: 17em;
+  width: 22em;
 
   text-align: center;
 
   background: #FFF;
   border: 1px solid #333;
 
-  -webkit-border-radius: 5px;
-     -moz-border-radius: 5px;
-          border-radius: 5px;
+  -webkit-border-radius: 2px;
+     -moz-border-radius: 2px;
+          border-radius: 2px;
 }
 
 .user_tools div#notifications span {
@@ -308,6 +305,35 @@ div#error span[class*='icon-'] {
 
 .user_tools div#notifications span:last-child {
   border: none;
+}
+
+.user_tools div#notifications span > span {
+  padding: 8px;
+
+  font-size: 10pt;
+  text-align: left;
+  background: #eee;
+}
+
+.user_tools div#notifications span > span > span {
+  padding: 2px 0 0 0;
+
+  text-align: left;
+  font-size: 8pt;
+}
+
+.user_tools div#notifications div.tri {
+  position: absolute;
+  top: -14px;
+  right: 10px;
+
+  width: 0;
+
+  z-index: 999;
+
+  border-right: 14px solid transparent;
+  border-left: 14px solid transparent;
+  border-bottom: 14px solid #FFF;
 }
 
 .nav {
@@ -492,6 +518,11 @@ div#error span[class*='icon-'] {
   text-align: left;
 }
 
+.bar#list .list_item span:nth-child(2) {
+  margin-left: 2%;
+  text-align: left;
+}
+
 .bar#list .list_item span:last-child {
   float: right;
   width: 38%;
@@ -504,6 +535,11 @@ div#error span[class*='icon-'] {
   width: 18%;
 
   text-align: right;
+}
+
+.bar#list .list_item span#cat_name {
+  width: 1em;
+  font-size: 6pt;
 }
 
 .bar#event {

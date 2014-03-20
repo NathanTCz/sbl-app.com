@@ -118,13 +118,15 @@ class Database {
     foreach ($results as $wager) {
       $wagers[] = new Wager (
         $wager->id,
+        $wager->timestamp,
         $wager->user_id,
         $wager->amount,
         $wager->opponent_id,
         $wager->event_id,
         $wager->wager_outcome,
         $wager->status,
-        $wager->proposal
+        $wager->proposal,
+        $wager->seen
       );
     }
     return $wagers;
@@ -187,6 +189,7 @@ class Database {
     $query = $DB->prepare ("
       SELECT *
       FROM category
+      ORDER BY id ASC
     ");
     $query->execute();
     

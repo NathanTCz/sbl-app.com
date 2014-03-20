@@ -19,35 +19,98 @@
     ?>
   </span>
   <div id="notifications" style="display:none">
+    <div class="tri"></div>
+
     <?php
     $n = $current_user->get_notifications();
+
     if ( !empty( $n['requests'] ) ) {
       foreach ( $n['requests'] as $r )
-        echo '<span>' .
+    ?>
+      <span>
+    <?php echo
         $SYSTEM->get_uname($r->user_id) .
-        ' sent you a request' .
-        '</span>'
+        ' sent you a request'
         ;
+    ?>
+        <span>
+          <?php
+            echo
+            $SYSTEM->get_uname($r->user_id) .
+            ' put ' .
+            $r->amount .
+            ' on '
+            ;
+            if ($r->proposal == $r->event->home_team->id)
+              echo $r->event->home_team->short_name;
+            
+          ?>
+          <span>
+            <?php echo
+              $r->timestamp
+              ;
+            ?>
+          </span>
+        </span>
+      </span>
+    <?php
     }
 
     if ( !empty( $n['accepted'] ) ) {
       foreach ( $n['accepted'] as $a )
-        echo '<span>' .
-        $SYSTEM->get_uname($a->user_id) .
-        ' accepted your request' .
-        '</span>'
+    ?>
+      <span>
+    <?php echo
+        $SYSTEM->get_uname($a->opponent_id) .
+        ' accepted your request'
         ;
+    ?>
+        <span>
+          <?php
+            echo
+            'You put ' .
+            $a->amount .
+            ' on '
+            ;
+            if ($a->proposal == $a->event->home_team->id)
+              echo $a->event->home_team->short_name;
+            else
+              echo $a->event->away_team->short_name;
+            
+          ?>
+        </span>
+      </span>
+    <?php
     }
 
     if ( !empty( $n['denied'] ) ) {
       foreach ( $n['denied'] as $d )
-        echo '<span>' .
+    ?>
+      <span>
+    <?php echo
         $SYSTEM->get_uname($d->opponent_id) .
-        ' denied your request' .
-        '</span>'
+        ' denied your request'
         ;
+    ?>
+        <span>
+          <?php
+            echo
+            'You put ' .
+            $d->amount .
+            ' on '
+            ;
+            if ($d->proposal == $d->event->home_team->id)
+              echo $d->event->home_team->short_name;
+            else
+              echo $d->event->away_team->short_name;
+            
+          ?>
+        </span>
+      </span>
+    <?php
     }
     ?>
+
   </div>
 </div>
 
