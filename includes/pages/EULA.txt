@@ -1,0 +1,483 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="LibreOffice 4.0.5.2 (Linux)">
+	<META NAME="AUTHOR" CONTENT="Christian Pavalasky">
+	<META NAME="CREATED" CONTENT="20090108;21360000">
+	<META NAME="CHANGEDBY" CONTENT="Christian Pavalasky">
+	<META NAME="CHANGED" CONTENT="20090108;21360000">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { size: 8.5in 11in; margin-left: 1in; margin-right: 1in; margin-top: 1in; margin-bottom: 0.5in }
+		P { margin-bottom: 0.08in; direction: ltr; color: #00000a; line-height: 115%; widows: 2; orphans: 2 }
+		P.western { font-family: "Calibri", serif; font-size: 11pt; so-language: en-US }
+		P.cjk { font-family: "DejaVu Sans"; font-size: 11pt; so-language: en-US }
+		P.ctl { font-family: "Calibri"; font-size: 11pt; so-language: ar-SA }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="en-US" TEXT="#00000a" DIR="LTR">
+<P CLASS="western" ALIGN=CENTER STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>SOFTWARE LICENSE
+AGREEMENT</B></FONT></FONT></P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>END USER</B></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>THIS SOFTWARE
+LICENSE AGREEMENT (&quot;Agreement&quot;) is made and entered into
+today (the &quot;Effective Date&quot;) by and between The Florida State University
+ (&quot;University&quot;), a component of The Florida State University
+ (&quot;System&quot;) and , a corporation having offices
+at (&quot;Licensee&quot;).</FONT></FONT></P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>RECITALS</B></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>A. University is the
+owner of, or has acquired rights to, the Software and Documentation
+(as defined below).</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>B. University
+desires to grant to Licensee and Licensee desires to obtain from
+University a(n) (non)exclusive license to use the Software and
+Documentation solely in accordance with the terms and on the
+conditions set forth in this Agreement.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>NOW, THEREFORE, the
+parties hereto agree as follows:</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>1. DEFINITIONS.</B></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>1.1 &quot;Designated
+Equipment&quot; shall mean the hardware products identified on
+Exhibit &quot;A&quot; with which the Software is licensed for use.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>1.2 &quot;Documentation&quot;
+shall mean all manuals, user documentation, and other related
+materials pertaining to the Software which are furnished to Licensee
+by University in connection with the Software.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>1.3 &quot;License
+Fee&quot; shall mean</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>1.4 &quot;Software&quot;
+shall mean the computer programs in machine readable object code form
+listed in Exhibit &quot;A&quot; attached hereto and any subsequent
+error corrections or updates supplied to Licensee by University
+pursuant to this Agreement. Exhibit &quot;A&quot; may be amended from
+time to time by the parties in writing.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>2. GRANT OF
+RIGHTS.</B></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>The License granted
+for Software under this Agreement authorizes Licensee on a
+nonexclusive basis to use the Software on the number of primary
+systems of Designated Equipment identified on Schedule A hereto for
+the license term set forth on Schedule A. The Software shall be used
+only on such primary systems if they are operating properly. If any
+primary system is down, the Software may be used on a backup system
+for that primary system.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<BR><BR>
+</P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>3. DELIVERY.</B></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>3.1 Software.
+University shall deliver to Licensee a master copy of the Software
+licensed hereunder in object code form, suitable for reproduction, in
+electronic files only.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>3.2 Documentation.
+University shall deliver copies of Documentation. [Note: Where
+Documentation can also be delivered electronically, combine 3.1 and
+3.2 into one provision.]</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>4. MODIFICATIONS.</B></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>4.1 Error
+Corrections and Updates. University will provide Licensee with error
+corrections, bug fixes, patches or other updates to the Software
+licensed hereunder in object code form to the extent available in
+accordance with University's release schedule for a period of one (1)
+year from the date of shipment.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>4.2 Other
+Modifications. Licensee may, from time to time, request that
+University incorporate certain features, enhancements or
+modifications into the Software. University may, in its sole
+discretion, undertake to incorporate such changes and distribute the
+Software so modified to all or any of University's licensees.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>4.3 Title to
+Modifications. All such error corrections, bug fixes, patches,
+updates or other modifications shall be the sole property of
+University.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>5. COPIES.</B></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>5.1 Printed Matter.
+Except as specifically set forth herein, no Software or Documentation
+which is provided by University pursuant to this Agreement in human
+readable form, such as written or printed documents, shall be copied
+in whole or in part by Licensee without University's prior written
+agreement. Additional copies of printed materials may be obtained
+from University at the charges then in effect.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>5.2 Machine Readable
+Matter. Except as specifically set forth herein, any Software
+provided in machine readable form may not be copied by Licensee in
+whole or in part, except for Licensee's backup or archive purposes.
+Licensee agrees to maintain appropriate records of the number and
+location of all copies of the Software and make such records
+available upon University's request. Licensee further agrees to
+reproduce all copyright and other proprietary notices on all copies
+of the Software in the same form and manner that such copyright and
+other proprietary notices are originally included on the Software.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>6. LICENSE FEES
+AND PAYMENT.</B></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>6.1 License Fee. In
+consideration of the license rights granted in Article 2 above,
+Licensee shall pay the License Fees or other consideration for the
+Software and Documentation as set forth on Exhibit &quot;A&quot;
+attached hereto. All amounts payable hereunder by Licensee shall be
+payable in United States funds without deductions for taxes,
+assessments, fees, or charges of any kind. Checks shall be made
+payable to University and shall be forwarded to the Office at
+University as follows:</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>6.2 Taxes and Other
+Charges. Licensee shall be responsible for paying all (i) sales, use,
+excise, value-added, or other tax or governmental charges imposed on
+the licensing or use of the Software or Documentation hereunder, (ii)
+freight, insurance and installation charges, and (iii) import or
+export duties or like charges.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>7. PROTECTION OF
+SOFTWARE.</B></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>7.1 Proprietary
+Notices. Licensee agrees to respect and not to remove, obliterate, or
+cancel from view any copyright, trademark, confidentiality or other
+proprietary notice, mark, or legend appearing on any of the Software
+or output generated by the Software, and to reproduce and include
+same on each copy of the Software.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>7.2 No Reverse
+Engineering. Licensee agrees not to modify, reverse engineer,
+disassemble, or decompile the Software, or any portion thereof.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>7.3 Ownership.
+Licensee further acknowledges that all copies of the Software in any
+form provided by University or made by Licensee are the sole property
+of University and/or its suppliers. Licensee shall not have any
+right, title, or interest to any such Software or copies thereof
+except as provided in this Agreement, and further shall secure and
+protect all Software and Documentation consistent with maintenance of
+University's proprietary rights therein.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>8.
+CONFIDENTIALITY.</B></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>8.1 Acknowledgement.
+Licensee hereby acknowledges and agrees that the Software and
+Documentation constitute and contain valuable proprietary products
+and trade secrets of University and/or its suppliers, embodying
+substantial creative efforts and confidential information, ideas, and
+expressions. Accordingly, Licensee agrees to treat (and take
+precautions to ensure that its employees treat) the Software and
+Documentation as confidential in accordance with the confidentiality
+requirements and conditions set forth below.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>8.2 Maintenance of
+Confidential Information. Each party agrees to keep confidential all
+confidential information disclosed to it by the other party in
+accordance herewith, and to protect the confidentiality thereof in
+the same manner it protects the confidentiality of similar
+information and data of its own (at all times exercising at least a
+reasonable degree of care in the protection of confidential
+information); provided, however, that neither party shall have any
+such obligation with respect to use of disclosure to others not
+parties to this Agreement of such confidential information as can be
+established to: (a) have been known publicly; (b) have been known
+generally in the industry before communication by the disclosing
+party to the recipient; (c) have become know publicly, without fault
+on the part of the recipient, subsequent to disclosure by the
+disclosing party; (d) have been known otherwise by the recipient
+before communication by the disclosing party; or (e) have been
+received by the recipient without any obligation of confidentiality
+from a source (other than the disclosing party) lawfully having
+possession of such information.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>8.3 Injunctive
+Relief. Licensee acknowledges that the unauthorized use, transfer or
+disclosure of the Software and Documentation or copies thereof will
+(i) substantially diminish the value to University of the trade
+secrets and other proprietary interests that are the subject of this
+Agreement; (ii) render University's remedy at law for such
+unauthorized use, disclosure or transfer inadequate; and (iii) cause
+irreparable injury in a short period of time. If Licensee breaches
+any of its obligations with respect to the use or confidentiality of
+the Software or Documentation, University shall be entitled to
+equitable relief to protect its interests therein, including, but not
+limited to, preliminary and permanent injunctive relief.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>8.4 Survival.
+Licensee's obligations under this Article 8 will survive the
+termination of this Agreement or of any license granted under this
+Agreement for whatever reason.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>9. WARRANTIES;
+SUPERIOR RIGHTS.</B></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>9.1 Ownership.
+Except for the rights, if any of the Government of the United States,
+as set forth hereinbelow, University represents its belief that it is
+the owner of the entire right, title, and interest in and to
+Software, and that it has the sole right to grant licenses
+thereunder, and that it has not knowingly granted licenses thereunder
+to any other entity that would restrict rights granted hereunder
+except as stated herein.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>9.2 Government
+Rights. Licensee understands that the Software may have been
+developed under a funding agreement with the Government of the United
+States of America and, if so, that the Government may have certain
+rights relative thereto. This Agreement is explicitly made subject to
+the Government's rights under any such agreement and any applicable
+law or regulation, if any. To the extent that there is a conflict
+between any such agreement, applicable law or regulation and this
+Agreement, the terms of such Government agreement, applicable law or
+regulation shall prevail. Distribution of the Software to any
+government agency by Licensee shall not be subject to the payments
+set forth above.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>9.3 Limited
+Warranty. University represents and warrants to Licensee that the
+Software, when properly installed by Licensee and used with the
+Designated Equipment, will perform substantially as described in
+University's then current Documentation for such Software for a
+period of ninety (90) days from the date of shipment.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>9.4 Limitations.
+Notwithstanding the warranty provisions set forth in Section 9.3
+above, all of University's obligations with respect to such
+warranties shall be contingent on Licensee's use of the Software in
+accordance with this Agreement and in accordance with University's
+instructions as provided by University in the Documentation, as such
+instructions may be amended, supplemented, or modified by University
+from time to time. University shall have no warranty obligations with
+respect to any failures of the Software which are the result of
+accident, abuse, misapplication, extreme power surge or extreme
+electromagnetic field.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>9.5 Licensee's Sole
+Remedy. University's entire liability and Licensee's exclusive remedy
+shall be, at University's option, either (a) return of the price paid
+or (b) repair or replacement of the Software upon its return to
+University; provided University receives written notice from Licensee
+during the warranty period of a breach of warranty. Any replacement
+Software will be warranted for the remainder of the original warranty
+period or thirty (30) days, whichever is longer.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>9.6 Disclaimer of
+Warranties. UNIVERSITY DOES NOT REPRESENT OR WARRANT THAT ALL ERRORS
+IN THE SOFTWARE AND DOCUMENTATION WILL BE CORRECTED. THE WARRANTIES
+STATED IN SECTION 9.3 ABOVE ARE THE SOLE AND THE EXCLUSIVE WARRANTIES
+OFFERED BY UNIVERSITY. THERE ARE NO OTHER WARRANTIES RESPECTING THE
+SOFTWARE AND DOCUMENTATION OR SERVICES PROVIDED HEREUNDER, EITHER
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTY OF
+DESIGN, MERCHANTABILITY, OR FITNESS FOR A PARTICULAR PURPOSE, EVEN IF
+UNIVERSITY HAS BEEN INFORMED OF SUCH PURPOSE. NO AGENT OF UNIVERSITY
+IS AUTHORIZED TO ALTER OR EXCEED THE WARRANTY OBLIGATIONS OF
+UNIVERSITY AS SET FORTH HEREIN.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>9.7 Limitation of
+Liability. LICENSEE ACKNOWLEDGES AND AGREES THAT THE CONSIDERATION
+WHICH UNIVERSITY IS CHARGING HEREUNDER DOES NOT INCLUDE ANY
+CONSIDERATION FOR ASSUMPTION BY UNIVERSITY OF THE RISK OF LICENSEE'S
+CONSEQUENTIAL OR INCIDENTAL DAMAGES WHICH MAY ARISE IN CONNECTION
+WITH LICENSEE'S USE OF THE SOFTWARE AND DOCUMENTATION. ACCORDINGLY,
+LICENSEE AGREES THAT UNIVERSITY SHALL NOT BE RESPONSIBLE TO LICENSEE
+FOR ANY LOSS-OF-PROFIT, INDIRECT, INCIDENTAL, SPECIAL, OR
+CONSEQUENTIAL DAMAGES ARISING OUT OF THE LICENSING OR USE OF THE
+SOFTWARE OR DOCUMENTATION. Any provision herein to the contrary
+notwithstanding, the maximum liability of University to any person,
+firm or corporation whatsoever arising out of or in the connection
+with any license, use or other employment of any Software delivered
+to Licensee hereunder, whether such liability arises from any claim
+based on breach or repudiation of contract, warranty, tort or
+otherwise, shall in no case exceed the actual price paid to
+University by Licensee for the Software whose license, use, or other
+employment gives rise to the liability. The essential purpose of this
+provision is to limit the potential liability of University arising
+out of this Agreement. The parties acknowledge that the limitations
+set forth in this Article 9 are integral to the amount of
+consideration levied in connection with the license of the Software
+and Documentation and any services rendered hereunder and that, were
+University to assume any further liability other than as set forth
+herein, such consideration would of necessity be set substantially
+higher.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>10.
+INDEMNIFICATION </B></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>10.1 University
+shall indemnify, hold harmless and defend Licensee against any action
+brought against Licensee to the extent that such action is based on a
+claim that the unmodified Software, when used in accordance with this
+Agreement, infringes a United States copyright and University shall
+pay all costs, settlements and damages finally awarded; provided,
+that Licensee promptly notifies Institution in writing of any claim,
+gives University sole control of the defense and settlement thereof
+and provides all reasonable assistance in connection therewith. If
+any Software is finally adjudged to so infringe, or in University's
+opinion is likely to become the subject of such a claim, University
+shall, at its option, either: (i) procure for Licensee the right to
+continue using the Software (ii) modify or replace the Software to
+make it noninfringing, or (iii) refund the fee paid, less reasonable
+depreciation, upon return of the Software. University shall have no
+liability regarding any claim arising out of: (w) use of other than a
+current, unaltered release of the Software unless the infringing
+portion is also in the then current, unaltered release, (x) use of
+the Software in combination with non-University software, data or
+equipment if the infringement was caused by such use or combination,
+(y) any modification or derivation of the Software not specifically
+authorized in writing by University or (z) use of third party
+software. THE FOREGOING STATES THE ENTIRE LIABILITY OF UNIVERSITY AND
+THE EXCLUSIVE REMEDY FOR LICENSEE RELATING TO INFRINGEMENT OR CLAIMS
+OF INFRINGEMENT OF ANY COPYRIGHT OR OTHER PROPRIETARY RIGHT BY THE
+SOFTWARE.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>10.2 Except for the
+foregoing infringement claims, Licensee shall indemnify and hold
+harmless System, University, their Regents, officers, agents and
+employees from and against any claims, demands, or causes of action
+whatsoever, including without limitation those arising on account of
+Licensee's modification or enhancement of the Software or otherwise
+caused by, or arising out of, or resulting from, the exercise or
+practice of the license granted hereunder by Licensee, its
+sublicensees, if any, its subsidiaries or their officers, employees,
+agents or representatives.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>11. INSURANCE.</B></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>[NOTE: This section
+must be included if the Software has medical applications.]</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>11.1 Licensee shall
+carry and maintain paid up policies for adequate products liability
+insurance, with University identified as an additional insured, and
+Licensee shall provide University with proof of all such insurance,
+copies of all such policies, and any renewals thereof at University's
+request.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>11.2 University, as
+a component of System, is an agency of the State of Florida and is
+self-insured pursuant to The Florida State University System Professional
+Medical Malpractice Self-Insurance Plan, under the authority of
+Section 59.01, Florida Education Code. University has and will maintain
+in force during the term of this Agreement adequate insurance to
+cover its obligations hereunder.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>12. DEFAULT AND
+TERMINATION.</B></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>12.1 Events of
+Default. This Agreement may be terminated by the nondefaulting party
+if any of the following events of default occur: (1) if a party
+materially fails to perform or comply with this Agreement or any
+provision hereof; (2) if either party fails to strictly comply with
+the provisions of Section 9 (Confidentiality) or makes an assignment
+in violation of Section 13 (Nonassignability); (3) if a party becomes
+insolvent or admits in writing its inability to pay its debts as they
+mature, or makes an assignment for the benefit of creditors; (4) if a
+petition under any foreign, state, or United States bankruptcy act,
+receivership statute, or the like, as they now exist, or as they may
+be amended, is filed by a party; or (5) if such a petition is filed
+by any third party, or an application for a receiver is made by
+anyone and such petition or application is not resolved favorably
+within ninety (90) days.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>12.2 Effective Date
+of Termination. Termination due to a material breach of Articles 2
+(Grant of Rights), 5 (Copies), 7 (Protection of Software), or 8
+(Confidentiality) shall be effective on notice. In all other cases,
+termination shall be effective thirty (30) days after notice of
+termination to the defaulting party if the defaults have not been
+cured within such thirty (30) day period.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>12.3 Obligations on
+Termination. Within ten (10) days after termination of this
+Agreement, Licensee shall cease and desist all use of the Software
+and Documentation and shall return to University all full or partial
+copies of the Software and Documentation in Licensee's possession or
+under its control.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>13. NOTICES.</B></FONT></FONT><FONT FACE="Times New Roman, serif"><FONT SIZE=3>
+All notices, authorizations, and requests in connection with this
+Agreement shall be deemed given (i) five days after being deposited
+in the U.S. mail, postage prepaid, certified or registered, return
+receipt requested; or (ii) one day after being sent by overnight
+courier, charges prepaid, with a confirming fax; and addressed as
+first set forth above or to such other address as the party to
+receive the notice or request so designates by written notice to the
+other.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>14.
+NONASSIGNABILITY.</B></FONT></FONT><FONT FACE="Times New Roman, serif"><FONT SIZE=3>
+Licensee shall not assign this Agreement or its rights hereunder
+without the prior written consent of University.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>15. GOVERNING
+LAW; JURISDICTION AND VENUE. </B></FONT></FONT><FONT FACE="Times New Roman, serif"><FONT SIZE=3>The
+validity, interpretation, construction and performance of this
+Agreement shall be governed by the laws of the State of Florida. The
+Florida state courts of County, Florida (or, if there is exclusive
+federal jurisdiction, the United States District Court for the
+District of Florida) shall have exclusive jurisdiction and venue over
+any dispute arising out of this Agreement, and Licensee hereby
+consents to the jurisdiction of such courts.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>16. GOVERNMENT
+CONTRACTS</B></FONT></FONT><FONT FACE="Times New Roman, serif"><FONT SIZE=3>.
+If the Software or Documentation to be furnished hereunder are to be
+used in the performance of a government contract or subcontract, the
+software shall be provided on a &quot;restricted rights&quot; basis
+only and Licensee shall place a legend, in addition to applicable
+copyright notices, in the form provided under the governmental
+regulations. University shall not be subject to any flowdown
+provisions required by the governmental customer unless agreed to by
+University in writing.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>17. SEVERABILITY</B></FONT></FONT><FONT FACE="Times New Roman, serif"><FONT SIZE=3>.
+If any provision of this Agreement shall be held by a court of
+competent jurisdiction to be illegal, invalid or unenforceable, the
+remaining provisions shall remain in full force and effect.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>18.
+MISCELLANEOUS</B></FONT></FONT><FONT FACE="Times New Roman, serif"><FONT SIZE=3>.
+This Agreement and its exhibits contain the entire understanding and
+agreement between the parties respecting the subject matter hereof.
+This Agreement may not be supplemented, modified, amended, released
+or discharged except by an instrument in writing signed by each
+party's duly authorized representative. All captions and headings in
+this Agreement are for purposes of convenience only and shall not
+affect the construction or interpretation of any of its provisions.
+Any waiver by either party of any default or breach hereunder shall
+not constitute a waiver of any provision of this Agreement or of any
+subsequent default or breach of the same or a different kind.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>IN WITNESS WHEREOF,
+the parties have caused their duly authorized representatives to
+execute this Agreement as of the date first set forth above.</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-top: 0.10in; margin-bottom: 0.10in; line-height: 0.15in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>The Florida State University </B></FONT></FONT>
+</P>
+</BODY>
+</HTML>

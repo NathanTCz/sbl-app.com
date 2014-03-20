@@ -241,8 +241,10 @@ section {
 
   text-align: center;
 
-  width: 20em;
-  height: 15em;
+  width: 40em;
+  height: 30em;
+
+  overflow: scroll;
   
   z-index: 999;
 
