@@ -524,6 +524,7 @@ div#error span[class*='icon-'] {
 }
 
 .bar#list .list_item span:nth-child(2) {
+  width: 30%;
   margin-left: 2%;
   text-align: left;
 }
@@ -537,7 +538,7 @@ div#error span[class*='icon-'] {
 
 .bar#list .list_item span {
   display: inline-block;
-  width: 18%;
+  width: 12%;
 
   text-align: right;
 }

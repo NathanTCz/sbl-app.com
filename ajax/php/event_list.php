@@ -7,6 +7,18 @@ chdir($root_dir);
 
 require_once 'core/init.php';
 
+/* sort function helper for sorting events by time
+ * under date
+ */
+function compare_event_time($a, $b) {
+  if ($a->time == $b->time)
+    return 0;
+
+  return ($a->time < $b->time) ? -1 : 1;
+}
+
+usort($EVENTS, 'compare_event_time');
+
 $cat_id = $_GET['cat'];
 $dates = array();
 
@@ -21,6 +33,8 @@ foreach ($EVENTS as $event) {
      )
     $dates[] = $event->date;
 }
+
+sort($dates);
 
 foreach ($dates as $date) {
 ?>
@@ -58,9 +72,9 @@ foreach ($dates as $date) {
         </span>
         <span>
           <?php echo
-            $event->away_team->short_name
+            $event->away_team->name
             . ' vs ' .
-            $event->home_team->short_name
+            $event->home_team->name
             ;
           ?>
         </span>
