@@ -20,13 +20,16 @@ if ($session->logged_in()) {
 $prop = $_POST['prop'];
 $amnt = $_POST['amnt'];
 $opp = $_POST['opp'];
-$e_id = $_POST['e_id'];
+//echo $_POST['event'];
+$event = json_decode( $_POST['event'] );
+print_r($event);
 
 // get the opponent user_id
 $opp = $SYSTEM->get_userid($opp);
 
-if ( $current_user->make_wager($opp, $amnt, $prop, $e_id) )
-  echo 'OK';
+if ( $current_user->make_wager($opp, $amnt, $prop, $event->id) )
+  if ( $SYSTEM->check_time($event->timestamp) )
+    echo 'OK';
 else
   echo 'ERROR';
 ?>

@@ -25,6 +25,10 @@ foreach ($EVENTS as $event) {
 
   // Away team
   $a = json_encode( (array)$event->away_team );
+
+  // Event
+  $e = json_encode( (array)$event );
+
   ?>
 
   <div class="event_toolbar">
@@ -40,7 +44,7 @@ foreach ($EVENTS as $event) {
           onclick="show_bet_box(
                     <?php echo htmlspecialchars($h);?>,
                     <?php echo htmlspecialchars($a);?>,
-                    <?php echo $event->id;?>
+                    <?php echo htmlspecialchars($e);?>
                   )"
           title="bet on this event"
     >

@@ -18,7 +18,7 @@
       ;
     ?>
   </span>
-  <div id="notifications" style="display:none">
+  <div id="notifications" style="display:none;">
     <div class="tri"></div>
 
     <?php
@@ -29,7 +29,7 @@
     ?>
       <span>
     <?php echo
-        $SYSTEM->get_uname($r->user_id) .
+        '<b>' . $SYSTEM->get_uname($r->user_id) . '</b>' .
         ' sent you a request'
         ;
     ?>
@@ -61,7 +61,7 @@
     ?>
       <span>
     <?php echo
-        $SYSTEM->get_uname($a->opponent_id) .
+        '<b>' . $SYSTEM->get_uname($a->opponent_id) . '</b>' .
         ' accepted your request'
         ;
     ?>
@@ -78,6 +78,12 @@
               echo $a->event->away_team->short_name;
             
           ?>
+          <span>
+            <?php echo
+              $a->timestamp
+              ;
+            ?>
+          </span>
         </span>
       </span>
     <?php
@@ -88,7 +94,7 @@
     ?>
       <span>
     <?php echo
-        $SYSTEM->get_uname($d->opponent_id) .
+        '<b>' . $SYSTEM->get_uname($d->opponent_id) . '</b>' .
         ' denied your request'
         ;
     ?>
@@ -105,6 +111,12 @@
               echo $d->event->away_team->short_name;
             
           ?>
+          <span>
+            <?php echo
+              $d->timestamp
+              ;
+            ?>
+          </span>
         </span>
       </span>
     <?php
@@ -116,11 +128,18 @@
 
 <script>
 function toggle_box () {
-  var e = document.getElementById('notifications').style.display;
+  var e = document.getElementById('notifications').style.opacity;
 
-    if (e == 'none')
-      document.getElementById('notifications').style.display = 'block';
-    if (e == 'block')
-      document.getElementById('notifications').style.display = 'none';
+    if (e == 0) {
+      document.getElementById('notifications').style.display = 'block'
+      document.getElementById('notifications').style.opacity = '1';
+    }
+    if (e == 1) {
+      document.getElementById('notifications').style.opacity = '0';
+
+      setTimeout(function() {
+          document.getElementById('notifications').style.display = 'none';
+        }, 500);
+    }
 }
 </script>

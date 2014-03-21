@@ -14,9 +14,10 @@ function show_bet_box (h, a, e_id) {
   document.getElementsByClassName('wrapper')[0].className = "wrapper blurred";
 }
 
-function load_bet_box (h, a, e_id) {
+function load_bet_box (h, a, e) {
   h = JSON.stringify(h);
   a = JSON.stringify(a);
+  e = JSON.stringify(e);
 
   xmlHttp=new XMLHttpRequest();
 
@@ -28,7 +29,7 @@ function load_bet_box (h, a, e_id) {
     xmlHttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     xmlHttp.send("home=" + encodeURIComponent(h) +
                  "&away=" + encodeURIComponent(a) +
-                 "&e_id=" + encodeURIComponent(e_id)
+                 "&event=" + encodeURIComponent(e)
                 );
     }
 }
@@ -61,19 +62,23 @@ function set_proposal (e, id) {
   document.getElementById('proposal').value = id;
 }
 
-function submit_request () {
+function submit_request (e) {
   var prop = document.getElementById('proposal').value;
   var amnt = document.getElementById('amount').value;
   var opp = document.getElementById('opponent').value;
-  var e_id = document.getElementById('event_id').value;
+  //var e = document.getElementById('event').value;
 
-  send_form_data (prop, amnt, opp, e_id);
+  send_form_data (prop, amnt, opp, e);
 }
 
-function send_form_data (p, a, o, e_id) {
-  document.getElementById('bet_box').style.display = 'none';
+function send_form_data (p, a, o, e) {
+  var id = e.id;
+  var time = e.timestamp;
+  alert(e.timestamp);
+
+/*  document.getElementById('bet_box').style.display = 'none';
   document.getElementById('spinner').style.color = '#FFF';
-  document.getElementById('loader').style.display = 'block';
+  document.getElementById('loader').style.display = 'block';*/
 
   xmlHttp=new XMLHttpRequest();
 
@@ -86,14 +91,15 @@ function send_form_data (p, a, o, e_id) {
     xmlHttp.send("prop=" + encodeURIComponent(p) + 
                  "&amnt=" + encodeURIComponent(a) +
                  "&opp=" + encodeURIComponent(o) +
-                 "&e_id=" + encodeURIComponent(e_id) 
+                 "&e_id=" + encodeURIComponent(id) +
+                 "&time=" + encodeURIComponent(time) 
                 );
     }
 }
 
 function success () {
   if (xmlHttp.readyState == 4 && xmlHttp.status==200) {
-    document.getElementById('bet_box').style.display = 'none';
+/*    document.getElementById('bet_box').style.display = 'none';
     document.getElementById('loader').style.display = 'none';
     document.getElementById('spinner').removeAttribute('style');
 
@@ -103,6 +109,7 @@ function success () {
     else if ( xmlHttp.responseText == 'ERROR')
       document.getElementById('error').style.display = 'block';
 
-    setTimeout(hide, 1200);
+    setTimeout(hide, 1200);*/
+    document.getElementById('bet_box').innerHTML=xmlHttp.responseText;
   }
 }

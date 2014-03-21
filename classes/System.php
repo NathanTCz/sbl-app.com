@@ -147,7 +147,7 @@ class System extends Database {
   }
 }
 
-public function check_time($current_time){
+public function check_time($event_time){
   //On front end, check time, return true/false
   //If time off throw error
 
@@ -157,9 +157,11 @@ public function check_time($current_time){
   //(meaning time to bet has passed) greater than the current time then the 
   //wager cannot be placed
   
-   if(strtotime($current_time) > time()){
+  if( strtotime('now') < strtotime($event_time) ){
+    return true;
+  }
+  else
     return false;
-   }
 }
 
 public function check_and_update_user_balances(){

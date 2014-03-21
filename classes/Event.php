@@ -8,6 +8,7 @@ class Event extends Database {
   public $category;
   public $date;
   public $time;
+  public $timestamp;
   public $outcome;
   public $home_team;
   public $home_score;
@@ -25,6 +26,7 @@ class Event extends Database {
 
     $this->id = $id;
     $this->category = $this->set_cat($cat);
+    $this->timestamp = $t;
     $this->set_time($t);
     $this->outcome = $o;
     $this->home_team = $this->set_team($ht);

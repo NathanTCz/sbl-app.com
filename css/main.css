@@ -284,6 +284,7 @@ div#error span[class*='icon-'] {
   width: 22em;
 
   text-align: center;
+  opacity: 0;
 
   background: #FFF;
   border: 1px solid #333;
@@ -291,6 +292,10 @@ div#error span[class*='icon-'] {
   -webkit-border-radius: 2px;
      -moz-border-radius: 2px;
           border-radius: 2px;
+
+  -webkit-transition: all 0.2s;
+     -moz-transition: all 0.2s;
+          transition: all 0.2s; 
 }
 
 .user_tools div#notifications span {
@@ -318,7 +323,7 @@ div#error span[class*='icon-'] {
 .user_tools div#notifications span > span > span {
   padding: 2px 0 0 0;
 
-  text-align: left;
+  text-align: right;
   font-size: 8pt;
 }
 
