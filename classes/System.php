@@ -156,7 +156,7 @@ public function check_time($event_time){
   //If the time being passed in, which should be the current time, is greater 
   //(meaning time to bet has passed) greater than the current time then the 
   //wager cannot be placed
-  
+
   if( strtotime('now') < strtotime($event_time) ){
     return true;
   }

@@ -3,7 +3,6 @@ $home_team = json_decode( $_POST['home'] );
 $away_team = json_decode( $_POST['away'] );
 //echo $_POST['event'];
 $event = json_decode( $_POST['event'] );
-print_r($event);
 $event = json_encode( (array)$event );
 $event = htmlspecialchars($event);
 ?>

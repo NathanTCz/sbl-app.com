@@ -126,20 +126,4 @@
   </div>
 </div>
 
-<script>
-function toggle_box () {
-  var e = document.getElementById('notifications').style.opacity;
-
-    if (e == 0) {
-      document.getElementById('notifications').style.display = 'block'
-      document.getElementById('notifications').style.opacity = '1';
-    }
-    if (e == 1) {
-      document.getElementById('notifications').style.opacity = '0';
-
-      setTimeout(function() {
-          document.getElementById('notifications').style.display = 'none';
-        }, 500);
-    }
-}
-</script>
+<script src="ajax/js/notifications.js"></script>

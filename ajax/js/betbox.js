@@ -74,11 +74,10 @@ function submit_request (e) {
 function send_form_data (p, a, o, e) {
   var id = e.id;
   var time = e.timestamp;
-  alert(e.timestamp);
 
-/*  document.getElementById('bet_box').style.display = 'none';
+  document.getElementById('bet_box').style.display = 'none';
   document.getElementById('spinner').style.color = '#FFF';
-  document.getElementById('loader').style.display = 'block';*/
+  document.getElementById('loader').style.display = 'block';
 
   xmlHttp=new XMLHttpRequest();
 
@@ -99,7 +98,7 @@ function send_form_data (p, a, o, e) {
 
 function success () {
   if (xmlHttp.readyState == 4 && xmlHttp.status==200) {
-/*    document.getElementById('bet_box').style.display = 'none';
+    document.getElementById('bet_box').style.display = 'none';
     document.getElementById('loader').style.display = 'none';
     document.getElementById('spinner').removeAttribute('style');
 
@@ -109,7 +108,6 @@ function success () {
     else if ( xmlHttp.responseText == 'ERROR')
       document.getElementById('error').style.display = 'block';
 
-    setTimeout(hide, 1200);*/
-    document.getElementById('bet_box').innerHTML=xmlHttp.responseText;
+    setTimeout(hide, 1200);
   }
 }
