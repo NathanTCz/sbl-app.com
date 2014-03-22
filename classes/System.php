@@ -6,6 +6,36 @@ class System extends Database {
     parent::__construct();
   }
 
+  public function time2str($ts) {
+    if(!ctype_digit($ts))
+        $ts = strtotime($ts);
+
+    // chnage to EST from UTC
+    $ts -= (4 * 3600);
+
+    $diff = time() - $ts;
+    if($diff == 0)
+        return 'now';
+    elseif($diff > 0)
+    {
+        $day_diff = floor($diff / 86400);
+        if($day_diff == 0)
+        {
+            if($diff < 30) return $diff .  ' seconds ago';
+            if($diff >= 30 && $diff < 60) return 'about 30 seconds ago';
+            if($diff < 120) return 'about a minute ago';
+            if($diff < 3600) return floor($diff / 60) . ' minutes ago';
+            if($diff < 7200) return 'about an hour ago';
+            if($diff < 86400) return 'about ' . floor($diff / 3600) . ' hours ago';
+        }
+        if($day_diff == 1) return 'Yesterday';
+        if($day_diff < 7) return $day_diff . ' days ago';
+        if($day_diff < 31) return ceil($day_diff / 7) . ' weeks ago';
+        if($day_diff < 60) return 'last month';
+        return date('F Y', $ts);
+    }
+  }
+
   public function get_userid($email){
    global $DB;
 

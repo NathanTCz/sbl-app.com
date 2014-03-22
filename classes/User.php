@@ -1,5 +1,17 @@
 <?php
 require_once 'classes/Database.php';
+require_once 'classes/Notification.php';
+
+// Sort helper function
+function compare_notification ($a, $b) {
+  $a_time = strtotime($a->timestamp);
+  $b_time = strtotime($b->timestamp);
+
+  if ($a_time == $b_time)
+    return 0;
+
+  return ($a_time > $b_time) ? -1 : 1;
+}
 
 Class User extends Database {
   private $user_id;
@@ -10,7 +22,8 @@ Class User extends Database {
   private $accepted_wagers;
   private $denied_wagers;
 
-  private $notifications;
+  private $pre_notifs;
+  public $notifications;
 
   private $yac;
   
@@ -23,9 +36,16 @@ Class User extends Database {
     $this->u_name = $un;
     $this->email = $email;
 
+    $this->pre_notifs['requests'] = array();
+    $this->pre_notifs['accepted'] = array();
+    $this->pre_notifs['denied'] = array();
+
     $this->set_pending_wagers();
     $this->set_accepted_wagers();
     $this->set_denied_wagers();
+
+    $this->notifications = array();
+    $this->set_notifications();
 
     $this->set_yac();
   }
@@ -93,7 +113,7 @@ Class User extends Database {
       elseif($this->user_id == $wager->opponent_id && $wager->status === NULL) {
         $this->pending_wagers[] = $wager;
         if ( !$wager->seen )
-          $this->notifications['requests'][] = $wager;
+          $this->pre_notifs['requests'][] = $wager;
       }
     }
   }
@@ -103,7 +123,7 @@ Class User extends Database {
       if ($this->user_id == $wager->user_id && $wager->status === 1) {
         $this->accepted_wagers[] = $wager;
         if ( !$wager->seen )
-          $this->notifications['accepted'][] = $wager;
+          $this->pre_notifs['accepted'][] = $wager;
       }
       elseif($this->user_id == $wager->opponent_id && $wager->status === 1) {
         $this->accepted_wagers[] = $wager;
@@ -116,7 +136,7 @@ Class User extends Database {
       if ($this->user_id == $wager->user_id && $wager->status === 0) {
         $this->denied_wagers[] = $wager;
         if ( !$wager->seen )
-          $this->notifications['denied'][] = $wager;
+          $this->pre_notifs['denied'][] = $wager;
       }
       elseif($this->user_id == $wager->opponent_id && $wager->status === 0) {
         $this->denied_wagers[] = $wager;
@@ -124,8 +144,79 @@ Class User extends Database {
     }
   }
 
-  public function get_notifications () {
-    return $this->notifications;
+  public function set_notifications () {
+    global $SYSTEM;
+
+    foreach ( $this->pre_notifs['requests'] as $r ) {
+      $user = $SYSTEM->get_uname($r->user_id);
+      $user = sprintf('<b>%s</b>', $user);
+      $amt = $r->amount;
+      $time = $SYSTEM->time2str($r->timestamp);
+
+      if ($r->proposal == $r->event->home_team->id)
+        $team = $r->event->home_team->short_name;
+      else
+        $team = $r->event->away_team->short_name;
+
+      $title = sprintf('%s sent you a request', $user);
+      $desc = sprintf('%s put %d on %s', $user, $amt, $team);
+
+      $n = new Notification (
+        $title,
+        $desc,
+        $time
+      );
+
+      $this->notifications[] = $n;
+    }
+
+    foreach ( $this->pre_notifs['accepted'] as $a ) {
+      $user = $SYSTEM->get_uname($a->opponent_id);
+      $user = sprintf('<b>%s</b>', $user);
+      $amt = $a->amount;
+      $time = $SYSTEM->time2str($a->timestamp);
+
+      if ($a->proposal == $a->event->home_team->id)
+        $team = $a->event->home_team->short_name;
+      else
+        $team = $a->event->away_team->short_name;
+
+      $title = sprintf('%s accepted your request', $user);
+      $desc = sprintf('You put %d on %s', $amt, $team);
+
+      $n = new Notification (
+        $title,
+        $desc,
+        $time
+      );
+
+      $this->notifications[] = $n;
+    }
+
+    foreach ( $this->pre_notifs['denied'] as $d ) {
+      $user = $SYSTEM->get_uname($d->opponent_id);
+      $user = sprintf('<b>%s</b>', $user);
+      $amt = $d->amount;
+      $time = $SYSTEM->time2str($d->timestamp);
+
+      if ($d->proposal == $d->event->home_team->id)
+        $team = $d->event->home_team->short_name;
+      else
+        $team = $d->event->away_team->short_name;
+
+      $title = sprintf('%s denied your request', $user);
+      $desc = sprintf('You put %d on %s', $amt, $team);
+
+      $n = new Notification (
+        $title,
+        $desc,
+        $time
+      );
+
+      $this->notifications[] = $n;
+    }
+
+    usort($this->notifications, 'compare_notification');
   }
 
   public function get_denied_wagers () {

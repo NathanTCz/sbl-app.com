@@ -79,7 +79,7 @@ class Database {
         $user->user_id
       );
     }
-    return $users;
+    return ( isset($users) ) ? $users : $users = array();
   }
 
   public static function set_teams () {
@@ -101,7 +101,7 @@ class Database {
       $team->conference
       );
     }
-    return $teams;
+    return ( isset($teams) ) ? $teams : $teams = array();
   }
 
   public static function set_wagers () {
@@ -129,7 +129,7 @@ class Database {
         $wager->seen
       );
     }
-    return $wagers;
+    return ( isset($wagers) ) ? $wagers : $wagers = array();
   }
 
   public static function set_events () {
@@ -158,7 +158,7 @@ class Database {
         $event->description
       );
     }
-    return $events;
+    return ( isset($events) ) ? $events : $events = array();
   }
 
   public static function set_yacs () {
@@ -180,7 +180,7 @@ class Database {
         $yac->balance
       );
     }
-    return $yacs;
+    return ( isset($yacs) ) ? $yacs : $yacs = array();
   }
 
   public static function set_categories () {
@@ -195,7 +195,7 @@ class Database {
     
     $cats = Database::resolve_data($query);
 
-    return $cats;
+    return ( isset($cats) ) ? $cats : $cats = array();
   }
 }
 ?>

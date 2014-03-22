@@ -1,4 +1,4 @@
-//setTimeout(load_notifications, 100);
+setTimeout(load_notifications, 1000);
 
 function toggle_box () {
   var e = document.getElementById('notifications').style.opacity;
@@ -19,13 +19,19 @@ function toggle_box () {
 function load_notifications () {
   setTimeout(load_notifications, 5000);
 
+  /* save the display style of the notfication box so that it
+   * doesn't disappear every time. Send it with the GET data.
+   */
+  var display = document.getElementById('notifications').style.display;
+  var opacity = document.getElementById('notifications').style.opacity;
+
   xmlHttp=new XMLHttpRequest();
 
   if (xmlHttp.readyState == 0 || xmlHttp.readyState == 4) {
 
     xmlHttp.onreadystatechange = process_notifications;
     
-    xmlHttp.open("GET", "ajax/php/notifications.php",true);
+    xmlHttp.open("GET", "ajax/php/notifications.php?disp=" + display + "&opac=" + opacity,true);
     xmlHttp.send();
     }
 }

@@ -16,116 +16,45 @@ if ($session->logged_in()) {
                              $_SESSION['user_id']
                             );
   }
+
+$notifs = $current_user->notifications;
 ?>
 
 <span onclick="toggle_box()" class="icon-flag"> 
   <?php echo 
-    count( $current_user->get_notifications() )
+    count( $notifs )
     ;
   ?>
 </span>
-<div id="notifications" style="display:none;">
+<div id="notifications" 
+  style="
+      display:<?php echo $_GET['disp'];?>;
+      opacity:<?php echo $_GET['opac'];?>
+  ">
   <div class="tri"></div>
 
   <?php
-  $n = $current_user->get_notifications();
-
-  if ( !empty( $n['requests'] ) ) {
-    foreach ( $n['requests'] as $r )
+  if ( !empty( $notifs ) ) {
+    foreach ( $notifs as $n ) {
   ?>
     <span>
   <?php echo
-      '<b>' . $SYSTEM->get_uname($r->user_id) . '</b>' .
-      ' sent you a request'
-      ;
+      $n->title;
   ?>
       <span>
-        <?php
-          echo
-          $SYSTEM->get_uname($r->user_id) .
-          ' put ' .
-          $r->amount .
-          ' on '
-          ;
-          if ($r->proposal == $r->event->home_team->id)
-            echo $r->event->home_team->short_name;
-          
+        <?php echo
+          $n->desc;
         ?>
         <span>
           <?php echo
-            $r->timestamp
+            $n->timestamp;
             ;
           ?>
         </span>
       </span>
     </span>
   <?php
-  }
-
-  if ( !empty( $n['accepted'] ) ) {
-    foreach ( $n['accepted'] as $a )
-  ?>
-    <span>
-  <?php echo
-      '<b>' . $SYSTEM->get_uname($a->opponent_id) . '</b>' .
-      ' accepted your request'
-      ;
-  ?>
-      <span>
-        <?php
-          echo
-          'You put ' .
-          $a->amount .
-          ' on '
-          ;
-          if ($a->proposal == $a->event->home_team->id)
-            echo $a->event->home_team->short_name;
-          else
-            echo $a->event->away_team->short_name;
-          
-        ?>
-        <span>
-          <?php echo
-            $a->timestamp
-            ;
-          ?>
-        </span>
-      </span>
-    </span>
-  <?php
-  }
-
-  if ( !empty( $n['denied'] ) ) {
-    foreach ( $n['denied'] as $d )
-  ?>
-    <span>
-  <?php echo
-      '<b>' . $SYSTEM->get_uname($d->opponent_id) . '</b>' .
-      ' denied your request'
-      ;
-  ?>
-      <span>
-        <?php
-          echo
-          'You put ' .
-          $d->amount .
-          ' on '
-          ;
-          if ($d->proposal == $d->event->home_team->id)
-            echo $d->event->home_team->short_name;
-          else
-            echo $d->event->away_team->short_name;
-          
-        ?>
-        <span>
-          <?php echo
-            $d->timestamp
-            ;
-          ?>
-        </span>
-      </span>
-    </span>
-  <?php
+    }
   }
   ?>
 

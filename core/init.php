@@ -12,10 +12,12 @@
   // Make Database connection
   $DB = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
 
+  require_once 'classes/System.php';
+  $SYSTEM = new System;
+
   require_once 'classes/Session.php';
   require_once 'classes/Login.php';
   require_once 'classes/User.php';
-  require_once 'classes/System.php';
   require_once 'classes/Database.php';
 
   // Set default landing page
@@ -41,5 +43,4 @@
   $USERS = Database::set_users();
 
   $session = new Session;
-  $SYSTEM = new System;
 ?>

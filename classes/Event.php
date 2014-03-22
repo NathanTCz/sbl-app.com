@@ -40,8 +40,12 @@ class Event extends Database {
   public function set_time ($t) {
     $timestamp = explode(' ', $t);
 
-    $time = explode(':', $timestamp[1]);
-    $this->time = "$time[0]:$time[1] EST";
+/*    if ($timestamp[1] !== 'TBD') {
+      $time = explode(':', $timestamp[1]);
+      $this->time = "$time[0]:$time[1] EST";
+    }
+    else*/
+      $this->time = $timestamp[1];
 
     $this->date = $timestamp[0];
   }
