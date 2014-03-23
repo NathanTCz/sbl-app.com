@@ -11,10 +11,23 @@ require_once 'core/init.php';
  * under date
  */
 function compare_event_time($a, $b) {
-  if ($a->time == $b->time)
+  $a_time = strtotime($a->timestamp);
+  $b_time = strtotime($b->timestamp);
+
+  if ($a_time == $b_time)
     return 0;
 
-  return ($a->time < $b->time) ? -1 : 1;
+  return ($a_time < $b_time) ? -1 : 1;
+}
+
+function compare_event_date($a, $b) {
+  $a_date = strtotime($a);
+  $b_date = strtotime($b);
+
+  if ($a_date == $b_date)
+    return 0;
+
+  return ($a_date < $b_date) ? -1 : 1;
 }
 
 usort($EVENTS, 'compare_event_time');
@@ -34,14 +47,14 @@ foreach ($EVENTS as $event) {
     $dates[] = $event->date;
 }
 
-sort($dates);
+usort($dates, 'compare_event_date');
 
 foreach ($dates as $date) {
 ?>
 <div class="date_title">
   <span>
   <?php echo
-    $date
+    $SYSTEM->date2words($date)
     ;
   ?>
   </span>

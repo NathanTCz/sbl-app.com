@@ -40,11 +40,33 @@ class Event extends Database {
   public function set_time ($t) {
     $timestamp = explode(' ', $t);
 
-/*    if ($timestamp[1] !== 'TBD') {
+    if ( preg_match("/^(\d+):(\d+):(\d+)$/", $timestamp[1])
+        || preg_match("/^(\d+):(\d+)$/", $timestamp[1])
+       ) {
       $time = explode(':', $timestamp[1]);
-      $this->time = "$time[0]:$time[1] EST";
+
+      if ($time[0] > 12) {
+        $time[0] -= 12;
+        $time[1] .= '<span class="am_pm">pm</span>';
+      }
+      elseif ($time[0] == 12)
+        $time[1] .= '<span class="am_pm">pm</span>';
+      elseif ($time[0] < 12)
+        $time[1] .= '<span class="am_pm">am</span>';
+
+      $this->time = "$time[0]:$time[1]";
     }
-    else*/
+    elseif ( preg_match("/.*(am|pm)/", $timestamp[1]) ) {
+      $time = explode(':', $timestamp[1]);
+      $end = $time[1];
+      $am_pm = $end[2] . $end[3];
+      $end[2] = '';
+      $end[3] = '';
+
+      $end .= '<span class="am_pm">' . $am_pm . '</span>';
+      $this->time = "$time[0]:$end";
+    }
+    else
       $this->time = $timestamp[1];
 
     $this->date = $timestamp[0];

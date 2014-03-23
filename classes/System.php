@@ -36,6 +36,13 @@ class System extends Database {
     }
   }
 
+  public function date2words ($ts) {
+    if(!ctype_digit($ts))
+        $ts = strtotime($ts);
+
+    return date('F j, Y', $ts);
+  }
+
   public function get_userid($email){
    global $DB;
 
