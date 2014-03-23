@@ -25,7 +25,7 @@ Class User extends Database {
   private $pre_notifs;
   public $notifications;
 
-  private $yac;
+  public $yac;
   
 
   public function __construct ($email, $un,  $uid) {
@@ -302,26 +302,24 @@ Class User extends Database {
 
   }
 
-  public function counter_offer ($bet_id, $counter_amount) {
+  public function counter_offer ($bet_id, $counter_amount, $u_id, $opp_id, $counter_bool) {
     global $DB;
 
     //they can counter propose an amount for now
-  
+    if($counter_bool == 1)
+      $counter_bool = 0;
+
+
       $query = $DB->prepare ("
       UPDATE wager
-      SET  counter_offer = ?, amount = ?
+      SET  counter_offer_bool = ?, amount = ?, user_id = ?, opponent_id = ?
       WHERE id = ? 
     ");
 
-    $query->bind_param('dddd', 1, $counter_amount, $bet_id) ;
+    $query->bind_param('dddd', $counter_bool, $counter_amount, $bet_id, $opp_id, $u_id) ;
     $query->execute();
    
 
-  }
-
-  public function update_balance () {
-    //update user's funds based on bet outcomes. use event_outcome 
-    //logic and then update tables 
   }
 
 };

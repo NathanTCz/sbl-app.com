@@ -8,6 +8,7 @@ chdir($root_dir);
 require_once 'core/init.php';
 
 
+
 function compare_event_date($a, $b) {
   $a_date = strtotime($a);
   $b_date = strtotime($b);
