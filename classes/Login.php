@@ -70,6 +70,7 @@ class Login extends Database {
   public function register_user () {
     global $REG_ERRORS;
     global $DB;
+    global $SYSTEM;  
 
     if($this->new_user() && $this->validate_email() && $this->validate_password()) {
       $query = $DB->prepare ("
@@ -82,6 +83,18 @@ class Login extends Database {
 
       $query->bind_param('ss', $this->email, $this->pass);
       $query->execute();
+
+      $user_id = $SYSTEM->get_userid($this->email);
+  
+      $query2 = $DB->prepare ("
+        INSERT INTO yac (
+          user_id
+        )
+        VALUES (?)
+      ");
+
+      $query2->bind_param('d', $user_id);
+      $query2->execute();
       return true;
     }
     else { 

@@ -20,6 +20,7 @@ function compare_event_time($a, $b) {
   return ($a_time < $b_time) ? -1 : 1;
 }
 
+
 function compare_event_date($a, $b) {
   $a_date = strtotime($a);
   $b_date = strtotime($b);

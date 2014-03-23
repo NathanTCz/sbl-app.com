@@ -203,66 +203,66 @@ public function check_time($event_time){
 
 public function check_and_update_user_balances(){
    global $DB;
+   global $USERS;
+   global $WAGERS;
+   global $YACS; 
 
   //use global user variable, loop through all users and update 
   //balances based on wagers that have status == 1 and have an outcome
 
-  foreach ($this->user_id as $user) {
-    
-    if($user->user_id == $yacs->$user_id && $wagers->status == 1
-        && $wagers->outcome == 1 && $user->user_id == $wagers->user_id){
+  foreach ($USERS as $user) {
+    foreach ($user->get_accepted_wagers() as $wagers) {
+    if($user->yac->balance >= $wagers->amount){
+      if($wagers->outcome == 1 && $user->user_id == $wagers->user_id){
 
-      $query = $DB->prepare ("
-      UPDATE yac
-      SET balance = ?, at_risk = ?
-      WHERE id = ?
-    ");
+        $query = $DB->prepare ("
+        UPDATE yac
+        SET balance = ?, at_risk = ?
+        WHERE id = ?
+      ");
 
-    $query->bind_param('ddd', $yacs->balance + $wagers->amount, $yacs->at_risk - $wagers->amount, $user->user_id);
-    $query->execute();
-   }
+      $query->bind_param('ddd', $yacs->balance + $wagers->amount, $yacs->at_risk - $wagers->amount, $user->user_id);
+      $query->execute();
+     }
    
-   elseif($user->user_id == $yacs->$user_id && $wagers->status == 1
-          && $wagers->outcome == 0 && $user->user_id == $wagers->user_id){
+     elseif($wagers->outcome == 0 && $user->user_id == $wagers->user_id){
 
-      $query = $DB->prepare ("
-      UPDATE yac
-      SET balance = ?, at_risk = ?
-      WHERE id = ?
-    ");
+        $query = $DB->prepare ("
+        UPDATE yac
+        SET balance = ?, at_risk = ?
+        WHERE id = ?
+      ");
 
-    $query->bind_param('ddd', $yacs->balance - $wagers->amount, $yacs->at_risk - $wagers->amount, $user->user_id);
-    $query->execute();
+      $query->bind_param('ddd', $yacs->balance - $wagers->amount, $yacs->at_risk - $wagers->amount, $user->user_id);
+      $query->execute();
+     }
+
+     elseif($wagers->outcome == 1 && $user->user_id == $wagers->opponent_id){
+
+        $query = $DB->prepare ("
+        UPDATE yac
+        SET balance = ?, at_risk = ?
+        WHERE id = ?
+      ");
+
+      $query->bind_param('ddd', $yacs->balance - $wagers->amount, $yacs->at_risk - $wagers->amount, $user->user_id);
+      $query->execute();
+     }
+
+     elseif($wagers->outcome == 0 && $user->user_id == $wagers->opponent_id){
+
+        $query = $DB->prepare ("
+        UPDATE yac
+        SET balance = ?, at_risk = ?
+        WHERE id = ?
+      ");
+
+      $query->bind_param('ddd', $yacs->balance + $wagers->amount, $yacs->at_risk - $wagers->amount, $user->user_id);
+      $query->execute();
+     }
+    }
    }
-
-   elseif($user->user_id == $yacs->$user_id && $wagers->status == 1
-          && $wagers->outcome == 1 && $user->user_id == $wagers->opponent_id){
-
-      $query = $DB->prepare ("
-      UPDATE yac
-      SET balance = ?, at_risk = ?
-      WHERE id = ?
-    ");
-
-    $query->bind_param('ddd', $yacs->balance - $wagers->amount, $yacs->at_risk - $wagers->amount, $user->user_id);
-    $query->execute();
-   }
-
-   elseif($user->user_id == $yacs->$user_id && $wagers->status == 1
-          && $wagers->outcome == 0 && $user->user_id == $wagers->opponent_id){
-
-      $query = $DB->prepare ("
-      UPDATE yac
-      SET balance = ?, at_risk = ?
-      WHERE id = ?
-    ");
-
-    $query->bind_param('ddd', $yacs->balance + $wagers->amount, $yacs->at_risk - $wagers->amount, $user->user_id);
-    $query->execute();
-   }
-
+  }
  }
-}
-
 };
 ?>

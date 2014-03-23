@@ -1,4 +1,4 @@
-setTimeout(load_notifications, 5000);
+setTimeout(load_notifications, 10000);
 
 function toggle_box () {
   var e = document.getElementById('notifications').style.opacity;
@@ -17,7 +17,7 @@ function toggle_box () {
 }
 
 function load_notifications () {
-  setTimeout(load_notifications, 5000);
+  setTimeout(load_notifications, 10000);
 
   /* save the display style of the notfication box so that it
    * doesn't disappear every time. Send it with the GET data.
