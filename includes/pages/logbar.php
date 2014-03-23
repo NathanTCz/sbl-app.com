@@ -22,7 +22,35 @@
     ;
   ?>
 </span>
-<div id="notifications" style="display:none; opacity:0;"></div>
+<div id="notifications" style="display:none; opacity:0;">
+  <div class="tri"></div>
+
+  <?php
+  if ( !empty( $notifs ) ) {
+    foreach ( $notifs as $n ) {
+  ?>
+    <span>
+  <?php echo
+      $n->title;
+  ?>
+      <span>
+        <?php echo
+          $n->desc;
+        ?>
+        <span>
+          <?php echo
+            $n->timestamp;
+            ;
+          ?>
+        </span>
+      </span>
+    </span>
+  <?php
+    }
+  }
+  ?>
+
+</div>
 </div>
 
 <script src="ajax/js/notifications.js"></script>

@@ -1,4 +1,4 @@
-setTimeout(load_notifications, 1000);
+setTimeout(load_notifications, 5000);
 
 function toggle_box () {
   var e = document.getElementById('notifications').style.opacity;
