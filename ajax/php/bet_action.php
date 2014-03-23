@@ -29,8 +29,8 @@ $timestamp = $_POST['time'];
 // get the opponent user_id
 $opp = $SYSTEM->get_userid($opp);
 
-if ( $current_user->make_wager($opp, $amnt, $prop, $event_id) )
-  if ( $SYSTEM->check_time($timestamp) )
+if ( $SYSTEM->check_time($timestamp) && $current_user->check_yacs($amnt) )
+  if ( $current_user->make_wager($opp, $amnt, $prop, $event_id) )
     echo 'OK';
   else echo 'ERROR';
 else
