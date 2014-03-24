@@ -25,13 +25,13 @@ function load_notifications () {
   var display = document.getElementById('notifications').style.display;
   var opacity = document.getElementById('notifications').style.opacity;
 
-  xmlHttp=new XMLHttpRequest();
 
-  if (xmlHttp.readyState == 0 || xmlHttp.readyState == 4) {
+  if ( (xmlHttp.readyState == 0 || xmlHttp.readyState == 4)
+      && xmlHttp.readyState != 3 ) {
 
     xmlHttp.onreadystatechange = process_notifications;
     
-    xmlHttp.open("GET", "ajax/php/notifications.php?disp=" + display + "&opac=" + opacity,true);
+    xmlHttp.open("GET", "ajax/php/notifications.php?disp=" + display + "&opac=" + opacity,false);
     xmlHttp.send();
     }
 }

@@ -5,9 +5,8 @@ function load_list (id) {
   document.getElementById('loader').style.display = 'block';
   document.getElementById('event').style.display = 'none';
 
-  xmlHttp=new XMLHttpRequest();
-
-  if (xmlHttp.readyState == 0 || xmlHttp.readyState == 4) {
+  if ( (xmlHttp.readyState == 0 || xmlHttp.readyState == 4)
+      && xmlHttp.readyState != 3 ) {
 
     xmlHttp.onreadystatechange = process_event_list;
     
@@ -36,9 +35,8 @@ function load_event (id, cat) {
   document.getElementById('loader').style.display = 'block';
   document.getElementById('list').style.display = 'none';
 
-  xmlHttp=new XMLHttpRequest();
-
-  if (xmlHttp.readyState == 0 || xmlHttp.readyState == 4) {
+  if ( (xmlHttp.readyState == 0 || xmlHttp.readyState == 4)
+      && xmlHttp.readyState != 3 ) {
 
     xmlHttp.onreadystatechange = process_event_page;
     

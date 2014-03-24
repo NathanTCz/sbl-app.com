@@ -249,18 +249,14 @@ Class User extends Database {
 
     $query->bind_param('ddddd', $this->user_id, $amount, 
                      $proposal, $opponent_id,$event_id);
-    if ( $query->execute() )
-      return true;
-    else return false;
+
+    return ( $query->execute() ) ? true : false;
   }
 
   public function check_yacs ($amount) {
     //Check to make sure user has enough funds to support the bet
 
-    if($this->balance < $amount)
-      return false; 
-    else 
-      return true; 
+    return ($this->balance < $amount) ? false : true; 
   }
 
   public function accept_request ($bet_id) {

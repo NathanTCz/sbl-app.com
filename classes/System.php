@@ -204,15 +204,13 @@ public function check_time($event_time){
 public function check_and_update_user_balances(){
    global $DB;
    global $USERS;
-   global $WAGERS;
-   global $YACS; 
 
   //use global user variable, loop through all users and update 
   //balances based on wagers that have status == 1 and have an outcome
 
   foreach ($USERS as $user) {
     foreach ($user->get_accepted_wagers() as $wagers) {
-    if($user->yac->balance >= $wagers->amount){
+    if($user->yac->balance >= $wagers->amount) {
       if($wagers->outcome == 1 && $user->user_id == $wagers->user_id){
 
         $query = $DB->prepare ("
@@ -221,7 +219,11 @@ public function check_and_update_user_balances(){
         WHERE id = ?
       ");
 
-      $query->bind_param('ddd', $yacs->balance + $wagers->amount, $yacs->at_risk - $wagers->amount, $user->user_id);
+      $query->bind_param('ddd',
+        $user->yac->balance + $wagers->amount,
+        $user->yac->at_risk - $wagers->amount,
+        $user->user_id
+      );
       $query->execute();
      }
    
@@ -233,7 +235,11 @@ public function check_and_update_user_balances(){
         WHERE id = ?
       ");
 
-      $query->bind_param('ddd', $yacs->balance - $wagers->amount, $yacs->at_risk - $wagers->amount, $user->user_id);
+      $query->bind_param('ddd',
+        $user->yac->balance - $wagers->amount,
+        $user->yac->at_risk - $wagers->amount,
+        $user->user_id
+      );
       $query->execute();
      }
 
@@ -245,7 +251,11 @@ public function check_and_update_user_balances(){
         WHERE id = ?
       ");
 
-      $query->bind_param('ddd', $yacs->balance - $wagers->amount, $yacs->at_risk - $wagers->amount, $user->user_id);
+      $query->bind_param('ddd',
+        $user->yac->balance - $wagers->amount,
+        $user->yac->at_risk - $wagers->amount,
+        $user->user_id
+      );
       $query->execute();
      }
 
@@ -257,7 +267,11 @@ public function check_and_update_user_balances(){
         WHERE id = ?
       ");
 
-      $query->bind_param('ddd', $yacs->balance + $wagers->amount, $yacs->at_risk - $wagers->amount, $user->user_id);
+      $query->bind_param('ddd',
+        $user->yac->balance + $wagers->amount,
+        $user->yac->at_risk - $wagers->amount,
+        $user->user_id
+      );
       $query->execute();
      }
     }

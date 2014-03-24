@@ -11,11 +11,13 @@ require_once 'core/init.php';
  * of index.php which creates the current_user object
  */
 if ($session->logged_in()) {
-    $current_user = new User($_SESSION['user']['email'],
-                             $_SESSION['user']['u_name'],
-                             $_SESSION['user_id']
-                            );
-  }
+  $current_user = new User($_SESSION['user']['email'],
+                           $_SESSION['user']['u_name'],
+                           $_SESSION['user_id']
+                          );
+}
+else
+  exit;
 
 $prop = $_POST['prop'];
 $amnt = $_POST['amnt'];
