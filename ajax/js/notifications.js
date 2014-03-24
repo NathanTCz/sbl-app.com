@@ -33,7 +33,7 @@ function load_notifications () {
     
     xmlHttp.open("GET", "ajax/php/notifications.php?disp=" + display + "&opac=" + opacity,false);
     xmlHttp.send();
-    }
+  }
 }
 
 function process_notifications () {

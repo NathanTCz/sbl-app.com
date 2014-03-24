@@ -31,3 +31,35 @@ RewriteRule ^web/([a-zA-Z]+)$ $1.php [NC,L]
 
 # 404 Page
 ErrorDocument 404 /404.php
+
+
+
+#----------------------CACHE_CONTROL------------------------
+Header unset Pragma
+FileETag None
+Header unset ETag
+
+# 1 YEAR
+<FilesMatch "\.(jpg|jpeg|png)$">
+Header set Cache-Control "max-age=7200, must-revalidate"
+</FilesMatch>
+ 
+# CACHED FOREVER
+# MOD_REWRITE TO RENAME EVERY CHANGE
+<FilesMatch "\.(otf|ttf|js|css)$">
+Header set Cache-Control "max-age=7200, must-revalidate"
+</FilesMatch>
+#--------------------END_CACHE_CONTROL----------------------
+
+
+
+#--------------------GZIP_COMPRESSION-----------------------
+AddOutputFilterByType DEFLATE text/plain
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/xml
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE application/xml
+AddOutputFilterByType DEFLATE application/xhtml+xml
+AddOutputFilterByType DEFLATE application/rss+xml
+AddOutputFilterByType DEFLATE application/javascript
+AddOutputFilterByType DEFLATE application/x-javascript
