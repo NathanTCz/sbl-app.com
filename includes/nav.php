@@ -14,7 +14,7 @@
 */
 
 $nav_buttons = array('events' => 'icon-list2',
-                     'profile' => 'icon-user3',
+                     'dashboard' => 'icon-dashboard',
                      'bets' => 'icon-ticket',
                      'live' => 'icon-feed'
                     );

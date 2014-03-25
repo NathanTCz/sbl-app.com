@@ -33,25 +33,31 @@ RewriteRule ^web/([a-zA-Z]+)$ $1.php [NC,L]
 ErrorDocument 404 /404.php
 
 
-
 #----------------------CACHE_CONTROL------------------------
 Header unset Pragma
 FileETag None
-Header unset ETag
-
+#Header unset ETag
+ 
 # 1 YEAR
 <FilesMatch "\.(jpg|jpeg|png)$">
+Header set Cache-Control "public"
+Header set Expires "Thu, 15 Apr 2010 20:00:00 GMT"
+Header unset Last-Modified
+</FilesMatch>
+ 
+# 2 HOURS
+<FilesMatch "\.(html|htm|xml|txt|xsl|php)$">
 Header set Cache-Control "max-age=7200, must-revalidate"
 </FilesMatch>
  
 # CACHED FOREVER
 # MOD_REWRITE TO RENAME EVERY CHANGE
 <FilesMatch "\.(otf|ttf|js|css)$">
-Header set Cache-Control "max-age=7200, must-revalidate"
+Header set Cache-Control "public"
+Header set Expires "Thu, 15 Apr 2010 20:00:00 GMT"
+Header unset Last-Modified
 </FilesMatch>
 #--------------------END_CACHE_CONTROL----------------------
-
-
 
 #--------------------GZIP_COMPRESSION-----------------------
 AddOutputFilterByType DEFLATE text/plain

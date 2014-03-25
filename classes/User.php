@@ -10,7 +10,7 @@ function compare_notification ($a, $b) {
   if ($a_time == $b_time)
     return 0;
 
-  return ($a_time > $b_time) ? -1 : 1;
+  return ($a_time < $b_time) ? -1 : 1;
 }
 
 Class User extends Database {

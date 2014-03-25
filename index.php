@@ -13,6 +13,11 @@
   }
   
   include 'includes/main/header.php';
+  flush();
+
+  // right here is where we need to initilatise the data
+  require_once('core/data_init.php');
+
   include 'includes/i_index.php';
   include 'includes/main/footer.php';
 ?>

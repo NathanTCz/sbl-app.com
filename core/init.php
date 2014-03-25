@@ -18,6 +18,8 @@
   $SYSTEM = new System;
 
   require_once 'classes/Session.php';
+  $session = new Session;
+
   require_once 'classes/Login.php';
   require_once 'classes/User.php';
   require_once 'classes/Database.php';
@@ -37,27 +39,12 @@
    * Because of control flow, THESE MUST BE SET IN THIS
    * ORDER, BITCH.
    */
-  $TEAMS = Database::set_teams();
-  $CATEGORIES = Database::set_categories();
-  $EVENTS = Database::set_events();
-  $YACS = Database::set_yacs();
-  $WAGERS = Database::set_wagers();
-  $USERS = Database::set_users();
-
-  $session = new Session;
-
-  /* sort function helper for sorting events by time
-   * under date
-   */
-  function compare_event_time($a, $b) {
-    $a_time = strtotime($a->timestamp);
-    $b_time = strtotime($b->timestamp);
-
-    if ($a_time == $b_time)
-      return 0;
-
-    return ($a_time < $b_time) ? -1 : 1;
+  if ( $_SERVER['REQUEST_URI'] != '/web/main' ) {
+    $TEAMS = Database::set_teams();
+    $CATEGORIES = Database::set_categories();
+    $EVENTS = Database::set_events();
+    $YACS = Database::set_yacs();
+    $WAGERS = Database::set_wagers();
+    $USERS = Database::set_users();
   }
-
-  usort($EVENTS, 'compare_event_time');
 ?>
