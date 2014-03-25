@@ -175,11 +175,12 @@ div#error span[class*='icon-'] {
   top: 3em;
   left: 4.5em;
 
-  width: 86.2%;
+  /*width: 86.2%;*/
   height: 93%;
 }
 
 .spacer {
+  float: left;
   width: 4.5em;
   height: 100%;
 }
@@ -468,7 +469,7 @@ div#error span[class*='icon-'] {
   top: 0;
   left: 10em;
 
-  width: 100%;
+  width: 85%;
   height: auto;
 
   z-index: 0;
@@ -558,7 +559,7 @@ div#error span[class*='icon-'] {
   top: 0;
   left: 10em;
 
-  width: 100%;
+  width: 85%;
   height: auto;
 
   z-index: 0;
@@ -753,4 +754,79 @@ div#error span[class*='icon-'] {
 .bet_box .buttons div#request {
   float: right;
   padding: 0.5em;
+}
+
+/* Dashboard styling */
+.dash {
+  width: 95%;
+  height: 100%;
+}
+
+.dash .dash_nav {
+  width: 100%;
+  height: 3.2em;
+
+  background: #555;
+}
+
+.dash .dash_nav span {
+  display: inline-block;
+  width: 6em;
+
+  padding: 1em 0;
+
+  font-size: 1em;
+  text-align: center;
+  color: #FFF;
+}
+
+.dash .dash_nav span.active {
+  border-bottom: 8px solid greenyellow;
+}
+
+.dash .bal_box {
+  width: 50%;
+
+  text-align: center;
+}
+
+.dash .bal_box#bal {
+  float: left;
+}
+
+.dash .bal_box#ar {
+  float: right;
+}
+
+.dash .bal_box > span {
+  display: block;
+  font-size: 8em;
+
+  color: #000;
+}
+
+.dash .bal_box > span > span {
+  display: block;
+  font-size: 0.3em;
+}
+
+.dash .bal_bar {
+  height: 2em;
+  width: 95%;
+
+  margin: 0 auto;
+}
+
+.dash .bal_bar div#balance {
+  float: left;
+  height: 100%;
+
+  background: green;
+}
+
+.dash .bal_bar div#at_risk {
+  float: left;
+  height: 100%;
+
+  background: red;
 }
