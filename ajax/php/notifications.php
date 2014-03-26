@@ -17,6 +17,19 @@ if ($session->logged_in()) {
                             );
   }
 
+if ( !empty($_POST) ) {
+  if ($_POST['action'] == 'accept') {
+    $bet_id = $_POST['b_id'];
+
+    $current_user->accept_request($bet_id);
+  }
+  else if ($_POST['action'] == 'deny') {
+    $bet_id = $_POST['b_id'];
+
+    $current_user->deny_request($bet_id);
+  }
+}
+
 $notifs = $current_user->notifications;
 ?>
 
@@ -43,9 +56,19 @@ $notifs = $current_user->notifications;
   ?>
       <span>
         <?php echo
-          $n->desc;
+          $n->desc . '<br><br>';
         ?>
-        <span>
+        <span
+          id="acc_den"
+          onclick="accept_request(<?php echo $n->wager_id;?>)"
+        >Accept
+        </span>
+        <span
+          id="acc_den"
+          onclick="deny_request(<?php echo $n->wager_id;?>)"
+        >Deny
+        </span>
+        <span id="time">
           <?php echo
             $n->timestamp;
             ;

@@ -12,5 +12,6 @@
     return ($a_time > $b_time) ? -1 : 1;
   }
 
-  usort($EVENTS, 'compare_event_time');
+  /* Just ORDER BY in the SQL statement */
+  //usort($EVENTS, 'compare_event_time');
 ?>

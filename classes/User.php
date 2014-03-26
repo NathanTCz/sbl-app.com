@@ -103,6 +103,7 @@ Class User extends Database {
   }*/
 
   public function set_pending_wagers () {
+    $this->pre_notifs['requests'] = array();
     /*
      * $this->wagers is inherited from the Database class.
     */
@@ -119,6 +120,8 @@ Class User extends Database {
   }
 
   public function set_accepted_wagers () {
+    $this->pre_notifs['accepted'] = array();
+
     foreach ($this->wagers as $wager) {
       if ($this->user_id == $wager->user_id && $wager->status === 1) {
         $this->accepted_wagers[] = $wager;
@@ -132,6 +135,8 @@ Class User extends Database {
   }
 
   public function set_denied_wagers () {
+    $this->pre_notifs['denied'] = array();
+
     foreach ($this->wagers as $wager) {
       if ($this->user_id == $wager->user_id && $wager->status === 0) {
         $this->denied_wagers[] = $wager;
@@ -152,6 +157,7 @@ Class User extends Database {
       $user = sprintf('<b>%s</b>', $user);
       $amt = $r->amount;
       $time = $SYSTEM->time2str($r->timestamp);
+      $wager_id = $r->id;
 
       if ($r->proposal == $r->event->home_team->id)
         $team = $r->event->home_team->short_name;
@@ -164,7 +170,8 @@ Class User extends Database {
       $n = new Notification (
         $title,
         $desc,
-        $time
+        $time,
+        $wager_id
       );
 
       $this->notifications[] = $n;
@@ -175,6 +182,7 @@ Class User extends Database {
       $user = sprintf('<b>%s</b>', $user);
       $amt = $a->amount;
       $time = $SYSTEM->time2str($a->timestamp);
+      $wager_id = $a->id;
 
       if ($a->proposal == $a->event->home_team->id)
         $team = $a->event->home_team->short_name;
@@ -187,7 +195,8 @@ Class User extends Database {
       $n = new Notification (
         $title,
         $desc,
-        $time
+        $time,
+        $wager_id
       );
 
       $this->notifications[] = $n;
@@ -198,6 +207,7 @@ Class User extends Database {
       $user = sprintf('<b>%s</b>', $user);
       $amt = $d->amount;
       $time = $SYSTEM->time2str($d->timestamp);
+      $wager_id = $d->id;
 
       if ($d->proposal == $d->event->home_team->id)
         $team = $d->event->home_team->short_name;
@@ -210,7 +220,8 @@ Class User extends Database {
       $n = new Notification (
         $title,
         $desc,
-        $time
+        $time,
+        $wager_id
       );
 
       $this->notifications[] = $n;
@@ -256,11 +267,21 @@ Class User extends Database {
   public function check_yacs ($amount) {
     //Check to make sure user has enough funds to support the bet
 
-    return ($this->balance < $amount) ? false : true; 
+    return ($this->yac->balance < $amount) ? false : true; 
   }
 
   public function accept_request ($bet_id) {
     global $DB;
+    global $WAGERS;
+
+    foreach ($WAGERS as $w)
+      if ($bet_id == $w->id)
+        $wager = $w;
+
+      $new_bal = $this->yac->balance - $wager->amount;
+      $new_ar = $this->yac->at_risk + $wager->amount;
+      $status = 1;
+      $seen = 1;
 
       //update at risk and balance of both users
       //$bet_id is the wager_id of the event that should get passed in 
@@ -269,12 +290,22 @@ Class User extends Database {
 
       $query = $DB->prepare ("
       UPDATE yac, wager
-      SET yac.balance = ?, yac.at_risk = ?, wager.status = ?
+      SET
+        yac.balance = ?,
+        yac.at_risk = ?,
+        wager.status = ?,
+        wager.seen = ?
       WHERE wager.id = ? AND yac.user_id = ? 
     ");
 
-    $query->bind_param('dddd', $yacs->balance - $wagers->amount, $yacs->at_risk + $wagers->amount, 
-                       1, $bet_id, $this->user_id) ;
+    $query->bind_param('dddddd',
+      $new_bal,
+      $new_ar, 
+      $status,
+      $seen,
+      $bet_id,
+      $this->user_id
+    );
     $query->execute();
    
   }
@@ -285,15 +316,19 @@ Class User extends Database {
     //Maybe when a user denies a request we go ahead & delete that entry from the wager table?  
     //or do we want to keep it so we can display denied wagers?? Anytime a wager is denied we could
     //just send them a message saying the wager was denied and then after the message displays
-    //delete the wager from the table. 
+    //delete the wager from the table.
+    $status = 0;
+    $seen = 1;
 
      $query = $DB->prepare ("
       UPDATE wager
-      SET status = ?
+      SET
+        status = ?,
+        seen = ?
       WHERE id = ?  
     ");
 
-    $query->bind_param('dddd', 0, $bet_id) ;
+    $query->bind_param('ddd', $status, $seen, $bet_id) ;
     $query->execute();
 
   }
@@ -312,7 +347,12 @@ Class User extends Database {
       WHERE id = ? 
     ");
 
-    $query->bind_param('dddd', $counter_bool, $counter_amount, $bet_id, $opp_id, $u_id) ;
+    $query->bind_param('dddd',
+      $counter_bool,
+      $counter_amount,
+      $bet_id, $opp_id,
+      $u_id
+    );
     $query->execute();
    
 

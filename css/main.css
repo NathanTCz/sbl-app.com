@@ -292,6 +292,8 @@ div#error span[class*='icon-'] {
   text-align: center;
   opacity: 0;
 
+  cursor: default;
+
   background: #FFF;
   border: 1px solid #333;
 
@@ -319,7 +321,11 @@ div#error span[class*='icon-'] {
 }
 
 .user_tools div#notifications span > span {
-  padding: 8px;
+  display:block;
+  float: left;
+  width: 97%;
+
+  margin-bottom: 5px;
 
   font-size: 10pt;
   text-align: left;
@@ -327,10 +333,25 @@ div#error span[class*='icon-'] {
 }
 
 .user_tools div#notifications span > span > span {
+  display: block;
   padding: 2px 0 0 0;
+  font-size: 8pt;
+  border: none;
+}
+
+.user_tools div#notifications span > span > span#time {
+  float: right;
+  width: 30%;
 
   text-align: right;
-  font-size: 8pt;
+}
+
+.user_tools div#notifications span > span > span#acc_den {
+  float: left;
+  width:25%;
+
+  font-size: 12pt;
+  text-decoration: underline;
 }
 
 .user_tools div#notifications div.tri {
@@ -781,6 +802,7 @@ div#error span[class*='icon-'] {
 }
 
 .dash .dash_nav span.active {
+  color: greenyellow;
   border-bottom: 8px solid greenyellow;
 }
 
@@ -820,13 +842,23 @@ div#error span[class*='icon-'] {
 .dash .bal_bar div#balance {
   float: left;
   height: 100%;
+  width: 2%;
 
-  background: green;
+  background: #26C281;
+
+  -webkit-transition: all 2s;
+     -moz-transition: all 2s;
+          transition: all 2s;
 }
 
 .dash .bal_bar div#at_risk {
-  float: left;
+  float: right;
   height: 100%;
+  width: 2%;
 
-  background: red;
+  background: #ed4337;
+
+  -webkit-transition: all 2s;
+     -moz-transition: all 2s;
+          transition: all 2s;
 }

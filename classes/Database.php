@@ -138,7 +138,7 @@ class Database {
     $query = $DB->prepare ("
       SELECT *
       FROM event
-      ORDER BY event_time DESC
+      ORDER BY event_time ASC
     ");
     $query->execute();
     

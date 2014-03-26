@@ -37,7 +37,39 @@ function load_notifications () {
 }
 
 function process_notifications () {
-  if (xmlHttp.readyState == 4 && xmlHttp.status==200) {
+  if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
     document.getElementById('user_tools').innerHTML=xmlHttp.responseText;
+  }
+}
+
+function accept_request (b_id) {
+  var action = 'accept';
+
+  if ( (xmlHttp.readyState == 0 || xmlHttp.readyState == 4)
+    && xmlHttp.readyState != 3 ) {
+
+  xmlHttp.onreadystatechange = process_notifications;
+  
+  xmlHttp.open("POST", "ajax/php/notifications.php", true);
+  xmlHttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+  xmlHttp.send("b_id=" + encodeURIComponent(b_id) + 
+               "&action=" + encodeURIComponent(action)
+              );
+  }
+}
+
+function deny_request (b_id) {
+  var action = 'deny';
+
+  if ( (xmlHttp.readyState == 0 || xmlHttp.readyState == 4)
+    && xmlHttp.readyState != 3 ) {
+
+  xmlHttp.onreadystatechange = process_notifications;
+  
+  xmlHttp.open("POST", "ajax/php/notifications.php", true);
+  xmlHttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+  xmlHttp.send("b_id=" + encodeURIComponent(b_id) + 
+               "&action=" + encodeURIComponent(action)
+              );
   }
 }

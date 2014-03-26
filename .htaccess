@@ -36,7 +36,7 @@ ErrorDocument 404 /404.php
 #----------------------CACHE_CONTROL------------------------
 Header unset Pragma
 FileETag None
-#Header unset ETag
+Header unset ETag
  
 # 1 YEAR
 <FilesMatch "\.(jpg|jpeg|png)$">
@@ -46,7 +46,7 @@ Header unset Last-Modified
 </FilesMatch>
  
 # 2 HOURS
-<FilesMatch "\.(html|htm|xml|txt|xsl|php)$">
+<FilesMatch "\.(html|htm|xml|txt|xsl)$">
 Header set Cache-Control "max-age=7200, must-revalidate"
 </FilesMatch>
  

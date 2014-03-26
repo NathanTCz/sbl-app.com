@@ -35,11 +35,21 @@
   ?>
       <span>
         <?php echo
-          $n->desc;
+          $n->desc . '<br><br>';
         ?>
-        <span>
+        <span
+          id="acc_den"
+          onclick="accept_request(<?php echo $n->wager_id;?>)"
+        >Accept
+        </span>
+        <span
+          id="acc_den"
+          onclick="deny_request(<?php echo $n->wager_id;?>)"
+        >Deny
+        </span>
+        <span id="time">
           <?php echo
-            $n->timestamp;
+            $n->timestamp
             ;
           ?>
         </span>
