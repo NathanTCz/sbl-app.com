@@ -12,7 +12,7 @@
    Date Created: 2/27/2014 
 */
 
-//The Event class below utiilizes the templated Database 
+//The Event class below utilizes the templated Database 
 //class that interacts with the database frequently. The
 //Team class is also required because each event object has 
 //two teams associated with it 

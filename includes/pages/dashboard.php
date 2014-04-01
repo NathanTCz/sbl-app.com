@@ -1,7 +1,7 @@
 <?php
 $dash_navs = array('Balance' => 'bal',
-                     'Notifications' => 'notifs'
-                    );
+                   'Notifications' => 'notifs'
+                  );
 ?>
 
 <div class="dash">

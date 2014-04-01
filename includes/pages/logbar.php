@@ -43,12 +43,12 @@ if ( $n_cnt > 0 ) {
         ?>
         <span
           id="acc_den"
-          onclick="accept_request(<?php echo $n->wager_id;?>)"
+          onclick="accept_request(<?php echo $n->wager->id;?>)"
         >Accept
         </span>
         <span
           id="acc_den"
-          onclick="deny_request(<?php echo $n->wager_id;?>)"
+          onclick="deny_request(<?php echo $n->wager->id;?>)"
         >Deny
         </span>
         <span id="time">

@@ -326,29 +326,36 @@ Class User extends Database {
       $status = 1;
       $seen = 1;
 
-      //update at risk and balance of both users
-      //$bet_id is the wager_id of the event that should get passed in 
+
+      if ( $this->check_yacs($wager->amount) ) {
+
+        //update at risk and balance of both users
+        //$bet_id is the wager_id of the event that should get passed in 
 
 
-      $query = $DB->prepare ("
-      UPDATE yac, wager
-      SET
-        yac.balance = ?,
-        yac.at_risk = ?,
-        wager.status = ?,
-        wager.seen = ?
-      WHERE wager.id = ? AND yac.user_id = ? 
-    ");
+        $query = $DB->prepare ("
+        UPDATE yac, wager
+        SET
+          yac.balance = ?,
+          yac.at_risk = ?,
+          wager.status = ?,
+          wager.seen = ?
+        WHERE wager.id = ? AND yac.user_id = ? 
+      ");
 
-    $query->bind_param('dddddd',
-      $new_bal,
-      $new_ar, 
-      $status,
-      $seen,
-      $bet_id,
-      $this->user_id
-    );
-    $query->execute();
+      $query->bind_param('dddddd',
+        $new_bal,
+        $new_ar, 
+        $status,
+        $seen,
+        $bet_id,
+        $this->user_id
+      );
+      $query->execute();
+      return true;
+    }
+    else
+      return false;
    
   }
 

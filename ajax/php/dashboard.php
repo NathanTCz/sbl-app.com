@@ -59,12 +59,35 @@ elseif ($_GET['action'] == 'notifs') {
   if ( !empty($notifs) ) {
     foreach ($notifs as $n) {
     ?>
-    <span>
-      <?php echo
-        $n->title
-        ;
-      ?>
-    </span>
+      <div
+        id=""
+        class="list_item"
+      >
+        <span>
+          <?php echo //Display who is facing each other in the event
+            $n->title
+            ;
+          ?>
+        </span>
+        <span>
+          <?php echo //Diplay the beginning time of the event
+            $n->desc
+            ;
+          ?>
+        </span>
+        <span>
+          <?php echo //Display the scores of the two teams 
+            $n->timestamp
+            ;
+          ?>
+        </span>
+        <span>
+          <?php echo //Diplay the discription of the event
+            $n->wager->event->description
+            ;
+          ?>
+        </span>
+      </div>
     <?php
     }
   }
