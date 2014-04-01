@@ -22,6 +22,9 @@ Class User extends Database {
   private $accepted_wagers;
   private $denied_wagers;
 
+  private $recent_won_bets;
+  private $recent_lost_bets;
+
   private $pre_notifs;
   public $notifications;
 
@@ -40,9 +43,15 @@ Class User extends Database {
     $this->pre_notifs['accepted'] = array();
     $this->pre_notifs['denied'] = array();
 
+    $this->pre_notifs['recent_won'] = array();
+    $this->pre_notifs['recent_lost'] = array();
+
     $this->set_pending_wagers();
     $this->set_accepted_wagers();
     $this->set_denied_wagers();
+
+    $this->set_recently_won();
+    $this->set_recently_lost();
 
     $this->notifications = array();
     $this->set_notifications();
@@ -149,6 +158,33 @@ Class User extends Database {
     }
   }
 
+  public function set_recently_won(){
+      // $this->pre_notifs['recent_won'] = array();
+
+    foreach ($this->wagers as $wager) {
+      if ($this->user_id == $wager->user_id && $wager->wager_outcome === 1 
+          && strtotime($wager->timestamp) >= strtotime('-2 week')) {
+        $this->recent_won_bets[] = $wager;
+      }
+      elseif($this->user_id == $wager->opponenet_id && $wager->wager_outcome === 0
+          && strtotime($wager->timestamp) >= strtotime('-2 week'))
+         $this->recent_won_bets[] = $wager;
+    }
+  }
+
+  public function set_recently_lost(){
+
+    foreach ($this->wagers as $wager) {
+      if ($this->user_id == $wager->user_id && $wager->wager_outcome === 0 
+          && strtotime($wager->timestamp) >= strtotime('-2 week')) {
+        $this->recent_lost_bets[] = $wager;
+      }
+      elseif($this->user_id == $wager->opponenet_id && $wager->wager_outcome === 1
+          && strtotime($wager->timestamp) >= strtotime('-2 week'))
+         $this->recent_lost_bets[] = $wager;
+    }
+  }
+
   public function set_notifications () {
     global $SYSTEM;
 
@@ -242,6 +278,13 @@ Class User extends Database {
     return $this->pending_wagers;
   }
 
+  public function get_recent_won_bets(){
+    return $this->recent_won_bets;
+  }
+
+  public function get_recent_lost_bets (){
+     return $this->recent_lost_bets;
+  }
 
 
   public function make_wager ($opponent_id, $amount, $proposal, $event_id) {
@@ -286,7 +329,6 @@ Class User extends Database {
       //update at risk and balance of both users
       //$bet_id is the wager_id of the event that should get passed in 
 
-      //How can I set the opponent's balance and at risk amount???
 
       $query = $DB->prepare ("
       UPDATE yac, wager

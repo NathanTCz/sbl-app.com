@@ -190,16 +190,37 @@ public function check_time($event_time){
 
   //We should pass the time in as a string if possible. 
 
-  //If the time being passed in, which should be the current time, is greater 
-  //(meaning time to bet has passed) greater than the current time then the 
-  //wager cannot be placed
-
   if( strtotime('now') < strtotime($event_time) ){
     return true;
   }
   else
     return false;
 }
+
+public function check_yacs(){
+   //Add credits to the user's account if 3 weeks have passed 
+
+   global $DB;
+   global $USERS; 
+
+  foreach ($USERS as $user) {
+    if( strtotime($user->yac->updated) >= strtotime('-3 week') )
+    
+        $query = $DB->prepare ("
+        UPDATE yac
+        SET balance = ?
+        WHERE id = ?
+      ");
+
+      $query->bind_param('dd', 
+        $user->yac->balance + 50, $user->user_id
+      );
+    else 
+      ;
+  }
+  
+}
+
 
 public function check_and_update_user_balances(){
    global $DB;
@@ -212,16 +233,19 @@ public function check_and_update_user_balances(){
     foreach ($user->get_accepted_wagers() as $wagers) {
     if($user->yac->balance >= $wagers->amount) {
       if($wagers->outcome == 1 && $user->user_id == $wagers->user_id){
+ 
+        //The current user won!
 
         $query = $DB->prepare ("
         UPDATE yac
-        SET balance = ?, at_risk = ?
+        SET balance = ?, at_risk = ?, winnings = ?
         WHERE id = ?
       ");
 
-      $query->bind_param('ddd',
+      $query->bind_param('dddd',
         $user->yac->balance + $wagers->amount,
         $user->yac->at_risk - $wagers->amount,
+        $user->yac->winnings + $wagers->amount,
         $user->user_id
       );
       $query->execute();
@@ -229,15 +253,18 @@ public function check_and_update_user_balances(){
    
      elseif($wagers->outcome == 0 && $user->user_id == $wagers->user_id){
 
+      //The current user lost!
+
         $query = $DB->prepare ("
         UPDATE yac
-        SET balance = ?, at_risk = ?
+        SET balance = ?, at_risk = ?, losings = ?
         WHERE id = ?
       ");
 
-      $query->bind_param('ddd',
+      $query->bind_param('dddd',
         $user->yac->balance - $wagers->amount,
         $user->yac->at_risk - $wagers->amount,
+        $user->yac->losings + $wagers->amount,
         $user->user_id
       );
       $query->execute();
@@ -245,15 +272,18 @@ public function check_and_update_user_balances(){
 
      elseif($wagers->outcome == 1 && $user->user_id == $wagers->opponent_id){
 
+        //The current user lost (because the opponent won)!
+
         $query = $DB->prepare ("
         UPDATE yac
-        SET balance = ?, at_risk = ?
+        SET balance = ?, at_risk = ?, losings = ?
         WHERE id = ?
       ");
 
-      $query->bind_param('ddd',
+      $query->bind_param('dddd',
         $user->yac->balance - $wagers->amount,
         $user->yac->at_risk - $wagers->amount,
+        $user->yac->losings + $wagers->amount,
         $user->user_id
       );
       $query->execute();
@@ -261,15 +291,18 @@ public function check_and_update_user_balances(){
 
      elseif($wagers->outcome == 0 && $user->user_id == $wagers->opponent_id){
 
+        //THe current user won (because he/she is the opponent)!
+
         $query = $DB->prepare ("
         UPDATE yac
-        SET balance = ?, at_risk = ?
+        SET balance = ?, at_risk = ?, winnings = ?
         WHERE id = ?
       ");
 
-      $query->bind_param('ddd',
+      $query->bind_param('dddd',
         $user->yac->balance + $wagers->amount,
         $user->yac->at_risk - $wagers->amount,
+        $user->yac->winnings + $wagers->amount,
         $user->user_id
       );
       $query->execute();
