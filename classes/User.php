@@ -162,11 +162,11 @@ Class User extends Database {
       // $this->pre_notifs['recent_won'] = array();
 
     foreach ($this->wagers as $wager) {
-      if ($this->user_id == $wager->user_id && $wager->wager_outcome === 1 
+      if ($this->user_id == $wager->user_id && $wager->outcome === 1 
           && strtotime($wager->timestamp) >= strtotime('-2 week')) {
         $this->recent_won_bets[] = $wager;
       }
-      elseif($this->user_id == $wager->opponenet_id && $wager->wager_outcome === 0
+      elseif($this->user_id == $wager->opponent_id && $wager->outcome === 0
           && strtotime($wager->timestamp) >= strtotime('-2 week'))
          $this->recent_won_bets[] = $wager;
     }
@@ -175,11 +175,11 @@ Class User extends Database {
   public function set_recently_lost(){
 
     foreach ($this->wagers as $wager) {
-      if ($this->user_id == $wager->user_id && $wager->wager_outcome === 0 
+      if ($this->user_id == $wager->user_id && $wager->outcome === 0 
           && strtotime($wager->timestamp) >= strtotime('-2 week')) {
         $this->recent_lost_bets[] = $wager;
       }
-      elseif($this->user_id == $wager->opponenet_id && $wager->wager_outcome === 1
+      elseif($this->user_id == $wager->opponent_id && $wager->outcome === 1
           && strtotime($wager->timestamp) >= strtotime('-2 week'))
          $this->recent_lost_bets[] = $wager;
     }

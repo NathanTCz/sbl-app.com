@@ -17,7 +17,7 @@ function toggle_box () {
 }
 
 function load_notifications () {
-  setTimeout(load_notifications, 10000);
+  //setTimeout(load_notifications, 10000);
 
   /* save the display style of the notfication box so that it
    * doesn't disappear every time. Send it with the GET data.
@@ -48,7 +48,7 @@ function accept_request (b_id) {
   if ( (xmlHttp.readyState == 0 || xmlHttp.readyState == 4)
     && xmlHttp.readyState != 3 ) {
 
-  xmlHttp.onreadystatechange = process_notifications;
+  xmlHttp.onreadystatechange = load_notifications;
   
   xmlHttp.open("POST", "ajax/php/notifications.php", true);
   xmlHttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
@@ -64,7 +64,7 @@ function deny_request (b_id) {
   if ( (xmlHttp.readyState == 0 || xmlHttp.readyState == 4)
     && xmlHttp.readyState != 3 ) {
 
-  xmlHttp.onreadystatechange = process_notifications;
+  xmlHttp.onreadystatechange = load_notifications;
   
   xmlHttp.open("POST", "ajax/php/notifications.php", true);
   xmlHttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");

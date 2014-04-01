@@ -1,5 +1,6 @@
 <?php
- $notifs = $current_user->notifications;
+  $notifs = $current_user->notifications;
+  $n_cnt = count($notifs);
 ?>
 
 <div class="user_bar">
@@ -16,9 +17,12 @@
 </div>
 
 <div id="user_tools" class="user_tools">
+<?php
+if ( $n_cnt > 0 ) {
+?>
 <span onclick="toggle_box()" class="icon-flag"> 
   <?php echo 
-    count( $notifs )
+    $n_cnt
     ;
   ?>
 </span>
@@ -61,6 +65,9 @@
   ?>
 
 </div>
+<?php
+}
+?>
 </div>
 
 <script src="ajax/js/notifications.js"></script>

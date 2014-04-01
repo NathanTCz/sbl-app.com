@@ -204,7 +204,7 @@ public function check_yacs(){
    global $USERS; 
 
   foreach ($USERS as $user) {
-    if( strtotime($user->yac->updated) >= strtotime('-3 week') )
+    if( strtotime($user->yac->updated) >= strtotime('-3 week') ) {
     
         $query = $DB->prepare ("
         UPDATE yac
@@ -215,6 +215,7 @@ public function check_yacs(){
       $query->bind_param('dd', 
         $user->yac->balance + 50, $user->user_id
       );
+    }
     else 
       ;
   }

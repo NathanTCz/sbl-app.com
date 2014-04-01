@@ -35,11 +35,13 @@ $current_user->__construct($_SESSION['user']['email'],
                            $_SESSION['user_id']
                           );
 $notifs = $current_user->notifications;
-?>
+$n_cnt = count($notifs);
 
+if ( $n_cnt > 0 ) {
+?>
 <span onclick="toggle_box()" class="icon-flag"> 
   <?php echo 
-    count( $notifs )
+    $n_cnt
     ;
   ?>
 </span>
@@ -86,3 +88,6 @@ $notifs = $current_user->notifications;
   ?>
 
 </div>
+<?php
+}
+?>
