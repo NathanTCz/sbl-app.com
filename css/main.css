@@ -796,12 +796,13 @@ div#error span[class*='icon-'] {
 
   padding: 1em 0;
 
+  cursor: pointer;
   font-size: 1em;
   text-align: center;
   color: #FFF;
 }
 
-.dash .dash_nav span.active {
+.dash .dash_nav span.dash_active {
   color: greenyellow;
   border-bottom: 8px solid greenyellow;
 }
@@ -844,7 +845,7 @@ div#error span[class*='icon-'] {
   height: 100%;
   width: 2%;
 
-  background: #26C281;
+  background: #00B16A;
 
   -webkit-transition: all 2s;
      -moz-transition: all 2s;

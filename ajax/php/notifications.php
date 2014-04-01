@@ -30,6 +30,10 @@ if ( !empty($_POST) ) {
   }
 }
 
+$current_user->__construct($_SESSION['user']['email'],
+                           $_SESSION['user']['u_name'],
+                           $_SESSION['user_id']
+                          );
 $notifs = $current_user->notifications;
 ?>
 
