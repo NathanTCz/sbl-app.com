@@ -3,6 +3,7 @@
   error_reporting(E_ALL);
 
   ini_set('memory_limit', '-1');
+  ini_set('apc.shm_size', '512M');
 
   date_default_timezone_set('America/New_York');
 
@@ -34,17 +35,6 @@
   $LOG_ERRORS = array();
   $REG_ERRORS = array();
 
-  /* 
-   * Initial pull from DB
-   * Because of control flow, THESE MUST BE SET IN THIS
-   * ORDER, BITCH.
-   */
-  if ( $_SERVER['REQUEST_URI'] != '/web/main' ) {
-    $TEAMS = Database::set_teams();
-    $CATEGORIES = Database::set_categories();
-    $EVENTS = Database::set_events();
-    $YACS = Database::set_yacs();
-    $WAGERS = Database::set_wagers();
-    $USERS = Database::set_users();
-  }
+  // right here is where we need to initilatise the data
+  require_once('core/data_init.php');
 ?>
