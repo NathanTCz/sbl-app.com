@@ -15,13 +15,23 @@
   /* Just ORDER BY in the SQL statement */
   //usort($EVENTS, 'compare_event_time');
 
-  /* 
-   * Initial pull from DB
+  /*
+   * --------------------- CACHE CONTROL -------------------------
+   * This code segment drastically increases the
+   * performance of the application by utilizing a caching
+   * utility called Alternative PHP Cache. This utility works
+   * by caching data in main memory for a specfied time to live.
+   * I was able to drastically speed up the load times (both AJAX
+   * and initial page loads) by caching our biggest blocks of data,
+   * namely the EVENTS and TEAMS. As you may see I have turned off
+   * (commented out) storing everything but TEAMS and EVENTS, because
+   * of memory size limitations.
+   * 
+   * This also constitutes the initial pull from the DB when necessary.
+   *
    * Because of control flow, THESE MUST BE SET IN THIS
    * ORDER, BITCH.
    */
-
-  // Clear out old cache data
 
   if ( $_SERVER['REQUEST_URI'] != '/web/main' ) {
     if ( !apc_exists('TEAMS') ) {
