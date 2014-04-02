@@ -26,6 +26,11 @@
    * namely the EVENTS and TEAMS. As you may see I have turned off
    * (commented out) storing everything but TEAMS and EVENTS, because
    * of memory size limitations.
+   *
+   * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+   * IN ORDER TO TAKE ADVANTAGE OF THIS FEATURE YOU MUST HAVE APC
+   * INSTALLED AND ACTIVE AS A MODULE IN YOUR LOCAL SERVER CONFIGURATION
+   * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
    * 
    * This also constitutes the initial pull from the DB when necessary.
    *
