@@ -1,7 +1,9 @@
 /* Include icon css */
 @import url('icons.css');
 
-::-webkit-scrollbar {
+::-webkit-scrollbar,
+::-moz-scrollbar
+{
   display: none;
 }
 
@@ -171,11 +173,12 @@ div#error span[class*='icon-'] {
 }
 
 .main {
-  position: relative;
+/*  position: relative;
   top: 3em;
   left: 4.5em;
 
-  /*width: 86.2%;*/
+  width: 86.2%;*/
+  margin: 3em 0 0 4.5em;
   height: 93%;
 }
 
@@ -368,6 +371,76 @@ div#error span[class*='icon-'] {
   border-bottom: 14px solid #FFF;
 }
 
+.user_tools div#notifications div.loader_small {
+  display: none;
+  float: left;
+
+  width: 100%;
+  height: 5em;
+
+  text-align: center;
+  color: #555;
+  background: #EEE;
+}
+
+.user_tools div#notifications div.loader_small span {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+
+  margin-top: 0.5em;
+
+  font-size: 2em;
+
+  -webkit-animation: spin 1s linear 0s infinite;
+     -moz-animation: spin 1s infinite linear;
+          animation: spin 1s infinite linear;
+}
+
+.user_tools div#notifications div.success_small {
+  display: none;
+  float: left;
+
+  width: 100%;
+  height: 5em;
+
+  text-align: center;
+  color: #555;
+  background: #EEE;
+}
+
+.user_tools div#notifications div.success_small span {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+
+  margin-top: 0.5em;
+
+  font-size: 2em;
+}
+
+.user_tools div#notifications div.error_small {
+  display: none;
+  float: left;
+
+  width: 100%;
+  height: 5em;
+
+  text-align: center;
+  color: #555;
+  background: #EEE;
+}
+
+.user_tools div#notifications div.error_small span {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+
+  margin-top: 0.5em;
+
+  font-size: 2em;
+}
+
 .nav {
   position: fixed;
   top: 3em;
@@ -442,8 +515,6 @@ div#error span[class*='icon-'] {
 }
 
 .bar {
-  float: left;
-
   height: 100%;
 }
 
@@ -453,7 +524,7 @@ div#error span[class*='icon-'] {
 
 .bar#categ {
   position: fixed;
-  top: 3em;
+  left: 4.5em;
   width: 10em;
 
   background: #555;
@@ -485,13 +556,16 @@ div#error span[class*='icon-'] {
   left: 2em;
 }
 
-.bar#list {
-  position: relative;
-  top: 0;
-  left: 10em;
+.list_spacer {
+  float: left;
+  width: 10em;
+  height: 100%;
+}
 
-  width: 85%;
+.bar#list {
   height: auto;
+
+  margin: 0 0 0 10em;
 
   z-index: 0;
   overflow: hidden;
@@ -576,12 +650,9 @@ div#error span[class*='icon-'] {
 }
 
 .bar#event {
-  position: relative;
-  top: 0;
-  left: 10em;
-
-  width: 85%;
   height: auto;
+
+  margin: 0 0 0 10em;
 
   z-index: 0;
 
@@ -633,8 +704,6 @@ div#error span[class*='icon-'] {
 }
 
 .bar#event .event_jumbo div#event_desc {
-  clear: both;
-
   width: 80%;
 
   padding: 1em;
@@ -644,6 +713,10 @@ div#error span[class*='icon-'] {
   text-align: center;
 
   border-top: 1px solid #EEE;
+}
+
+.bar#event .event_jumbo span.am_pm {
+  display: initial;
 }
 
 .bar#event div.event_toolbar {
@@ -715,7 +788,7 @@ div#error span[class*='icon-'] {
 
   width: 100%;
 
-  font-size: 30pt;
+  font-size: 20pt;
   text-align: center;
 }
 
@@ -728,7 +801,7 @@ div#error span[class*='icon-'] {
 }
 
 .bet_box div#prop span#vs {
-  font-size: 20pt;
+  font-size: 15pt;
   cursor: default;
 }
 
@@ -779,7 +852,7 @@ div#error span[class*='icon-'] {
 
 /* Dashboard styling */
 .dash {
-  width: 95%;
+  width: 100%;
   height: 100%;
 }
 
@@ -834,10 +907,11 @@ div#error span[class*='icon-'] {
 }
 
 .dash .bal_bar {
+  float: left;
   height: 2em;
-  width: 95%;
+  width: 100%;
 
-  margin: 0 auto;
+  margin: 4em auto;
 }
 
 .dash .bal_bar div#balance {
@@ -855,11 +929,34 @@ div#error span[class*='icon-'] {
 .dash .bal_bar div#at_risk {
   float: right;
   height: 100%;
-  width: 2%;
+  width: 96.87%;
 
   background: #ed4337;
 
   -webkit-transition: all 2s;
      -moz-transition: all 2s;
           transition: all 2s;
+}
+
+.dash .bal_bar div#mid_bar {
+  float: left;
+  width: 1%;
+  height: 4em;
+
+  margin-top: -1em;
+
+  background: #FFA500;
+  border: 1px solid #888;
+}
+
+.dash .notif_list_item {
+  width: 100%;
+
+  padding: 3em;
+
+  border-bottom: 1px solid #555;
+}
+
+.dash .notif_list_item span {
+  display: block;
 }

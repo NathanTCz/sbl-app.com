@@ -33,7 +33,23 @@ if ( $n_cnt > 0 ) {
   if ( !empty( $notifs ) ) {
     foreach ( $notifs as $n ) {
   ?>
-    <span>
+    <div id="loader_small<?php echo $n->wager->id;?>"
+      class="loader_small"
+    >
+      <span class="icon-spinner2"></span>
+    </div>
+    <div id="success_small<?php echo $n->wager->id;?>"
+      class="success_small"
+    >
+      <span class="icon-checkmark-circle"></span>
+    </div>
+    <div id="error_small<?php echo $n->wager->id;?>"
+      class="error_small"
+    >
+      <span class="icon-cancel-circle"></span>
+    </div>
+
+    <span id="<?php echo $n->wager->id;?>">
   <?php echo
       $n->title;
   ?>

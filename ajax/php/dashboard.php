@@ -22,8 +22,8 @@ else
 $balance = $current_user->yac->balance;
 $at_risk = $current_user->yac->at_risk;
 
-$bal_width = $balance / ($balance + $at_risk) * 100;
-$ar_width = $at_risk / ($balance + $at_risk) * 100;
+$bal_width = ( $balance / ($balance + $at_risk) * 100 ) - 0.6;
+$ar_width = ( $at_risk / ($balance + $at_risk) * 100 ) - 0.55;
 
 //$ar_top = $balance / ($balance + $at_risk) * 10;
 //$bal_top = $at_risk / ($balance + $at_risk) * 10;
@@ -50,6 +50,7 @@ if ($_GET['action'] == 'bal') {
 
 <div class="bal_bar">
   <div id="balance" data-width="<?php echo $bal_width;?>"></div>
+  <div id="mid_bar"></div>
   <div id="at_risk" data-width="<?php echo $ar_width;?>"></div>
 </div>
 <?php
@@ -60,30 +61,33 @@ elseif ($_GET['action'] == 'notifs') {
     foreach ($notifs as $n) {
     ?>
       <div
-        id=""
-        class="list_item"
+        id="<?php echo $n->wager->id;?>"
+        class="notif_list_item"
       >
         <span>
-          <?php echo //Display who is facing each other in the event
+          <?php echo
             $n->title
             ;
           ?>
         </span>
         <span>
-          <?php echo //Diplay the beginning time of the event
+          <?php echo
             $n->desc
             ;
           ?>
         </span>
         <span>
-          <?php echo //Display the scores of the two teams 
+          <?php echo
             $n->timestamp
             ;
           ?>
         </span>
         <span>
-          <?php echo //Diplay the discription of the event
-            $n->wager->event->description
+          <?php echo
+            'view the event ' .
+            '<a href="' .
+            $n->wager->event->id .
+            '">here</a>'
             ;
           ?>
         </span>

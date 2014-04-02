@@ -21,13 +21,21 @@ if ( !empty($_POST) ) {
   if ($_POST['action'] == 'accept') {
     $bet_id = $_POST['b_id'];
 
-    if ( $current_user->accept_request($bet_id) )
-      ;
+    if ( $current_user->accept_request($bet_id) ) {
+      echo 'OK';
+      exit;
+    }
+    else {
+      echo 'ERROR';
+      exit;
+    }
   }
   else if ($_POST['action'] == 'deny') {
     $bet_id = $_POST['b_id'];
 
     $current_user->deny_request($bet_id);
+    echo 'OK';
+    exit;
   }
 }
 
@@ -57,7 +65,23 @@ if ( $n_cnt > 0 ) {
   if ( !empty( $notifs ) ) {
     foreach ( $notifs as $n ) {
   ?>
-    <span>
+    <div id="loader_small<?php echo $n->wager->id;?>"
+      class="loader_small"
+    >
+      <span class="icon-spinner2"></span>
+    </div>
+    <div id="success_small<?php echo $n->wager->id;?>"
+      class="success_small"
+    >
+      <span class="icon-checkmark-circle"></span>
+    </div>
+    <div id="error_small<?php echo $n->wager->id;?>"
+      class="error_small"
+    >
+      <span class="icon-cancel-circle"></span>
+    </div>
+
+    <span id="<?php echo $n->wager->id;?>">
   <?php echo
       $n->title;
   ?>

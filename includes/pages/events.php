@@ -17,6 +17,7 @@
   </div>
 </div>
 
+<div class="list_spacer"></div>
 <div id="list" class="bar"></div>
 
 <div id="event" class="bar"></div>
