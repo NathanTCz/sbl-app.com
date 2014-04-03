@@ -40,13 +40,21 @@ $dates = array();
 
 //Stores the dates for categorization based on the category id
 foreach ($EVENTS as $event) {
-  if ( !in_array($event->date, $dates)
-      &&
-      (
-        $event->category->id == $cat_id
-        || $cat_id == 1
-      )
-     )
+  if ($cat_id != 9) {
+    if ( !in_array($event->date, $dates)
+        &&
+        (
+          $event->category->id == $cat_id
+          || $cat_id == 1
+        )
+        && strtotime($event->date) >= strtotime(date('n/j/Y'))
+       )
+      $dates[] = $event->date;
+  }
+  elseif ( !in_array($event->date, $dates)
+          && strtotime($event->date) < strtotime( date('n/j/Y') )
+          && $cat_id == 9
+          )
     $dates[] = $event->date;
 }
 
@@ -74,7 +82,9 @@ foreach ($dates as $date) {
     $cat_name = $event->category->name;
 
     if ($event->category->id == $cat_id
-        || $cat_id == 1)
+        || $cat_id == 1
+        || $cat_id == 9
+        )
     {
       if ($event->date == $date) {
       ?>

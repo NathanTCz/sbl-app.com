@@ -126,7 +126,8 @@ class Database {
         $wager->wager_outcome,
         $wager->status,
         $wager->proposal,
-        $wager->seen
+        $wager->seen,
+        $wager->counter_offer_bool
       );
     }
     return ( isset($wagers) ) ? $wagers : $wagers = array();

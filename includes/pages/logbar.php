@@ -50,9 +50,11 @@ if ( $n_cnt > 0 ) {
     </div>
 
     <span id="<?php echo $n->wager->id;?>">
-  <?php echo
-      $n->title;
-  ?>
+      <span id="notif_title">
+      <?php echo
+        $n->title;
+      ?>
+      </span>
       <span>
         <?php echo
           $n->desc . '<br><br>';
@@ -67,6 +69,11 @@ if ( $n_cnt > 0 ) {
           onclick="deny_request(<?php echo $n->wager->id;?>)"
         >Deny
         </span>
+        <span
+          id="acc_den"
+          onclick="show_counter_box(<?php echo $n->wager->id;?>)"
+        >Counter
+        </span>
         <span id="time">
           <?php echo
             $n->timestamp
@@ -77,6 +84,9 @@ if ( $n_cnt > 0 ) {
     </span>
   <?php
     }
+  ?>
+    <span id="see_all">See all notifications</span>
+  <?php
   }
   ?>
 

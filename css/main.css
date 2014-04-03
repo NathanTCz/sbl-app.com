@@ -142,7 +142,7 @@ div#error span[class*='icon-'] {
 }
 
 .underlay {
-  position: absolute;
+  position: fixed;
   top: 0px;
   left: 0px;
 
@@ -281,7 +281,7 @@ div#error span[class*='icon-'] {
   color: #ED4337;
 }
 
-.user_tools span {
+.user_tools > span {
   cursor: pointer;
 }
 
@@ -290,12 +290,11 @@ div#error span[class*='icon-'] {
   top: 4em;
   right: 1em;
 
-  width: 22em;
+  width: 27em;
 
   text-align: center;
   opacity: 0;
-
-  cursor: default;
+  overflow: hidden;
 
   background: #FFF;
   border: 1px solid #333;
@@ -309,18 +308,47 @@ div#error span[class*='icon-'] {
           transition: all 0.2s; 
 }
 
-.user_tools div#notifications span {
+.user_tools div#notifications > span {
   display: block;
+  float: left;
 
   color: #555;
-  font-size: 13pt;
 
-  padding: 5px;
-  border-bottom: 1px solid #444;
+  background: #FFF;
+  border-bottom: 1px solid #EEE;
+
+  -webkit-transition: all 0.2s;
+     -moz-transition: all 0.2s;
+          transition: all 0.2s; 
+}
+
+.user_tools div#notifications > span:hover {
+  background: #EEE;
 }
 
 .user_tools div#notifications span:last-child {
   border: none;
+}
+
+.user_tools div#notifications span > span#notif_title {
+  width: 100%;
+
+  padding: 3px;
+
+  background: #999;
+  font-size: 13pt;
+  color: #EEE;
+}
+
+.user_tools div#notifications span#see_all {
+  width: 100%;
+
+  padding: 2px;
+
+  cursor: pointer;
+
+  text-align: center;
+  color: #555;
 }
 
 .user_tools div#notifications span > span {
@@ -332,7 +360,6 @@ div#error span[class*='icon-'] {
 
   font-size: 10pt;
   text-align: left;
-  background: #eee;
 }
 
 .user_tools div#notifications span > span > span {
@@ -351,7 +378,11 @@ div#error span[class*='icon-'] {
 
 .user_tools div#notifications span > span > span#acc_den {
   float: left;
-  width:25%;
+  width: auto;
+
+  margin: 0 0.5em 0 0;
+
+  cursor: pointer;
 
   font-size: 12pt;
   text-decoration: underline;
@@ -634,7 +665,7 @@ div#error span[class*='icon-'] {
   float: right;
   width: 38%;
 
-  margin-right: 2%;
+  margin: 1% 2% 0 0;
 }
 
 .bar#list .list_item span {
@@ -849,6 +880,41 @@ div#error span[class*='icon-'] {
   float: right;
   padding: 0.5em;
 }
+
+.counter_box {
+  text-align: center;
+}
+
+.counter_box span#ctr_title {
+  font-size: 25pt;
+}
+
+.counter_box div#amt {
+  margin: 3em;
+}
+
+.counter_box .btns {
+  position: absolute;
+  bottom: 0;
+
+  width: 100%;
+
+  font-size: 15pt;
+}
+
+.counter_box .btns span {
+  cursor: pointer;
+}
+
+.counter_box .btns span#ctr_cancel {
+  float: left;
+  padding: 0.5em;
+}
+
+.counter_box .btns span#ctr_send {
+  float: right;
+  padding: 0.5em;
+} 
 
 /* Dashboard styling */
 .dash {

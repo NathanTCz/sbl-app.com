@@ -32,7 +32,7 @@ $timestamp = $_POST['time'];
 $opp = $SYSTEM->get_userid($opp);
 
 if ( $SYSTEM->check_time($timestamp) && $current_user->check_yacs($amnt) 
-	&& $current_user->user_id != $opp) {
+	&& $current_user->get_uid() != $opp) {
   if ( $current_user->make_wager($opp, $amnt, $prop, $event_id) )
     echo 'OK';
   else echo 'ERROR';

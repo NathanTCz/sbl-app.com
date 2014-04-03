@@ -19,9 +19,8 @@ function load_bet_box (h, a, e) {
   a = JSON.stringify(a);
   e = JSON.stringify(e);
 
-  xmlHttp=new XMLHttpRequest();
-
-  if (xmlHttp.readyState == 0 || xmlHttp.readyState == 4) {
+  if ( (xmlHttp.readyState == 0 || xmlHttp.readyState == 4)
+      && xmlHttp.readyState != 3 ) {
 
     xmlHttp.onreadystatechange = process_bet_box;
     
@@ -44,6 +43,7 @@ function hide () {
   document.getElementById('bet_box').style.display = "none";
 
   document.getElementsByClassName('wrapper')[0].className = "wrapper";
+  //document.getElementsByClassName('main')[0].removeAttribute('style');
 
   document.getElementsByClassName('underlay')[0].style.zIndex = "0";
   document.getElementsByClassName('underlay')[0].style.opacity = "0";
@@ -79,9 +79,8 @@ function send_form_data (p, a, o, e) {
   document.getElementById('spinner').style.color = '#FFF';
   document.getElementById('loader').style.display = 'block';
 
-  xmlHttp=new XMLHttpRequest();
-
-  if (xmlHttp.readyState == 0 || xmlHttp.readyState == 4) {
+  if ( (xmlHttp.readyState == 0 || xmlHttp.readyState == 4)
+      && xmlHttp.readyState != 3 ) {
 
     xmlHttp.onreadystatechange = success;
     
@@ -102,10 +101,10 @@ function success () {
     document.getElementById('loader').style.display = 'none';
     document.getElementById('spinner').removeAttribute('style');
 
-    if (xmlHttp.responseText == 'OK')
+    if (xmlHttp.responseText == '  OK')
       document.getElementById('success').style.display = 'block';
 
-    else if ( xmlHttp.responseText == 'ERROR')
+    else if ( xmlHttp.responseText == '  ERROR')
       document.getElementById('error').style.display = 'block';
 
     setTimeout(hide, 1200);

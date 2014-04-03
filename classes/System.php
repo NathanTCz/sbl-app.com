@@ -107,7 +107,7 @@ class System extends Database {
    global $DB;
 
   	foreach ($this->events as $event) {
-  		if($event->home_score > $event_away_score){
+  		if($event->home_score > $event->away_score){
   			$query = $DB->prepare ("
       UPDATE event
       SET outcome = 1

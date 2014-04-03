@@ -99,3 +99,81 @@ function notif_success (b_id) {
     setTimeout(load_notifications, 500);
   }
 }
+
+/*
+ * COUNTER OFFER LOGIC AND DOM MANIPULATION
+*/
+
+function show_counter_box (b_id) {
+  /* beacuse the betbox is above the team info in the actual
+   * HTML document we have to send that info to that element
+   * with AJAX
+   */
+  load_counter_box(b_id);
+
+  // Now we can display the element
+  document.getElementById('bet_box').style.display = "block";
+
+  document.getElementsByClassName('underlay')[0].style.zIndex = "99999";
+  document.getElementsByClassName('underlay')[0].style.opacity = "0.7";
+
+  document.getElementsByClassName('wrapper')[0].className = "wrapper blurred";
+  //document.getElementsByClassName('main')[0].style.overflow = "hidden";
+}
+
+function load_counter_box (b_id) {
+
+  if ( (xmlHttp.readyState == 0 || xmlHttp.readyState == 4)
+      && xmlHttp.readyState != 3 ) {
+
+    xmlHttp.onreadystatechange = process_counter_box;
+    
+    xmlHttp.open("GET", "ajax/php/counter_box.php?b_id=" + b_id, true);
+    xmlHttp.send();
+    }
+}
+
+function process_counter_box () {
+  if (xmlHttp.readyState == 4 && xmlHttp.status==200) {
+    document.getElementById('bet_box').innerHTML=xmlHttp.responseText;
+  }
+}
+
+function counter_request (b_id, amt) {
+  var action = 'counter';
+  var amt = document.getElementById('ctr_amt').value;
+
+  document.getElementById('bet_box').style.display = 'none';
+  document.getElementById('spinner').style.color = '#FFF';
+  document.getElementById('loader').style.display = 'block';
+
+  if ( (xmlHttp.readyState == 0 || xmlHttp.readyState == 4)
+    && xmlHttp.readyState != 3 ) {
+
+  xmlHttp.onreadystatechange = counter_success;
+  
+  xmlHttp.open("POST", "ajax/php/notifications.php", true);
+  xmlHttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+  xmlHttp.send("b_id=" + encodeURIComponent(b_id) + 
+               "&amt=" + encodeURIComponent(amt) +
+               "&action=" + encodeURIComponent(action)
+              );
+  }
+}
+
+function counter_success () {
+  if (xmlHttp.readyState == 4 && xmlHttp.status==200) {
+    document.getElementById('bet_box').style.display = 'none';
+    document.getElementById('loader').style.display = 'none';
+    document.getElementById('spinner').removeAttribute('style');
+
+    if (xmlHttp.responseText == '  OK')
+      document.getElementById('success').style.display = 'block';
+
+    else if ( xmlHttp.responseText == '  ERROR')
+      document.getElementById('error').style.display = 'block';
+
+    setTimeout(load_notifications, 500);
+    setTimeout(hide, 1200);
+  }
+}

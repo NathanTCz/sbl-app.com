@@ -37,6 +37,19 @@ if ( !empty($_POST) ) {
     echo 'OK';
     exit;
   }
+  else if ($_POST['action'] == 'counter') {
+    $bet_id = $_POST['b_id'];
+    $amt = $_POST['amt'];
+
+    if ( $current_user->counter_offer($bet_id, $amt) ) {
+      echo 'OK';
+      exit;
+    }
+    else {
+      echo 'ERROR';
+      exit;
+    }
+  }
 }
 
 $current_user->__construct($_SESSION['user']['email'],
@@ -82,9 +95,11 @@ if ( $n_cnt > 0 ) {
     </div>
 
     <span id="<?php echo $n->wager->id;?>">
-  <?php echo
-      $n->title;
-  ?>
+      <span id="notif_title">
+      <?php echo
+        $n->title;
+      ?>
+      </span>
       <span>
         <?php echo
           $n->desc . '<br><br>';
@@ -99,9 +114,14 @@ if ( $n_cnt > 0 ) {
           onclick="deny_request(<?php echo $n->wager->id;?>)"
         >Deny
         </span>
+        <span
+          id="acc_den"
+          onclick="counter_request(<?php echo $n->wager->id;?>)"
+        >Counter
+        </span>
         <span id="time">
           <?php echo
-            $n->timestamp;
+            $n->timestamp
             ;
           ?>
         </span>
@@ -109,6 +129,9 @@ if ( $n_cnt > 0 ) {
     </span>
   <?php
     }
+  ?>
+    <span id="see_all">See all notifications</span>
+  <?php
   }
   ?>
 

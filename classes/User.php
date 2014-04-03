@@ -290,6 +290,9 @@ Class User extends Database {
   public function make_wager ($opponent_id, $amount, $proposal, $event_id) {
     global $DB;
 
+    if ($amount <= 0)
+      return false;
+
     $query = $DB->prepare ("
       INSERT INTO wager (
         user_id,
@@ -382,12 +385,19 @@ Class User extends Database {
 
   }
 
-  public function counter_offer ($bet_id, $counter_amount, $u_id, $opp_id, $counter_bool) {
+  public function counter_offer ($bet_id, $counter_amount) {
     global $DB;
+    global $WAGERS;
+
+    foreach ($WAGERS as $w)
+      if ($bet_id == $w->id)
+        $wager = $w;
 
     //they can counter propose an amount for now
-    if($counter_bool == 1)
-      $counter_bool = 0;
+    if($wager->counter_bool == 1)
+      $wager->counter_bool = 0;
+    elseif ($wager->counter_bool == 0)
+      $wager->counter_bool = 1;
 
 
       $query = $DB->prepare ("
@@ -396,15 +406,15 @@ Class User extends Database {
       WHERE id = ? 
     ");
 
-    $query->bind_param('dddd',
-      $counter_bool,
+    $query->bind_param('ddddd',
+      $wager->counter_bool,
       $counter_amount,
-      $bet_id, $opp_id,
-      $u_id
+      $wager->opponent_id,
+      $wager->user_id,
+      $bet_id
     );
-    $query->execute();
-   
 
+    return ( $query->execute() ) ? true : false;
   }
 
 };
