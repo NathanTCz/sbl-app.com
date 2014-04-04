@@ -294,7 +294,6 @@ div#error span[class*='icon-'] {
 
   text-align: center;
   opacity: 0;
-  overflow: hidden;
 
   background: #FFF;
   border: 1px solid #333;
@@ -314,7 +313,7 @@ div#error span[class*='icon-'] {
 
   color: #555;
 
-  background: #FFF;
+
   border-bottom: 1px solid #EEE;
 
   -webkit-transition: all 0.2s;
@@ -331,7 +330,7 @@ div#error span[class*='icon-'] {
 }
 
 .user_tools div#notifications span > span#notif_title {
-  width: 100%;
+  width: 98.6%;
 
   padding: 3px;
 
@@ -341,7 +340,7 @@ div#error span[class*='icon-'] {
 }
 
 .user_tools div#notifications span#see_all {
-  width: 100%;
+  width: 98.6%;
 
   padding: 2px;
 
@@ -357,6 +356,7 @@ div#error span[class*='icon-'] {
   width: 97%;
 
   margin-bottom: 5px;
+  padding: 0 0 0 8px;
 
   font-size: 10pt;
   text-align: left;
@@ -399,7 +399,7 @@ div#error span[class*='icon-'] {
 
   border-right: 14px solid transparent;
   border-left: 14px solid transparent;
-  border-bottom: 14px solid #FFF;
+  border-bottom: 14px solid #999;
 }
 
 .user_tools div#notifications div.loader_small {
@@ -891,6 +891,10 @@ div#error span[class*='icon-'] {
 
 .counter_box div#amt {
   margin: 3em;
+}
+
+.counter_box div#amt input {
+  font-size: 20pt;
 }
 
 .counter_box .btns {
