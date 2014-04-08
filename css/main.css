@@ -999,7 +999,7 @@ div#error span[class*='icon-'] {
 .dash .bal_bar div#at_risk {
   float: right;
   height: 100%;
-  width: 96.87%;
+  width: 98%;
 
   background: #ed4337;
 
@@ -1010,13 +1010,51 @@ div#error span[class*='icon-'] {
 
 .dash .bal_bar div#mid_bar {
   float: left;
-  width: 1%;
+  width: 16px;
   height: 4em;
 
-  margin-top: -1em;
+  margin: -1em 0 0 -18px;
 
   background: #FFA500;
   border: 1px solid #888;
+}
+
+.dash .rec_bets {
+  float: left;
+  width: 100%;
+  height: 20em;
+}
+
+.dash .rec_bets .bets_nav {
+  width: 100%;
+  background: #999;
+}
+
+.dash .rec_bets .bets_nav span {
+  display: inline-block;
+  width: 6em;
+
+  padding: 0.5em 0;
+
+  cursor: pointer;
+  font-size: 1.2em;
+  text-align: center;
+  color: #555;
+}
+
+.dash .rec_bets .bets_nav span.dash_bets_active {
+  background: #FFF;
+  border: 1px solid #777;
+  border-bottom: none;
+}
+
+.dash .rec_bets .bets_nav span:first-child.dash_bets_active {
+  border-left: none;
+}
+
+.dash .rec_bets .bets_view {
+  width: 100%;
+  height: 100%;
 }
 
 .dash .notif_list_item {
