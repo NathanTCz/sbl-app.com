@@ -43,7 +43,49 @@ elseif ($_GET['action'] == 'den') {
 
 if ( !empty($bets) ) {
   foreach ($bets as $wager) {
-    echo $wager->amount;
+?>
+  <div class="bet_item">
+    <span id="ttl">
+      <?php echo
+        'Wager #' .
+        $wager->id
+        ;
+      ?>
+    </span>
+    <span id="evt_ttl">
+      <?php echo
+        $wager->event->category->name;
+        ;
+      ?>
+    </span>
+    <span id="evt_des">
+      <?php echo
+        $wager->event->description;
+        ;
+      ?>
+    </span>
+    <span id="amnt">
+      <?php echo
+        $wager->prop_team->name;
+      ?>
+    </span>
+    <span id="t_name">
+      <?php echo
+        $wager->prop_team->name;
+      ?>
+    </span>
+    <span id="stat">
+      <?php echo
+        $wager->status_in_text;
+      ?>
+    </span>
+    <span id="w_time">
+      <?php echo
+        $SYSTEM->time2str($wager->timestamp);
+      ?>
+    </span>
+  </div>
+<?php
   }
 }
 ?>

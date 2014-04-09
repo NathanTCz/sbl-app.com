@@ -8,11 +8,12 @@ $ar_width = ( $at_risk / ($balance + $at_risk) * 100 );
 //$ar_top = $balance / ($balance + $at_risk) * 10;
 //$bal_top = $at_risk / ($balance + $at_risk) * 10;
 
-$bets_navs = array('Recent' => 'rec',
-                   'Counters' => 'cnt',
+$bets_navs = array(
                    'Pending' => 'pen',
+                   'Recent Won/Lost' => 'rec',
                    'Accepted' => 'acc',
                    'Denied' => 'den',
+                   'Counter Offers' => 'cnt'
                   );
 ?>
 
@@ -56,6 +57,9 @@ $bets_navs = array('Recent' => 'rec',
     <?php
     }
     ?>
+  </div>
+  <div id="bets_loader" style="display: none;">
+    <span id="bets_spinner" class="icon-spinner2"></span>
   </div>
   <div id="bets_view" class="bets_view"></div>
 </div>

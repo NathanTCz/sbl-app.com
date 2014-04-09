@@ -62,6 +62,19 @@ foreach ($EVENTS as $event) {
 //in the function above
 usort($dates, 'compare_event_date');
 
+//include the search bar
+//include 'includes/widgets/search_bar.php';
+
+// ended up not including it because it takes more time.
+// rather just put the static text.
+?>
+<div class="search">
+  <span class="icon-search"></span>
+  <input id="query" type="text"></input>
+</div>
+<div class="search_spacer"></div>
+<?php
+
 //Goes through each date in the array and displays the dates
 foreach ($dates as $date) {
 ?>

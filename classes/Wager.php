@@ -11,7 +11,9 @@ class Wager extends Database {
   public $event;
   public $outcome;
   public $status;
+  public $status_in_text;
   public $proposal;
+  public $prop_team;
   public $seen;
   public $counter_bool;
 
@@ -26,7 +28,9 @@ class Wager extends Database {
     $this->event = $this->set_event($e);
     $this->outcome = $o;
     $this->status = $s;
+    $this->status_in_text = $this->set_stat($s);
     $this->proposal = $p;
+    $this->prop_team = $this->set_prop_team($s);
     $this->seen =$see;
     $this->counter_bool = $cb;
   }
@@ -42,6 +46,22 @@ class Wager extends Database {
         return $event;
       }
     }
+  }
+
+  public function set_prop_team ($team_id) {
+    if ($this->proposal == $this->event->home_team->id)
+      return $this->event->home_team;
+    else
+      return $this->event->away_team;
+  }
+
+  public function set_stat ($status) {
+    if ($status === 0)
+      return 'Denied';
+    elseif ($status === 1)
+      return 'Accepted';
+    elseif ($status === NULL)
+      return 'Pending';
   }
 
 };

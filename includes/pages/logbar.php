@@ -1,31 +1,38 @@
 <?php
   $notifs = $current_user->notifications;
   $n_cnt = count($notifs);
+
+  if ( $n_cnt == 0 )
+    $back = '#444';
+  else
+    $back = '#ADFF2F';
 ?>
 
-<div class="user_bar">
-  <form name ="logout" method ="POST" action ="/logout.php">
-    <span><?php echo $current_user->get_uname();?></span>
-    <button type="submit" name="logout">
-      <span class="icon-switch">
-        &nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;
-        LOGOUT
-      </span>
-    </button>
-  </form>
-</div>
-
 <div id="user_tools" class="user_tools">
+  <span class="top_bal">
+    <span>
+      <?php echo
+        $current_user->yac->balance
+        ;
+      ?>
+    </span>
+    <span> | </span>
+    <span>
+      <?php echo
+        $current_user->yac->at_risk
+        ;
+      ?>
+    </span>
+  </span>
+  <span onclick="toggle_box()" class="notif_box"> 
+    <span class="circle" style="background:<?php echo $back;?>"></span>
+  </span>
+  <span onclick="location.href='/logout.php'" class="logout_btn"> 
+    <span class="icon-switch"></span>
+  </span>
 <?php
 if ( $n_cnt > 0 ) {
 ?>
-<span onclick="toggle_box()" class="icon-flag"> 
-  <?php echo 
-    $n_cnt
-    ;
-  ?>
-</span>
 <div id="notifications" style="display:none; opacity:0;">
   <div class="tri"></div>
 

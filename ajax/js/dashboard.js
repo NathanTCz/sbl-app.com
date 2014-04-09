@@ -16,7 +16,7 @@ function load_dash (id) {
 
     xmlHttp.onreadystatechange = function(){
       process_dash(id);
-      return setTimeout(load_bets_view('rec'), 3000);
+      return setTimeout(load_bets_view('pen'), 3000);
     };
     
     xmlHttp.open("GET", "ajax/php/dashboard.php?action=" + id,true);
@@ -53,7 +53,7 @@ function process_dash (id) {
 
 function load_bets_view (id) {
   document.getElementById('bets_view').style.display = 'none';
-  //document.getElementById('bets_loader').style.display = 'block';
+  document.getElementById('bets_loader').style.display = 'block';
 
   if ( (xmlHttp.readyState == 0 || xmlHttp.readyState == 4)
       && xmlHttp.readyState != 3 ) {
@@ -74,7 +74,7 @@ function load_bets_view (id) {
 
 function process_bets_view () {
   if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-    //document.getElementById('bets_loader').style.display = 'none';
+    document.getElementById('bets_loader').style.display = 'none';
     document.getElementById('bets_view').style.display = 'block';
     document.getElementById('bets_view').innerHTML=xmlHttp.responseText;
   }

@@ -199,7 +199,7 @@ div#error span[class*='icon-'] {
 
   border-top: 14px solid transparent;
   border-bottom: 14px solid transparent;
-  border-right: 14px solid greenyellow;
+  border-right: 14px solid #ADFF2F;
 }
 
 .top_bar {
@@ -219,6 +219,8 @@ div#error span[class*='icon-'] {
   top: 0;
   left: 0;
   
+  margin: 5px;
+
   font-size: 25pt;
   font-family: 'app-font';
   color: #555;
@@ -270,19 +272,99 @@ div#error span[class*='icon-'] {
 
 .user_tools {
   position: fixed;
-  top: 1.5em;
-  right: 2em;
+  right: 0;
 
   z-index: 999;
 
   width: auto;
-  height: 1em;
-
-  color: #ED4337;
+  height: 3em;
 }
 
-.user_tools > span {
+.user_tools .logout_btn {
+  display: block;
+  float: left;
+
+  width: 3em;
+  height: 100%;
+
+  background: #333;
   cursor: pointer;
+
+  -webkit-transition: all 0.2s;
+     -moz-transition: all 0.2s;
+          transition: all 0.2s;
+
+  box-shadow: inset -1px 0 0 #444,
+              inset 0 -1px 0 transparent,
+              inset 1px 0 0 transparent,
+              inset 0 1px 0 transparent; 
+}
+
+.user_tools .logout_btn:hover {
+  background: #444;
+}
+
+.user_tools .logout_btn span[class*='icon-'] {
+  display: block;
+  float: left;
+
+  margin: 1em;
+  font-size: 1em;
+  color: #999;
+}
+
+.user_tools .notif_box {
+  display: block;
+  float: left;
+
+  width: 3em;
+  height: 100%;
+
+  background: #333;
+  cursor: pointer;
+
+  -webkit-transition: all 0.2s;
+     -moz-transition: all 0.2s;
+          transition: all 0.2s;
+
+  box-shadow: inset -1px 0 0 #444,
+              inset 0 -1px 0 transparent,
+              inset 1px 0 0 #444,
+              inset 0 1px 0 transparent; 
+}
+
+.user_tools .notif_box:hover {
+  background: #444;
+}
+
+.user_tools .notif_box .circle {
+  display: block;
+  float: left;
+
+  width: 10px;
+  height: 10px;
+
+  margin: 1.2em;
+
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+}
+
+.user_tools .top_bal {
+  display: block;
+  float: left;
+
+  width: auto;
+  height: 100%;
+
+  padding: 0 1em;
+
+  background: #333;
+
+  font-size: 2em;
+  text-align: center;
+  color: #FFF;
 }
 
 .user_tools div#notifications {
@@ -391,7 +473,7 @@ div#error span[class*='icon-'] {
 .user_tools div#notifications div.tri {
   position: absolute;
   top: -14px;
-  right: 10px;
+  right: 2.5em;
 
   width: 0;
 
@@ -482,7 +564,7 @@ div#error span[class*='icon-'] {
   z-index: 1;
 
   background: #FFF;
-  border-right: 0.5em solid greenyellow;
+  border-right: 0.5em solid #ADFF2F;
 }
 
 .nav_menu {
@@ -550,7 +632,7 @@ div#error span[class*='icon-'] {
 }
 
 .bar#categ div#color {
-  background: greenyellow;
+  background: #ADFF2F;
 }
 
 .bar#categ {
@@ -601,7 +683,7 @@ div#error span[class*='icon-'] {
   z-index: 0;
   overflow: hidden;
 
-  background: greenyellow;
+  background: #ADFF2F;
 }
 
 .bar#list .date_title {
@@ -617,7 +699,7 @@ div#error span[class*='icon-'] {
 
 .bar#list .date_title span {
   display: inline-block;
-  width: 15%;
+  width: 20%;
 
   text-align: center;
 }
@@ -678,6 +760,49 @@ div#error span[class*='icon-'] {
 .bar#list .list_item span#cat_name {
   width: 1em;
   font-size: 8pt;
+}
+
+.bar#list .search {
+  position: fixed;
+  z-index: 9;
+
+  width: 100%;
+  height: auto;
+
+  background: #777;
+}
+
+.bar#list .search span[class*='icon-'] {
+  position: relative;
+  top: 0.6em;
+  left: 0.6em;
+
+  font-size: 2em;
+  color: #999;
+
+  z-index: 1;
+}
+
+.bar#list .search input {
+  display: block;
+  position: relative;
+  top: -1.19em;
+
+  width: 98%;
+
+  margin: 0.4em auto -0.9em auto;
+  padding: 0.25em 0 0.25em 2.5em;
+
+  z-index: 0;
+  font-size: 2em;
+  font-family: 'app-font';
+
+  border: none;
+}
+
+.bar#list .search_spacer {
+  width: 100%;
+  height: 4.4em;
 }
 
 .bar#event {
@@ -946,8 +1071,8 @@ div#error span[class*='icon-'] {
 }
 
 .dash .dash_nav span.dash_active {
-  color: greenyellow;
-  border-bottom: 8px solid greenyellow;
+  color: #ADFF2F;
+  border-bottom: 8px solid #ADFF2F;
 }
 
 .dash .bal_box {
@@ -1020,21 +1145,26 @@ div#error span[class*='icon-'] {
 }
 
 .dash .rec_bets {
-  float: left;
+  position: fixed;
+  bottom: 0;
+
   width: 100%;
-  height: 20em;
+  height: 42%;
+
+  overflow: scroll;
 }
 
 .dash .rec_bets .bets_nav {
+  position: fixed;
   width: 100%;
   background: #999;
 }
 
 .dash .rec_bets .bets_nav span {
   display: inline-block;
-  width: 6em;
+  width: 10em;
 
-  padding: 0.5em 0;
+  padding: 0.25em 0;
 
   cursor: pointer;
   font-size: 1.2em;
@@ -1052,9 +1182,61 @@ div#error span[class*='icon-'] {
   border-left: none;
 }
 
+.dash .rec_bets div#bets_loader {
+  position: fixed;
+  bottom: 20%;
+  left: 48%;
+
+  width: 4em;
+  z-index: 9999999999;
+}
+
+.dash .rec_bets div#bets_loader span[class*='icon-'] {
+  display: block;
+  position: relative;
+
+  color: #555;
+}
+
+.dash .rec_bets span#bets_spinner {
+  font-size: 4em;
+
+  -webkit-animation: spin 1s linear 0s infinite;
+     -moz-animation: spin 1s infinite linear;
+          animation: spin 1s infinite linear;
+}
+
 .dash .rec_bets .bets_view {
   width: 100%;
-  height: 100%;
+
+  margin-top: 2.5em;
+}
+
+.dash .rec_bets .bets_view .bet_item {
+  float: left;
+  width: 94%;
+}
+
+.dash .rec_bets .bets_view .bet_item span {
+  display: block;
+  float: left;
+
+  padding: 5px;
+}
+
+.dash .rec_bets .bets_view .bet_item span#ttl {
+  font-size: 15pt;
+}
+
+.dash .rec_bets .bets_view .bet_item span#stat {
+  font-size: 10pt;
+  color: #999;
+}
+
+.dash .rec_bets .bets_view .bet_item span#w_time {
+  float: right;
+  font-size: 10pt;
+  color: #999;
 }
 
 .dash .notif_list_item {
