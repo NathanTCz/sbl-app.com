@@ -159,7 +159,7 @@ Class User extends Database {
   }
 
   public function set_recently_won(){
-      // $this->pre_notifs['recent_won'] = array();
+      $this->recent_won_bets = array();
 
     foreach ($this->wagers as $wager) {
       if ($this->user_id == $wager->user_id && $wager->outcome === 1 
@@ -173,6 +173,7 @@ Class User extends Database {
   }
 
   public function set_recently_lost(){
+    $this->recent_lost_bets = array();
 
     foreach ($this->wagers as $wager) {
       if ($this->user_id == $wager->user_id && $wager->outcome === 0 

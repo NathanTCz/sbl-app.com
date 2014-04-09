@@ -23,6 +23,10 @@ else
 $bets = array();
 
 if ($_GET['action'] == 'rec') {
+  $bets = array_merge(
+    $current_user->get_recent_won_bets(),
+    $current_user->get_recent_lost_bets()
+  );
 }
 elseif ($_GET['action'] == 'cnt') {
   
@@ -31,13 +35,15 @@ elseif ($_GET['action'] == 'pen') {
   $bets = $current_user->get_pending_wagers();
 }
 elseif ($_GET['action'] == 'acc') {
-  
+  $bets = $current_user->get_accepted_wagers();
 }
 elseif ($_GET['action'] == 'den') {
-  
+  $bets = $current_user->get_denied_wagers();
 }
 
-foreach ($bets as $wager) {
-  echo $wager->amount;
+if ( !empty($bets) ) {
+  foreach ($bets as $wager) {
+    echo $wager->amount;
+  }
 }
 ?>
