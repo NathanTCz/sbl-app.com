@@ -7,7 +7,7 @@
   <?php
   foreach ($CATEGORIES as $cat) {
   ?>
-  <span id="<?php echo $cat->id?>" onclick="load_list(this.id)">
+  <span id="<?php echo $cat->id?>" onclick="load_list(this.id, '')">
     <?php echo $cat->name;?>
     <div class="menu_sel"></div>
   </span>
@@ -18,6 +18,16 @@
 </div>
 
 <div class="list_spacer"></div>
+
+<div id="search" class="search">
+  <span class="icon-search"></span>
+  <input onkeyup="search(this.value)"
+         id="query"
+         type="text"
+  >
+  </input>
+</div>
+
 <div id="list" class="bar"></div>
 
 <div id="event" class="bar"></div>

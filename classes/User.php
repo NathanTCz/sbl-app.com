@@ -42,9 +42,7 @@ Class User extends Database {
     $this->pre_notifs['requests'] = array();
     $this->pre_notifs['accepted'] = array();
     $this->pre_notifs['denied'] = array();
-
-    $this->pre_notifs['recent_won'] = array();
-    $this->pre_notifs['recent_lost'] = array();
+    $this->pre_notifs['counters'] = array();
 
     $this->set_pending_wagers();
     $this->set_accepted_wagers();
@@ -186,6 +184,21 @@ Class User extends Database {
     }
   }
 
+  public function set_counter_offers () {
+    $this->pre_notifs['counters'] = array();
+
+    foreach ($this->wagers as $wager) {
+      if ($this->user_id == $wager->user_id && $wager->status === 1) {
+        $this->accepted_wagers[] = $wager;
+        if ( !$wager->seen )
+          $this->pre_notifs['counters'][] = $wager;
+      }
+      elseif($this->user_id == $wager->opponent_id && $wager->status === 1) {
+        $this->accepted_wagers[] = $wager;
+      }
+    }
+  }
+
   public function set_notifications () {
     global $SYSTEM;
 
@@ -196,10 +209,7 @@ Class User extends Database {
       $time = $SYSTEM->time2str($r->timestamp);
       $wager_id = $r->id;
 
-      if ($r->proposal == $r->event->home_team->id)
-        $team = $r->event->home_team->short_name;
-      else
-        $team = $r->event->away_team->short_name;
+      $team = $r->prop_team->short_name;
 
       $title = sprintf('%s sent you a request', $user);
       $desc = sprintf('%s put %d on %s', $user, $amt, $team);
@@ -221,10 +231,7 @@ Class User extends Database {
       $time = $SYSTEM->time2str($a->timestamp);
       $wager_id = $a->id;
 
-      if ($a->proposal == $a->event->home_team->id)
-        $team = $a->event->home_team->short_name;
-      else
-        $team = $a->event->away_team->short_name;
+      $team = $r->prop_team->short_name;
 
       $title = sprintf('%s accepted your request', $user);
       $desc = sprintf('You put %d on %s', $amt, $team);
@@ -246,10 +253,7 @@ Class User extends Database {
       $time = $SYSTEM->time2str($d->timestamp);
       $wager_id = $d->id;
 
-      if ($d->proposal == $d->event->home_team->id)
-        $team = $d->event->home_team->short_name;
-      else
-        $team = $d->event->away_team->short_name;
+      $team = $r->prop_team->short_name;
 
       $title = sprintf('%s denied your request', $user);
       $desc = sprintf('You put %d on %s', $amt, $team);

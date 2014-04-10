@@ -1,5 +1,4 @@
 <?php
-
 /*
    Author: Benjamin Patton (aslo including project partners Nick Castelli, 
            Joe Deleeuw, and Nathan Cazell)
@@ -32,6 +31,12 @@ function compare_event_date($a, $b) {
   return ($a_date < $b_date) ? -1 : 1;
 }
 
+if ( isset($_GET['q']) && $_GET['q'] !== '') {
+  $EVENT_LIST = $SYSTEM->search($_GET['q']);
+}
+else
+  $EVENT_LIST = $EVENTS;
+
 //Gets the category id of an event
 $cat_id = $_GET['cat'];
 
@@ -39,7 +44,7 @@ $cat_id = $_GET['cat'];
 $dates = array();
 
 //Stores the dates for categorization based on the category id
-foreach ($EVENTS as $event) {
+foreach ($EVENT_LIST as $event) {
   if ($cat_id != 9) {
     if ( !in_array($event->date, $dates)
         &&
@@ -68,10 +73,6 @@ usort($dates, 'compare_event_date');
 // ended up not including it because it takes more time.
 // rather just put the static text.
 ?>
-<div class="search">
-  <span class="icon-search"></span>
-  <input id="query" type="text"></input>
-</div>
 <div class="search_spacer"></div>
 <?php
 
@@ -91,7 +92,7 @@ foreach ($dates as $date) {
   //Goes through each event in the database and gets the category, 
   //and will then display the event under the correct date determined 
   //previously by going through the events array
-  foreach ($EVENTS as $event) {
+  foreach ($EVENT_LIST as $event) {
     $cat_name = $event->category->name;
 
     if ($event->category->id == $cat_id

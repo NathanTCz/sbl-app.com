@@ -103,6 +103,43 @@ class System extends Database {
     return $email;
   }
 
+  public function search($q) {
+    global $DB;
+    
+    $q = "%$q%";
+
+    $query = $DB->prepare ("
+      SELECT event.*
+      FROM event
+      INNER JOIN team AS t1 ON (event.home_id = t1.id)
+      INNER JOIN team AS t2 ON (event.away_id = t2.id)
+      WHERE t1.name LIKE ?
+      OR t2.name LIKE ?
+      OR t1.short_name LIKE ?
+      OR t2.short_name LIKE ?
+    ");
+   
+    $query->bind_param('ssss', $q, $q, $q, $q);
+    $query->execute();
+    $results = $this->resolve_data($query);
+
+    foreach ($results as $event) {
+      $events[] = new Event (
+        $event->id,
+        $event->cat_id, 
+        $event->event_time,
+        $event->outcome,
+        $event->home_id,
+        $event->home_score,
+        $event->away_id,
+        $event->away_score,
+        $event->location,
+        $event->description
+      );
+    }
+    return ( isset($events) ) ? $events : $events = array();
+  }
+
   public function set_event_outcome(){
    global $DB;
 

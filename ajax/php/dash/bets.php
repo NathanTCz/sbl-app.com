@@ -32,7 +32,9 @@ elseif ($_GET['action'] == 'cnt') {
   
 }
 elseif ($_GET['action'] == 'pen') {
-  $bets = $current_user->get_pending_wagers();
+  foreach ($current_user->get_pending_wagers() as $w)
+    if ($w->user_id == $current_user->get_uid())
+      $bets[] = $w;
 }
 elseif ($_GET['action'] == 'acc') {
   $bets = $current_user->get_accepted_wagers();
@@ -66,7 +68,9 @@ if ( !empty($bets) ) {
     </span>
     <span id="amnt">
       <?php echo
-        $wager->prop_team->name;
+        $wager->amount .
+        ' on '
+        ;
       ?>
     </span>
     <span id="t_name">

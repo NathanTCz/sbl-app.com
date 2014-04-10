@@ -30,7 +30,7 @@ RewriteRule ^web/([a-zA-Z]+)$ $1.php [NC,L]
 #-----------------------END_REWRITE-------------------------
 
 # 404 Page
-ErrorDocument 404 /404.php
+ErrorDocument 404 /index.php?page=404
 
 
 #----------------------CACHE_CONTROL------------------------

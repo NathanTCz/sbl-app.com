@@ -762,17 +762,18 @@ div#error span[class*='icon-'] {
   font-size: 8pt;
 }
 
-.bar#list .search {
+.search {
   position: fixed;
+  left: 14.5em;
   z-index: 9;
 
-  width: 100%;
+  width: 90%;
   height: auto;
 
   background: #777;
 }
 
-.bar#list .search span[class*='icon-'] {
+.search span[class*='icon-'] {
   position: relative;
   top: 0.6em;
   left: 0.6em;
@@ -783,7 +784,7 @@ div#error span[class*='icon-'] {
   z-index: 1;
 }
 
-.bar#list .search input {
+.search input {
   display: block;
   position: relative;
   top: -1.19em;
@@ -800,7 +801,7 @@ div#error span[class*='icon-'] {
   border: none;
 }
 
-.bar#list .search_spacer {
+.search_spacer {
   width: 100%;
   height: 4.4em;
 }

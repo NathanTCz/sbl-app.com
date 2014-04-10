@@ -66,7 +66,7 @@ function accept_request (b_id) {
 function deny_request (b_id) {
   var action = 'deny';
 
-  document.getElementById(b_id).style.visibility = 'hidden';
+  document.getElementById(b_id).style.display = 'none';
   document.getElementById('loader_small' + b_id).style.display = 'block';
 
   if ( (xmlHttp.readyState == 0 || xmlHttp.readyState == 4)
