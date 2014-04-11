@@ -33,7 +33,7 @@ foreach ($EVENTS as $event) {
 
   <div class="event_toolbar">
     <span class="icon-arrow-left2"
-          onclick="load_list(<?php echo $cat_id?>)"
+          onclick="load_list(<?php echo $cat_id?>, '')"
     >
     </span>
     </span>

@@ -173,13 +173,10 @@ div#error span[class*='icon-'] {
 }
 
 .main {
-/*  position: relative;
-  top: 3em;
-  left: 4.5em;
-
-  width: 86.2%;*/
   margin: 3em 0 0 4.5em;
-  height: 93%;
+  height: 95%;
+
+  overflow-y: auto;
 }
 
 .spacer {
@@ -650,6 +647,8 @@ div#error span[class*='icon-'] {
   position: relative;
   left: 0;
 
+  width: 8em;
+
   padding: 1em 0 1em 2em;
 
   cursor: pointer;
@@ -663,10 +662,12 @@ div#error span[class*='icon-'] {
 
 .bar#categ span:hover {
   left: 2em;
+  width: 6em;
 }
 
 .bar#categ span.cat_active {
   left: 2em;
+  width: 6em;
 }
 
 .list_spacer {

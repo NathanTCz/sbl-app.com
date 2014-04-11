@@ -57,7 +57,7 @@ function find_browser_event() {
 function shift() {
   var box = document.getElementById('login')
   box.className = "animated";
-
+  console.log(box);
   var t_event = find_browser_event();
 
   /*

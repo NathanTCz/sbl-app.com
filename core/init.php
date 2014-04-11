@@ -16,6 +16,8 @@
   $DB = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
 
   require_once 'classes/System.php';
+  // init once for use of functions. it will be init again
+  // after data_init
   $SYSTEM = new System;
 
   require_once 'classes/Session.php';

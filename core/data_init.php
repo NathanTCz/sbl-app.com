@@ -79,6 +79,9 @@
     else
       $USERS = (array)apc_fetch('USERS');
 
-    //print_r(apc_cache_info());
+
+
+  // Check and set event oucomes if necessary
+  //$SYSTEM->set_event_outcome();
   }
 ?>

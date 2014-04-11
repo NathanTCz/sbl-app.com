@@ -111,15 +111,17 @@ class System extends Database {
     $query = $DB->prepare ("
       SELECT event.*
       FROM event
+      INNER JOIN category AS c ON (event.cat_id = c.id)
       INNER JOIN team AS t1 ON (event.home_id = t1.id)
       INNER JOIN team AS t2 ON (event.away_id = t2.id)
       WHERE t1.name LIKE ?
       OR t2.name LIKE ?
       OR t1.short_name LIKE ?
       OR t2.short_name LIKE ?
+      OR c.name LIKE ?
     ");
    
-    $query->bind_param('ssss', $q, $q, $q, $q);
+    $query->bind_param('sssss', $q, $q, $q, $q, $q);
     $query->execute();
     $results = $this->resolve_data($query);
 
@@ -140,11 +142,12 @@ class System extends Database {
     return ( isset($events) ) ? $events : $events = array();
   }
 
-  public function set_event_outcome(){
-   global $DB;
+  public function set_event_outcome () {
+    global $DB;
+    global $EVENTS;
 
-  	foreach ($this->events as $event) {
-  		if($event->home_score > $event->away_score){
+  	foreach ($EVENTS as $event) {
+  		if ($event->home_score > $event->away_score) {
   			$query = $DB->prepare ("
       UPDATE event
       SET outcome = 1
@@ -155,7 +158,7 @@ class System extends Database {
     $query->execute();
     
   	}
-  	else{
+  	elseif ($event->home_score < $event->away_score) {
       $query = $DB->prepare ("
       UPDATE event
       SET outcome = 0
