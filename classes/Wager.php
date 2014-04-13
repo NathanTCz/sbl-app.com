@@ -63,5 +63,4 @@ class Wager extends Database {
     elseif ($status === NULL)
       return 'Pending';
   }
-
 };

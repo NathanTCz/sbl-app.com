@@ -12,6 +12,7 @@ class Database {
   public $yacs;
   public $categories;
   public $users;
+  public $null_users;
 
 
 //PRIVATE FUNCTIONS

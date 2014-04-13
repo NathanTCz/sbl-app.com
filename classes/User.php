@@ -329,8 +329,20 @@ Class User extends Database {
       if ($bet_id == $w->id)
         $wager = $w;
 
+      if ($this->user_id == $wager->user_id)
+        $opp_id = $wager->opponent_id;
+      else $opp_id = $wager->user_id;
+
+      foreach ($this->yacs as $y)
+        if ($y->user_id == $opp_id)
+          $opp_yac = $y;
+
       $new_bal = $this->yac->balance - $wager->amount;
       $new_ar = $this->yac->at_risk + $wager->amount;
+
+      $opp_bal = $opp_yac->balance - $wager->amount;
+      $opp_ar = $opp_yac->at_risk + $wager->amount;
+
       $status = 1;
       $seen = 1;
 
@@ -341,29 +353,45 @@ Class User extends Database {
         //$bet_id is the wager_id of the event that should get passed in 
 
 
-        $query = $DB->prepare ("
-        UPDATE yac, wager
-        SET
-          yac.balance = ?,
-          yac.at_risk = ?,
-          wager.status = ?,
-          wager.seen = ?
-        WHERE wager.id = ? AND yac.user_id = ? 
-      ");
+        $query1 = $DB->prepare ("
+          UPDATE yac, wager
+          SET
+            yac.balance = ?,
+            yac.at_risk = ?,
+            wager.status = ?,
+            wager.seen = ?
+          WHERE wager.id = ? AND yac.user_id = ? 
+        ");
 
-      $query->bind_param('dddddd',
-        $new_bal,
-        $new_ar, 
-        $status,
-        $seen,
-        $bet_id,
-        $this->user_id
-      );
-      $query->execute();
-      return true;
-    }
-    else
-      return false;
+        $query1->bind_param('dddddd',
+          $new_bal,
+          $new_ar, 
+          $status,
+          $seen,
+          $bet_id,
+          $this->user_id
+        );
+        $query1->execute();
+
+        $query2 = $DB->prepare ("
+          UPDATE yac
+          SET
+            yac.balance = ?,
+            yac.at_risk = ?
+          WHERE yac.user_id = ? 
+        ");
+
+        $query2->bind_param('ddd',
+          $opp_bal,
+          $opp_ar,
+          $opp_id
+        );
+        $query2->execute();
+
+        return true;
+      }
+      else
+        return false;
    
   }
 
