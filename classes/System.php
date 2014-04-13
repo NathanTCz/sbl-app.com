@@ -142,6 +142,37 @@ class System extends Database {
     return ( isset($events) ) ? $events : $events = array();
   }
 
+  function get_wager () {
+    global $DB;
+
+    $query = $DB->prepare ("
+      SELECT *
+      FROM wager
+      ORDER BY timestamp DESC
+      LIMIT 1 
+    ");
+    $query->execute();
+
+    $results = $this->resolve_data($query);
+
+    foreach ($results as $wager) {
+      $wagers[] = new Wager (
+        $wager->id,
+        $wager->timestamp,
+        $wager->user_id,
+        $wager->amount,
+        $wager->opponent_id,
+        $wager->event_id,
+        $wager->wager_outcome,
+        $wager->status,
+        $wager->proposal,
+        $wager->seen,
+        $wager->counter_offer_bool
+      );
+    }
+    return ( isset($wagers) ) ? $wagers : $wagers = array();
+  }
+
   public function set_event_outcome () {
     global $DB;
     global $EVENTS;
