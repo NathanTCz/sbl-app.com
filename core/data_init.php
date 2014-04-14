@@ -38,14 +38,14 @@
   if ( $_SERVER['REQUEST_URI'] != '/web/main' ) {
     if ( !apc_exists('TEAMS') ) {
       $TEAMS = Database::set_teams();
-      apc_store('TEAMS', new ArrayObject($TEAMS),60);
+      apc_store('TEAMS', new ArrayObject($TEAMS),7200);
     }
     else
       $TEAMS = (array)apc_fetch('TEAMS');
 
     if ( !apc_exists('CATEGORIES') ) {
       $CATEGORIES = Database::set_categories();
-      //apc_store('CATEGORIES', new ArrayObject($CATEGORIES),60);
+      apc_store('CATEGORIES', new ArrayObject($CATEGORIES),7200);
     }
     else
       $CATEGORIES = (array)apc_fetch('CATEGORIES');
@@ -53,31 +53,39 @@
     if ( !apc_exists('EVENTS') ) {
       $EVENTS = Database::set_events();
       usort( $EVENTS, 'compare_event_time');
-      apc_store('EVENTS', new ArrayObject($EVENTS),60);
+      apc_store('EVENTS', new ArrayObject($EVENTS),7200);
     }
     else
       $EVENTS = (array)apc_fetch('EVENTS');
    
     if ( !apc_exists('YACS') ) {
       $YACS = Database::set_yacs();
-      //apc_store('YACS', new ArrayObject($YACS),60);
+      apc_store('YACS', new ArrayObject($YACS),7200);
     }
     else
       $YACS = (array)apc_fetch('YACS');
    
     if ( !apc_exists('WAGERS') ) {
       $WAGERS = Database::set_wagers();
-      //apc_store('WAGERS', new ArrayObject($WAGERS),60);
+      apc_store('WAGERS', new ArrayObject($WAGERS),7200);
     }
     else
       $WAGERS = (array)apc_fetch('WAGERS');
    
     if ( !apc_exists('USERS') ) {
       $USERS = Database::set_users();
-      //apc_store('USERS', new ArrayObject($USERS),60);
+      apc_store('USERS', new ArrayObject($USERS),7200);
     }
     else
       $USERS = (array)apc_fetch('USERS');
+
+
+/*      $TEAMS = Database::set_teams();
+      $CATEGORIES = Database::set_categories();
+      $EVENTS = Database::set_events();
+      $YACS = Database::set_yacs();
+      $WAGERS = Database::set_wagers();
+      $USERS = Database::set_users();*/
 
   // Check and set event oucomes if necessary
   //$SYSTEM->set_event_outcome();

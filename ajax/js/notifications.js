@@ -105,10 +105,6 @@ function notif_success (b_id) {
 */
 
 function show_counter_box (b_id) {
-  /* beacuse the betbox is above the team info in the actual
-   * HTML document we have to send that info to that element
-   * with AJAX
-   */
   load_counter_box(b_id);
 
   // Now we can display the element

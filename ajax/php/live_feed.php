@@ -2,7 +2,8 @@
 /* Move back to the server root dir so that
  * so that includes and such work correctly
  */
-$root_dir = $_SERVER['DOCUMENT_ROOT'];
+//$root_dir = $_SERVER['DOCUMENT_ROOT'];
+$root_dir = '/srv/http';
 chdir($root_dir);
 
 require_once 'core/init.php';
@@ -19,7 +20,7 @@ if ($session->logged_in()) {
 else
   exit;
 
-  $last_recieved = strtotime( $_GET['ts'] );
+  $last_recieved = $_GET['ts'];
   $go = true;
 
   $response_data = array();
@@ -38,7 +39,7 @@ else
         '</span>'
         ;
 
-      $response_data['new_ts'] = strtotime($new_wager->timestamp);
+      $response_data['new_ts'] = $new_recieved;
 
       echo json_encode($response_data);
     }
