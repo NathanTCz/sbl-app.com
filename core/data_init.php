@@ -35,7 +35,11 @@
    * ORDER, BITCH.
    */
 
-  if ( $_SERVER['REQUEST_URI'] != '/web/main' ) {
+  if (
+      $_SERVER['REQUEST_URI'] != '/web/main'
+      && $_SERVER['REQUEST_URI'] != '/logout.php'
+     )
+  {
     if ( !apc_exists('TEAMS') ) {
       $TEAMS = Database::set_teams();
       apc_store('TEAMS', new ArrayObject($TEAMS),7200);
