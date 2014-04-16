@@ -370,6 +370,8 @@ div#error span[class*='icon-'] {
   right: 1em;
 
   width: 27em;
+  max-height: 40%;
+  overflow: auto;
 
   text-align: center;
   opacity: 0;
@@ -389,6 +391,8 @@ div#error span[class*='icon-'] {
 .user_tools div#notifications > span {
   display: block;
   float: left;
+
+  width: 100%;
 
   color: #555;
 

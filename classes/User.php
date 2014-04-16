@@ -2,17 +2,6 @@
 require_once 'classes/Database.php';
 require_once 'classes/Notification.php';
 
-// Sort helper function
-function compare_notification ($a, $b) {
-  $a_time = strtotime($a->timestamp);
-  $b_time = strtotime($b->timestamp);
-
-  if ($a_time == $b_time)
-    return 0;
-
-  return ($a_time > $b_time) ? -1 : 1;
-}
-
 Class User extends Database {
   private $user_id;
   private $email;
@@ -46,7 +35,9 @@ Class User extends Database {
 
     $this->pending_wagers = array(); 
     $this->accepted_wagers = array(); 
-    $this->denied_wagers = array(); 
+    $this->denied_wagers = array();
+    $this->recent_won_bets = array();
+    $this->recent_lost_bets = array();
 
 
     $this->set_pending_wagers();
@@ -59,7 +50,7 @@ Class User extends Database {
     $this->notifications = array();
     $this->set_notifications();
 
-    $this->set_yac();
+    $this->update_yac();
   }
 
   public function get_email () {
@@ -88,6 +79,18 @@ Class User extends Database {
         $this->yac = $yac;
       }
     }
+  }
+
+  public function update_yac () {
+    $this->yacs = parent::set_yacs();
+
+    $this->set_yac();
+  }
+
+  public function update_user () {
+    $this->wagers = parent::set_wagers();
+
+    $this->__construct($this->email, $this->u_name, $this->user_id);
   }
 
   /*
@@ -120,10 +123,10 @@ Class User extends Database {
      * $this->wagers is inherited from the Database class.
     */
     foreach ($this->wagers as $wager) {
-      if ($this->user_id == $wager->user_id && $wager->status === NULL) {
+      if ($this->user_id == $wager->user_id && $wager->status === NULL  && $wager->outcome === NULL) {
         $this->pending_wagers[] = $wager;
       }
-      elseif($this->user_id == $wager->opponent_id && $wager->status === NULL) {
+      elseif($this->user_id == $wager->opponent_id && $wager->status === NULL && $wager->outcome === NULL) {
         $this->pending_wagers[] = $wager;
         if ( !$wager->seen )
           $this->pre_notifs['requests'][] = $wager;
@@ -135,12 +138,12 @@ Class User extends Database {
     $this->pre_notifs['accepted'] = array();
 
     foreach ($this->wagers as $wager) {
-      if ($this->user_id == $wager->user_id && $wager->status === 1) {
+      if ($this->user_id == $wager->user_id && $wager->status === 1 && $wager->paid_out === 0) {
         $this->accepted_wagers[] = $wager;
         if ( !$wager->seen )
           $this->pre_notifs['accepted'][] = $wager;
       }
-      elseif($this->user_id == $wager->opponent_id && $wager->status === 1) {
+      elseif($this->user_id == $wager->opponent_id && $wager->status === 1 && $wager->paid_out === 0) {
         $this->accepted_wagers[] = $wager;
       }
     }
@@ -150,19 +153,18 @@ Class User extends Database {
     $this->pre_notifs['denied'] = array();
 
     foreach ($this->wagers as $wager) {
-      if ($this->user_id == $wager->user_id && $wager->status === 0) {
+      if ($this->user_id == $wager->user_id && $wager->status === 0  && $wager->outcome === NULL) {
         $this->denied_wagers[] = $wager;
         if ( !$wager->seen )
           $this->pre_notifs['denied'][] = $wager;
       }
-      elseif($this->user_id == $wager->opponent_id && $wager->status === 0) {
+      elseif($this->user_id == $wager->opponent_id && $wager->status === 0 && $wager->outcome === NULL) {
         $this->denied_wagers[] = $wager;
       }
     }
   }
 
   public function set_recently_won(){
-      $this->recent_won_bets = array();
 
     foreach ($this->wagers as $wager) {
       if ($this->user_id == $wager->user_id && $wager->outcome === 1 
@@ -171,12 +173,11 @@ Class User extends Database {
       }
       elseif($this->user_id == $wager->opponent_id && $wager->outcome === 0
           && strtotime($wager->timestamp) >= strtotime('-2 week'))
-         $this->recent_won_bets[] = $wager;
+        $this->recent_won_bets[] = $wager;
     }
   }
 
   public function set_recently_lost(){
-    $this->recent_lost_bets = array();
 
     foreach ($this->wagers as $wager) {
       if ($this->user_id == $wager->user_id && $wager->outcome === 0 
@@ -189,8 +190,8 @@ Class User extends Database {
     }
   }
 
+// UNFINISHED FUNCTION
   public function set_counter_offers () {
-    $this->pre_notifs['counters'] = array();
 
     foreach ($this->wagers as $wager) {
       if ($this->user_id == $wager->user_id && $wager->status === 1) {
@@ -279,7 +280,51 @@ Class User extends Database {
       $this->notifications[] = $n;
     }
 
-    usort($this->notifications, 'compare_notification');
+    foreach ( $this->recent_won_bets as $w ) {
+      $user = $SYSTEM->get_uname($w->opponent_id);
+      $user = sprintf('<b>%s</b>', $user);
+      $amt = $w->amount;
+      $time = $SYSTEM->time2str($w->timestamp);
+      $wager_id = $w->id;
+      $type = 'message';
+      $event_desc = $w->event->description;
+
+      $title = sprintf('You Won!', $user);
+      $desc = sprintf('You bet on %s and won <b>%01.2f</b>', $event_desc, $amt);
+
+      $n = new Notification (
+        $type,
+        $title,
+        $desc,
+        $time,
+        $wager_id
+      );
+
+      $this->notifications[] = $n;
+    }
+
+    foreach ( $this->recent_lost_bets as $l ) {
+      $user = $SYSTEM->get_uname($l->opponent_id);
+      $user = sprintf('<b>%s</b>', $user);
+      $amt = $l->amount;
+      $time = $SYSTEM->time2str($l->timestamp);
+      $wager_id = $l->id;
+      $type = 'message';
+      $event_desc = $l->event->description;
+
+      $title = sprintf('You Lost', $user);
+      $desc = sprintf('You bet on %s and lost <b>%01.2f</b>', $event_desc, $amt);
+
+      $n = new Notification (
+        $type,
+        $title,
+        $desc,
+        $time,
+        $wager_id
+      );
+
+      $this->notifications[] = $n;
+    }
   }
 
   public function get_denied_wagers () {

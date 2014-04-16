@@ -71,7 +71,7 @@
    
     if ( !apc_exists('WAGERS') ) {
       $WAGERS = Database::set_wagers();
-      //apc_store('WAGERS', new ArrayObject($WAGERS),60);
+      apc_store('WAGERS', new ArrayObject($WAGERS),60);
     }
     else
       $WAGERS = (array)apc_fetch('WAGERS');

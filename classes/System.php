@@ -203,62 +203,59 @@ class System extends Database {
    }
  }
 
-  public function set_wager_outcome(){
-   global $DB;
-   global $WAGERS;
+public function set_wager_outcome(){
+  global $DB;
+  global $WAGERS;
 
-   
-
-    foreach ($WAGERS as $wager) {
-        // $w = $wager; 
-
-         $wid = $wager->id;
+  foreach ($WAGERS as $wager) {
+    if ($wager->status !== 0 && $wager->status !== NULL && $wager->paid_out === 0) {
 
       if ($wager->proposal == $wager->event->home_team->id && $wager->event->outcome == 1) {
 
       $query = $DB->prepare ("
-      UPDATE wager
-      SET wager_outcome = 1
-      WHERE id = ?
-    ");
-   
-    $query->bind_param('d',$wid);
-    $query->execute();
+        UPDATE wager
+        SET wager_outcome = 1
+        WHERE id = ?
+      ");
+     
+      $query->bind_param('d',$wager->id);
+      $query->execute();
+      }
+
+      elseif ($wager->proposal == $wager->event->away_team->id && $wager->event->outcome == 0) {
+
+        $query = $DB->prepare ("
+        UPDATE wager
+        SET wager_outcome = 1
+        WHERE id = ?
+      ");
+     
+      $query->bind_param('d',$wager->id);
+      $query->execute();
+      }
+      elseif($wager->proposal == $wager->event->home_team->id && $wager->event->outcome == 0){
+
+        $query = $DB->prepare ("
+          UPDATE wager
+          SET wager_outcome = 0
+          WHERE id = ?
+        ");
+       
+        $query->bind_param('d',$wager->id);
+        $query->execute();
+      }
+      elseif($wager->proposal == $wager->event->away_team->id && $wager->event->outcome == 1){
+
+        $query = $DB->prepare ("
+          UPDATE wager
+          SET wager_outcome = 0
+          WHERE id = ?
+        ");
+       
+        $query->bind_param('d',$wager->id);
+        $query->execute();
+      }
     }
-
-    elseif ($wager->proposal == $wager->event->away_team->id && $wager->event->outcome == 0) {
-
-      $query = $DB->prepare ("
-      UPDATE wager
-      SET wager_outcome = 1
-      WHERE id = ?
-    ");
-   
-    $query->bind_param('d',$wid);
-    $query->execute();
-  }
-  elseif($wager->proposal == $wager->event->home_team->id && $wager->event->outcome == 0){
-
-    $query = $DB->prepare ("
-      UPDATE wager
-      SET wager_outcome = 0
-      WHERE id = ?
-    ");
-   
-    $query->bind_param('d',$wid);
-    $query->execute();
-  }
-  elseif($wager->proposal == $wager->event->away_team->id && $wager->event->outcome == 1){
-
-    $query = $DB->prepare ("
-      UPDATE wager
-      SET wager_outcome = 0
-      WHERE id = ?
-    ");
-   
-    $query->bind_param('d',$wid);
-    $query->execute();
-  }
   }
 }
 
@@ -308,7 +305,6 @@ public function check_yacs(){
   
 }
 
-
 public function check_and_update_user_balances(){
    global $DB;
    global $USERS;
@@ -317,7 +313,11 @@ public function check_and_update_user_balances(){
   //balances based on wagers that have status == 1 and have an outcome
 
   foreach ($USERS as $user) {
+    $user->update_user();
+
     foreach ($user->get_accepted_wagers() as $wagers) {
+
+    $user->update_user();
          
     $uid = $user->get_uid();
     $uyb = $user->yac->balance;
@@ -333,28 +333,31 @@ public function check_and_update_user_balances(){
     $add_loss = $uyb - $wamt;
     $add_yac_losses = $uyl + $wamt;
 
-    $paid_out = 1;
+    $paid_out = $wagers->paid_out + 1;
     
     
 
       if($wagers->outcome === 1 && $uid == $wagers->user_id && $wagers->paid_out === 0){
  
-        //The current user won!
+        echo 'user: ' . $user->get_uid() . ' won wager #' . $wagers->id .
+              ' and won: ' . $wagers->amount . '<br>'
+              . '     current balance: ' . $uyb . ' new balance: ' . $add_win . '<br><br>';
       
 
-        $query = $DB->prepare ("
+      $query = $DB->prepare ("
         UPDATE yac, wager
         SET yac.balance = ?, yac.at_risk = ?, yac.winnings = ?, wager.paid_out = ?
         WHERE yac.user_id = ?
+        AND wager.id = ?
       ");
 
-      $query->bind_param('ddddd',
+      $query->bind_param('dddddd',
         $add_win,
         $add_at_risk ,
         $add_yac_winnings,
         $paid_out,
-        $uid
-
+        $uid,
+        $wagers->id
       );
       $query->execute();
      }
@@ -362,39 +365,50 @@ public function check_and_update_user_balances(){
      elseif($wagers->outcome === 0 && $uid == $wagers->user_id && $wagers->paid_out === 0){
 
       //The current user lost!
+        echo 'user: ' . $user->get_uid() . ' lost wager #' . $wagers->id .
+              ' and lost: ' . $wagers->amount . '<br>'
+              . '     current balance: ' . $uyb . ' new balance: ' . $uyb . '<br><br>';
 
-        $query = $DB->prepare ("
+      $query = $DB->prepare ("
         UPDATE yac, wager
         SET yac.balance = ?, yac.at_risk = ?, yac.losings = ?, wager.paid_out = ?
         WHERE yac.user_id = ?
+        AND wager.id = ?
       ");
 
-      $query->bind_param('ddddd',
-        $add_loss,
+      $query->bind_param('dddddd',
+        $uyb,
         $add_at_risk,
         $add_yac_losses,
         $paid_out,
-        $uid
+        $uid,
+        $wagers->id
       );
       $query->execute();
      }
-
+     
+     
      elseif($wagers->outcome === 1 && $uid == $wagers->opponent_id && $wagers->paid_out === 0){
 
         //The current user lost (because the opponent won)!
+        echo 'user: ' . $user->get_uid() . ' lost wager #' . $wagers->id .
+              ' and lost: ' . $wagers->amount . '<br>'
+              . '     current balance: ' . $uyb . ' new balance: ' . $uyb . '<br><br>';
 
-        $query = $DB->prepare ("
+      $query = $DB->prepare ("
         UPDATE yac, wager
         SET yac.balance = ?, yac.at_risk = ?, yac.losings = ?, wager.paid_out = ?
         WHERE yac.user_id = ?
+        AND wager.id = ?
       ");
 
-      $query->bind_param('ddddd',
-        $add_loss,
+      $query->bind_param('dddddd',
+        $uyb,
         $add_at_risk,
         $add_yac_losses,
         $paid_out,
-        $uid
+        $uid,
+        $wagers->id
       );
       $query->execute();
      }
@@ -402,22 +416,28 @@ public function check_and_update_user_balances(){
      elseif($wagers->outcome === 0 && $uid == $wagers->opponent_id && $wagers->paid_out === 0){
 
         //The current user won (because he/she is the opponent)!
+        echo 'user: ' . $user->get_uid() . ' won wager #' . $wagers->id .
+              ' and won: ' . $wagers->amount . '<br>'
+              . '     current balance: ' . $uyb . ' new balance: ' . $add_win . '<br><br>';
 
-        $query = $DB->prepare ("
+      $query = $DB->prepare ("
         UPDATE yac, wager
         SET yac.balance = ?, yac.at_risk = ?, yac.winnings = ?, wager.paid_out = ?
         WHERE yac.user_id = ?
+        AND wager.id = ?
       ");
 
-      $query->bind_param('ddddd',
-        $add_win ,
+      $query->bind_param('dddddd',
+        $add_win,
         $add_at_risk,
         $add_yac_winnings,
         $paid_out,
-        $uid
+        $uid,
+        $wagers->id
       );
       $query->execute();
      }
+    else echo 'no new updates<br>';
    }
   }
  }

@@ -29,12 +29,12 @@ class Wager extends Database {
     $this->event = $this->set_event($e);
     $this->outcome = $o;
     $this->status = $s;
-    $this->status_in_text = $this->set_stat($s);
     $this->proposal = $p;
     $this->prop_team = $this->set_prop_team($s);
     $this->seen =$see;
     $this->counter_bool = $cb;
     $this->paid_out = $po;
+    $this->status_in_text = $this->set_stat($s);
   }
 
   public function set_event ($event_id) {
@@ -58,11 +58,25 @@ class Wager extends Database {
   }
 
   public function set_stat ($status) {
-    if ($status === 0)
+    if ($status === 0 && $this->outcome === NULL)
       return 'Denied';
-    elseif ($status === 1)
+
+    elseif ($status === 1 && $this->outcome === NULL)
       return 'Accepted';
-    elseif ($status === NULL)
+
+    elseif ($status === NULL && $this->outcome === NULL)
       return 'Pending';
+
+    elseif ($this->user_id == $this->user_id && $this->outcome === 1)
+      return 'won';
+
+    elseif($this->user_id == $this->opponent_id && $this->outcome === 0)
+      return 'won';
+
+    elseif($this->user_id == $this->user_id && $this->outcome === 0)
+      return 'lost';
+
+    elseif($this->user_id == $this->opponent_id && $this->outcome === 1)
+      return 'lost';
   }
 };

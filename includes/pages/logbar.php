@@ -1,5 +1,18 @@
 <?php
+// Sort helper function
+function compare_notification ($a, $b) {
+  $a_time = strtotime($a->timestamp);
+  $b_time = strtotime($b->timestamp);
+
+  if ($a_time == $b_time)
+    return 0;
+
+  return ($a_time > $b_time) ? -1 : 1;
+}
+
   $notifs = $current_user->notifications;
+  usort($notifs, 'compare_notification');
+
   $n_cnt = count($notifs);
 
   if ( $n_cnt == 0 )
@@ -58,6 +71,11 @@ if ( $n_cnt > 0 ) {
       </div>
 
       <span id="<?php echo $n->wager->id;?>">
+        <span class="icon-cancel-cicle"
+              id="close" 
+              onclick="close(<?php echo $n->wager->id;?>)"
+        >
+        </span>
         <span id="notif_title">
         <?php echo
           $n->title;
