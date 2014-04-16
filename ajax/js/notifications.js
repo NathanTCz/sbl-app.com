@@ -84,17 +84,28 @@ function deny_request (b_id) {
   }
 }
 
+function close_notif (b_id) {
+  var action = 'close';
+
+  document.getElementById(b_id).style.display = 'none';
+
+  if ( (xmlHttp.readyState == 0 || xmlHttp.readyState == 4)
+    && xmlHttp.readyState != 3 ) {
+
+  xmlHttp.onreadystatechange = function() {
+    return notif_success(b_id);
+  };
+  
+  xmlHttp.open("POST", "ajax/php/notifications.php", true);
+  xmlHttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+  xmlHttp.send("b_id=" + encodeURIComponent(b_id) + 
+               "&action=" + encodeURIComponent(action)
+              );
+  }
+}
+
 function notif_success (b_id) {
   if (xmlHttp.readyState == 4 && xmlHttp.status==200) {
-  document.getElementById('loader_small' + b_id).removeAttribute('style');
-
-    // cant figure out why there are two spaces in front of the response
-    // text, but fuck it
-    if (xmlHttp.responseText == '  OK')
-      document.getElementById('success_small' + b_id).style.display = 'block';
-
-    else if (xmlHttp.responseText == '  ERROR')
-      document.getElementById('error_small' + b_id).style.display = 'block';
 
     setTimeout(load_notifications, 500);
   }

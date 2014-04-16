@@ -281,49 +281,53 @@ Class User extends Database {
     }
 
     foreach ( $this->recent_won_bets as $w ) {
-      $user = $SYSTEM->get_uname($w->opponent_id);
-      $user = sprintf('<b>%s</b>', $user);
-      $amt = $w->amount;
-      $time = $SYSTEM->time2str($w->timestamp);
-      $wager_id = $w->id;
-      $type = 'message';
-      $event_desc = $w->event->description;
+      if ( !$w->seen ) {
+        $user = $SYSTEM->get_uname($w->opponent_id);
+        $user = sprintf('<b>%s</b>', $user);
+        $amt = $w->amount;
+        $time = $SYSTEM->time2str($w->timestamp);
+        $wager_id = $w->id;
+        $type = 'message';
+        $event_desc = $w->event->description;
 
-      $title = sprintf('You Won!', $user);
-      $desc = sprintf('You bet on %s and won <b>%01.2f</b>', $event_desc, $amt);
+        $title = sprintf('You Won!', $user);
+        $desc = sprintf('You bet on %s and won <b>%01.2f</b>', $event_desc, $amt);
 
-      $n = new Notification (
-        $type,
-        $title,
-        $desc,
-        $time,
-        $wager_id
-      );
+        $n = new Notification (
+          $type,
+          $title,
+          $desc,
+          $time,
+          $wager_id
+        );
 
-      $this->notifications[] = $n;
+        $this->notifications[] = $n;
+      }
     }
 
     foreach ( $this->recent_lost_bets as $l ) {
-      $user = $SYSTEM->get_uname($l->opponent_id);
-      $user = sprintf('<b>%s</b>', $user);
-      $amt = $l->amount;
-      $time = $SYSTEM->time2str($l->timestamp);
-      $wager_id = $l->id;
-      $type = 'message';
-      $event_desc = $l->event->description;
+      if ( !$w->seen ) {
+        $user = $SYSTEM->get_uname($l->opponent_id);
+        $user = sprintf('<b>%s</b>', $user);
+        $amt = $l->amount;
+        $time = $SYSTEM->time2str($l->timestamp);
+        $wager_id = $l->id;
+        $type = 'message';
+        $event_desc = $l->event->description;
 
-      $title = sprintf('You Lost', $user);
-      $desc = sprintf('You bet on %s and lost <b>%01.2f</b>', $event_desc, $amt);
+        $title = sprintf('You Lost', $user);
+        $desc = sprintf('You bet on %s and lost <b>%01.2f</b>', $event_desc, $amt);
 
-      $n = new Notification (
-        $type,
-        $title,
-        $desc,
-        $time,
-        $wager_id
-      );
+        $n = new Notification (
+          $type,
+          $title,
+          $desc,
+          $time,
+          $wager_id
+        );
 
-      $this->notifications[] = $n;
+        $this->notifications[] = $n;
+      }
     }
   }
 
@@ -468,6 +472,23 @@ Class User extends Database {
     ");
 
     $query->bind_param('dd', $status, $bet_id) ;
+    $query->execute();
+
+  }
+
+  public function close_notif ($bet_id) {
+    global $DB;
+
+    $seen = 1;
+
+     $query = $DB->prepare ("
+      UPDATE wager
+      SET
+        seen = ?
+      WHERE id = ?  
+    ");
+
+    $query->bind_param('dd', $seen, $bet_id) ;
     $query->execute();
 
   }

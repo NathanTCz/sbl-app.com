@@ -30,14 +30,24 @@ if ( !empty($_POST) ) {
       exit;
     }
   }
-  else if ($_POST['action'] == 'deny') {
+
+  elseif ($_POST['action'] == 'deny') {
     $bet_id = $_POST['b_id'];
 
     $current_user->deny_request($bet_id);
     echo 'OK';
     exit;
   }
-  else if ($_POST['action'] == 'counter') {
+
+  elseif ($_POST['action'] == 'close') {
+    $bet_id = $_POST['b_id'];
+
+    $current_user->close_notif($bet_id);
+    echo 'OK';
+    exit;
+  }
+
+  elseif ($_POST['action'] == 'counter') {
     $bet_id = $_POST['b_id'];
     $amt = $_POST['amt'];
 
@@ -129,16 +139,15 @@ if ( $n_cnt > 0 ) {
       </div>
 
       <span id="<?php echo $n->wager->id;?>">
-        <span class="icon-cancel-cicle"
-              id="close" 
-              onclick="close(<?php echo $n->wager->id;?>)"
-        >
-        </span>
-
         <span id="notif_title">
         <?php echo
           $n->title;
         ?>
+          <span class="icon-close"
+                id="close" 
+                onclick="close_notif(<?php echo $n->wager->id;?>)"
+          >
+          </span>
         </span>
         <span>
           <?php echo
@@ -192,6 +201,11 @@ if ( $n_cnt > 0 ) {
         <?php echo
           $n->title;
         ?>
+          <span class="icon-close"
+                id="close" 
+                onclick="close_notif(<?php echo $n->wager->id;?>)"
+          >
+          </span>
         </span>
         <span>
           <?php echo

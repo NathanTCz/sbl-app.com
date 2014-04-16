@@ -422,6 +422,16 @@ div#error span[class*='icon-'] {
   color: #EEE;
 }
 
+.user_tools div#notifications span > span#notif_title > span {
+  float: right;
+
+  width: auto;
+  margin: 0.2em 0.5em;
+
+  font-size: 0.7em;
+  cursor: pointer;
+}
+
 .user_tools div#notifications span#see_all {
   width: 98.6%;
 

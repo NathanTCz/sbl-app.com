@@ -71,15 +71,15 @@ if ( $n_cnt > 0 ) {
       </div>
 
       <span id="<?php echo $n->wager->id;?>">
-        <span class="icon-cancel-cicle"
-              id="close" 
-              onclick="close(<?php echo $n->wager->id;?>)"
-        >
-        </span>
         <span id="notif_title">
-        <?php echo
-          $n->title;
-        ?>
+          <?php echo
+            $n->title;
+          ?>
+          <span class="icon-close"
+                id="close" 
+                onclick="close_notif(<?php echo $n->wager->id;?>)"
+          >
+          </span>
         </span>
         <span>
           <?php echo
@@ -130,9 +130,14 @@ if ( $n_cnt > 0 ) {
 
       <span id="<?php echo $n->wager->id;?>">
         <span id="notif_title">
-        <?php echo
-          $n->title;
-        ?>
+          <?php echo
+            $n->title;
+          ?>
+          <span class="icon-close"
+                id="close" 
+                onclick="close_notif(<?php echo $n->wager->id;?>)"
+          >
+          </span>
         </span>
         <span>
           <?php echo
