@@ -86,6 +86,12 @@ if ( $n_cnt == 0 )
 else
   $back = '#ADFF2F';
 ?>
+<span class="user_name">
+  <?php echo
+    $current_user->get_uname()
+    ;
+  ?>
+</span>
 <span class="top_bal">
   <span>
     <?php echo
