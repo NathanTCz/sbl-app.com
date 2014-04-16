@@ -22,6 +22,12 @@ function compare_notification ($a, $b) {
 ?>
 
 <div id="user_tools" class="user_tools">
+  <span class="user_name">
+    <?php echo
+      $current_user->get_uname()
+      ;
+    ?>
+  </span>
   <span class="top_bal">
     <span>
       <?php echo

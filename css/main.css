@@ -310,6 +310,14 @@ div#error span[class*='icon-'] {
   color: #999;
 }
 
+.user_tools .user_name {
+  display: block;
+  float: left;
+
+  margin: 0.8em;
+  color: #FFF;
+}
+
 .user_tools .notif_box {
   display: block;
   float: left;
