@@ -128,7 +128,8 @@ class Database {
         $wager->status,
         $wager->proposal,
         $wager->seen,
-        $wager->counter_offer_bool
+        $wager->counter_offer_bool,
+        $wager->paid_out
       );
     }
     return ( isset($wagers) ) ? $wagers : $wagers = array();
@@ -147,7 +148,7 @@ class Database {
     $results = Database::resolve_data($query);
 
     foreach ($results as $event) {
-      $events[] = new Event (
+      $events[] = new Event ( 
         $event->id,
         $event->cat_id, 
         $event->event_time,
@@ -178,8 +179,11 @@ class Database {
       $yacs[] = new Yac (
         $yac->id,
         $yac->user_id,
+        $yac->updated, 
         $yac->at_risk,
-        $yac->balance
+        $yac->balance, 
+        $yac->winnings, 
+        $yac->losings
       );
     }
     return ( isset($yacs) ) ? $yacs : $yacs = array();

@@ -2,14 +2,16 @@
 require_once 'classes/Database.php';
 
 class Notification extends Database {
+  public $type;
   public $title;
   public $desc;
   public $timestamp;
   public $wager;
 
-  public function __construct($t, $d, $tm, $w) {
+  public function __construct($ty, $t, $d, $tm, $w) {
     parent::__construct();
 
+    $this->type = $ty;
     $this->title = $t;
     $this->desc = $d;
     $this->timestamp = $tm;

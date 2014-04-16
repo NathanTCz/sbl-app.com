@@ -16,8 +16,9 @@ class Wager extends Database {
   public $prop_team;
   public $seen;
   public $counter_bool;
+  public $paid_out;
 
-  public function __construct($id, $t, $uid, $a, $op, $e, $o, $s, $p, $see, $cb) {
+  public function __construct($id, $t, $uid, $a, $op, $e, $o, $s, $p, $see, $cb, $po) {
     parent::__construct();
 
     $this->id = $id;
@@ -33,6 +34,7 @@ class Wager extends Database {
     $this->prop_team = $this->set_prop_team($s);
     $this->seen =$see;
     $this->counter_bool = $cb;
+    $this->paid_out = $po;
   }
 
   public function set_event ($event_id) {

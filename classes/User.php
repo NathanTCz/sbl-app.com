@@ -44,6 +44,11 @@ Class User extends Database {
     $this->pre_notifs['denied'] = array();
     $this->pre_notifs['counters'] = array();
 
+    $this->pending_wagers = array(); 
+    $this->accepted_wagers = array(); 
+    $this->denied_wagers = array(); 
+
+
     $this->set_pending_wagers();
     $this->set_accepted_wagers();
     $this->set_denied_wagers();
@@ -208,13 +213,15 @@ Class User extends Database {
       $amt = $r->amount;
       $time = $SYSTEM->time2str($r->timestamp);
       $wager_id = $r->id;
+      $type = 'request';
 
       $team = $r->prop_team->short_name;
 
       $title = sprintf('%s sent you a request', $user);
-      $desc = sprintf('%s put %d on %s', $user, $amt, $team);
+      $desc = sprintf('%s put %01.2f on %s', $user, $amt, $team);
 
       $n = new Notification (
+        $type,
         $title,
         $desc,
         $time,
@@ -230,13 +237,15 @@ Class User extends Database {
       $amt = $a->amount;
       $time = $SYSTEM->time2str($a->timestamp);
       $wager_id = $a->id;
+      $type = 'message';
 
-      $team = $r->prop_team->short_name;
+      $team = $a->prop_team->short_name;
 
       $title = sprintf('%s accepted your request', $user);
-      $desc = sprintf('You put %d on %s', $amt, $team);
+      $desc = sprintf('You put %01.2f on %s', $amt, $team);
 
       $n = new Notification (
+        $type,
         $title,
         $desc,
         $time,
@@ -252,13 +261,15 @@ Class User extends Database {
       $amt = $d->amount;
       $time = $SYSTEM->time2str($d->timestamp);
       $wager_id = $d->id;
+      $type = 'message';
 
-      $team = $r->prop_team->short_name;
+      $team = $d->prop_team->short_name;
 
       $title = sprintf('%s denied your request', $user);
-      $desc = sprintf('You put %d on %s', $amt, $team);
+      $desc = sprintf('You put %01.2f on %s', $amt, $team);
 
       $n = new Notification (
+        $type,
         $title,
         $desc,
         $time,
@@ -344,7 +355,7 @@ Class User extends Database {
       $opp_ar = $opp_yac->at_risk + $wager->amount;
 
       $status = 1;
-      $seen = 1;
+      $seen = 0;
 
 
       if ( $this->check_yacs($wager->amount) ) {
@@ -403,17 +414,15 @@ Class User extends Database {
     //just send them a message saying the wager was denied and then after the message displays
     //delete the wager from the table.
     $status = 0;
-    $seen = 1;
 
      $query = $DB->prepare ("
       UPDATE wager
       SET
-        status = ?,
-        seen = ?
+        status = ?
       WHERE id = ?  
     ");
 
-    $query->bind_param('ddd', $status, $seen, $bet_id) ;
+    $query->bind_param('dd', $status, $bet_id) ;
     $query->execute();
 
   }

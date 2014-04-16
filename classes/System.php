@@ -205,9 +205,16 @@ class System extends Database {
 
   public function set_wager_outcome(){
    global $DB;
+   global $WAGERS;
 
-    foreach ($this->wagers as $wager) {
-      if ($wager->proposal == $wager->event->home_id && $wager->event->outcome == 1) {
+   
+
+    foreach ($WAGERS as $wager) {
+        // $w = $wager; 
+
+         $wid = $wager->id;
+
+      if ($wager->proposal == $wager->event->home_team->id && $wager->event->outcome == 1) {
 
       $query = $DB->prepare ("
       UPDATE wager
@@ -215,11 +222,11 @@ class System extends Database {
       WHERE id = ?
     ");
    
-    $query->bind_param('d',$wager->id);
+    $query->bind_param('d',$wid);
     $query->execute();
     }
 
-    elseif ($wager->proposal == $wager->event->away_id && $wager->event->outcome == 0) {
+    elseif ($wager->proposal == $wager->event->away_team->id && $wager->event->outcome == 0) {
 
       $query = $DB->prepare ("
       UPDATE wager
@@ -227,10 +234,10 @@ class System extends Database {
       WHERE id = ?
     ");
    
-    $query->bind_param('d',$wager->id);
+    $query->bind_param('d',$wid);
     $query->execute();
   }
-  elseif($wager->proposal == $wager->event->home_id && $wager->event->outcome == 0){
+  elseif($wager->proposal == $wager->event->home_team->id && $wager->event->outcome == 0){
 
     $query = $DB->prepare ("
       UPDATE wager
@@ -238,10 +245,10 @@ class System extends Database {
       WHERE id = ?
     ");
    
-    $query->bind_param('d',$wager->id);
+    $query->bind_param('d',$wid);
     $query->execute();
   }
-  elseif($wager->proposal == $wager->event->away_id && $wager->event->outcome == 1){
+  elseif($wager->proposal == $wager->event->away_team->id && $wager->event->outcome == 1){
 
     $query = $DB->prepare ("
       UPDATE wager
@@ -249,7 +256,7 @@ class System extends Database {
       WHERE id = ?
     ");
    
-    $query->bind_param('d',$wager->id);
+    $query->bind_param('d',$wid);
     $query->execute();
   }
   }
@@ -273,8 +280,16 @@ public function check_yacs(){
 
    global $DB;
    global $USERS; 
+     
 
   foreach ($USERS as $user) {
+
+        $uid = $user->get_uid();
+        $uyb = $user->yac->balance;
+        $schfifty = 50;
+    
+        $merica = $uyb + $schfifty;
+
     if( strtotime($user->yac->updated) >= strtotime('-3 week') ) {
     
         $query = $DB->prepare ("
@@ -284,7 +299,7 @@ public function check_yacs(){
       ");
 
       $query->bind_param('dd', 
-        $user->yac->balance + 50, $user->user_id
+        $merica, $uid
       );
     }
     else 
@@ -303,83 +318,106 @@ public function check_and_update_user_balances(){
 
   foreach ($USERS as $user) {
     foreach ($user->get_accepted_wagers() as $wagers) {
-    if($user->yac->balance >= $wagers->amount) {
-      if($wagers->outcome == 1 && $user->user_id == $wagers->user_id){
+         
+    $uid = $user->get_uid();
+    $uyb = $user->yac->balance;
+    $uyar = $user->yac->at_risk;
+    $uyw = $user->yac->winnings;
+    $uyl = $user->yac->losings;
+    $wamt = $wagers->amount; 
+
+    $add_win = $uyb + (2 * $wamt);
+    $add_at_risk = $uyar - $wamt;
+    $add_yac_winnings = $uyw + $wamt;
+
+    $add_loss = $uyb - $wamt;
+    $add_yac_losses = $uyl + $wamt;
+
+    $paid_out = 1;
+    
+    
+
+      if($wagers->outcome === 1 && $uid == $wagers->user_id && $wagers->paid_out === 0){
  
         //The current user won!
+      
 
         $query = $DB->prepare ("
-        UPDATE yac
-        SET balance = ?, at_risk = ?, winnings = ?
-        WHERE id = ?
+        UPDATE yac, wager
+        SET yac.balance = ?, yac.at_risk = ?, yac.winnings = ?, wager.paid_out = ?
+        WHERE yac.user_id = ?
       ");
 
-      $query->bind_param('dddd',
-        $user->yac->balance + $wagers->amount,
-        $user->yac->at_risk - $wagers->amount,
-        $user->yac->winnings + $wagers->amount,
-        $user->user_id
+      $query->bind_param('ddddd',
+        $add_win,
+        $add_at_risk ,
+        $add_yac_winnings,
+        $paid_out,
+        $uid
+
       );
       $query->execute();
      }
    
-     elseif($wagers->outcome == 0 && $user->user_id == $wagers->user_id){
+     elseif($wagers->outcome === 0 && $uid == $wagers->user_id && $wagers->paid_out === 0){
 
       //The current user lost!
 
         $query = $DB->prepare ("
-        UPDATE yac
-        SET balance = ?, at_risk = ?, losings = ?
-        WHERE id = ?
+        UPDATE yac, wager
+        SET yac.balance = ?, yac.at_risk = ?, yac.losings = ?, wager.paid_out = ?
+        WHERE yac.user_id = ?
       ");
 
-      $query->bind_param('dddd',
-        $user->yac->balance - $wagers->amount,
-        $user->yac->at_risk - $wagers->amount,
-        $user->yac->losings + $wagers->amount,
-        $user->user_id
+      $query->bind_param('ddddd',
+        $add_loss,
+        $add_at_risk,
+        $add_yac_losses,
+        $paid_out,
+        $uid
       );
       $query->execute();
      }
 
-     elseif($wagers->outcome == 1 && $user->user_id == $wagers->opponent_id){
+     elseif($wagers->outcome === 1 && $uid == $wagers->opponent_id && $wagers->paid_out === 0){
 
         //The current user lost (because the opponent won)!
 
         $query = $DB->prepare ("
-        UPDATE yac
-        SET balance = ?, at_risk = ?, losings = ?
-        WHERE id = ?
+        UPDATE yac, wager
+        SET yac.balance = ?, yac.at_risk = ?, yac.losings = ?, wager.paid_out = ?
+        WHERE yac.user_id = ?
       ");
 
-      $query->bind_param('dddd',
-        $user->yac->balance - $wagers->amount,
-        $user->yac->at_risk - $wagers->amount,
-        $user->yac->losings + $wagers->amount,
-        $user->user_id
+      $query->bind_param('ddddd',
+        $add_loss,
+        $add_at_risk,
+        $add_yac_losses,
+        $paid_out,
+        $uid
       );
       $query->execute();
      }
 
-     elseif($wagers->outcome == 0 && $user->user_id == $wagers->opponent_id){
+     elseif($wagers->outcome === 0 && $uid == $wagers->opponent_id && $wagers->paid_out === 0){
 
-        //THe current user won (because he/she is the opponent)!
+        //The current user won (because he/she is the opponent)!
 
         $query = $DB->prepare ("
-        UPDATE yac
-        SET balance = ?, at_risk = ?, winnings = ?
-        WHERE id = ?
+        UPDATE yac, wager
+        SET yac.balance = ?, yac.at_risk = ?, yac.winnings = ?, wager.paid_out = ?
+        WHERE yac.user_id = ?
       ");
 
-      $query->bind_param('dddd',
-        $user->yac->balance + $wagers->amount,
-        $user->yac->at_risk - $wagers->amount,
-        $user->yac->winnings + $wagers->amount,
-        $user->user_id
+      $query->bind_param('ddddd',
+        $add_win ,
+        $add_at_risk,
+        $add_yac_winnings,
+        $paid_out,
+        $uid
       );
       $query->execute();
      }
-    }
    }
   }
  }
