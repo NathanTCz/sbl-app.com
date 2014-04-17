@@ -24,12 +24,11 @@ function submit_form() {
 }
 
 function check_hash() {
-  if (window.location.hash) {
-    if (window.location.hash == "#register") {
+  var link = window.location.href.split('#')[1];
+    if (link == "register") {
       shift();
       window.scrollTo(0,document.body.scrollHeight);
     }
-  }
 }
 
 /*

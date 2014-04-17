@@ -196,7 +196,9 @@ section {
 }
 
 .main section.animated {
+  -moz-transform: translateX(-100em);
   -webkit-transform: translateX(-100em);
+  transform: translateX(-100em);
 }
 
 .login_box {
