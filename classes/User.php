@@ -306,7 +306,7 @@ Class User extends Database {
     }
 
     foreach ( $this->recent_lost_bets as $l ) {
-      if ( !$w->seen ) {
+      if ( !$l->seen ) {
         $user = $SYSTEM->get_uname($l->opponent_id);
         $user = sprintf('<b>%s</b>', $user);
         $amt = $l->amount;
